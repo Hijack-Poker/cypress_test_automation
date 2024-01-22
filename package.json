@@ -1,0 +1,27 @@
+{
+  "name": "hijacktest",
+  "version": "1.0.0",
+  "description": "Cypress Cucumber Automation Framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alfe Lna",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^13.6.2",
+    "cypress-social-logins": "^1.14.1",
+    "cypress-xpath": "^2.0.1",
+    "ts-loader": "^9.5.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "cypress-shadow-dom": "^1.4.1",
+    "D": "^1.0.0"
+  }
+}
