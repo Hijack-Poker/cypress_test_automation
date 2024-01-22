@@ -23,5 +23,13 @@
     "-": "^0.0.1",
     "cypress-shadow-dom": "^1.4.1",
     "D": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hijack-Poker/cypress_test_automation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hijack-Poker/cypress_test_automation/issues"
+  },
+  "homepage": "https://github.com/Hijack-Poker/cypress_test_automation#readme"
 }
