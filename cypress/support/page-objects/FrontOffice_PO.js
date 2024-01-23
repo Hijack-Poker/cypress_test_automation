@@ -170,11 +170,11 @@ class FrontOffice_PO {
   }
 
   clickNameTxtField(fieldValue) {
-    if (fieldValue.includes('Display Name')) {
+    if (fieldValue.includes("Display Name")) {
       cy.get("a#editdisplayname").click();
-    } else if (fieldValue.includes('First Name')) {
+    } else if (fieldValue.includes("First Name")) {
       cy.get("a#editfirstname").click();
-    } else if (fieldValue.includes('Last Name')) {
+    } else if (fieldValue.includes("Last Name")) {
       cy.get("a#editlastname").click();
     } else {
       //blank for now
@@ -182,11 +182,11 @@ class FrontOffice_PO {
   }
 
   clearNameTxtField(fieldValue) {
-    if (fieldValue.includes('Display Name')) {
+    if (fieldValue.includes("Display Name")) {
       cy.get("input#displayname").clear();
-    } else if (fieldValue.includes('First Name')) {
+    } else if (fieldValue.includes("First Name")) {
       cy.get("input#firstname").clear();
-    } else if (fieldValue.includes('Last Name')) {
+    } else if (fieldValue.includes("Last Name")) {
       cy.get("input#lastname").clear();
     } else {
       //blank for now
@@ -194,11 +194,11 @@ class FrontOffice_PO {
   }
 
   clickSaveButton(fieldValue) {
-    if (fieldValue.includes('Display Name')) {
+    if (fieldValue.includes("Display Name")) {
       cy.get("button#submitdisplayname").click();
-    } else if (fieldValue.includes('First Name')) {
+    } else if (fieldValue.includes("First Name")) {
       cy.get("button#submitfirstname").click();
-    } else if (fieldValue.includes('Last Name')) {
+    } else if (fieldValue.includes("Last Name")) {
       cy.get("button#submitlastname").click();
     } else {
       //blank for now
@@ -213,18 +213,35 @@ class FrontOffice_PO {
   }
 
   editNameField(fieldValue, textValue) {
-    if (fieldValue.includes('Display Name')) {
+    if (fieldValue.includes("Display Name")) {
       cy.get("input#displayname").clear();
       cy.get("input#displayname").type(textValue);
-    } else if (fieldValue.includes('First Name')) {
+    } else if (fieldValue.includes("First Name")) {
       cy.get("input#firstname").clear();
       cy.get("input#firstname").type(textValue);
-    } else if (fieldValue.includes('Last Name')) {
+    } else if (fieldValue.includes("Last Name")) {
       cy.get("input#lastname").clear();
       cy.get("input#lastname").type(textValue);
     } else {
       //blank for now
     }
+  }
+
+  verifySuccessMessage(displayValue) {
+    cy.get("#ModalBody")
+      .should("be.visible")
+      .invoke("text")
+      .should("include", displayValue);
+  }
+
+  clickAvatarLogo() {
+    cy.get(
+      "[src='https://media.hijackpoker-staging.online/images/002-bank.png']"
+    ).click();
+  }
+
+  clickAvatarTab() {
+    cy.get("a#avatar-pill-vertical").click();
   }
 }
 export default FrontOffice_PO;

@@ -69,6 +69,14 @@ When("I edit the {string} to {string} on Account Details", (fieldValue, textValu
     frontOfficePage.editNameField(fieldValue, textValue);
 })
 
+When("I click Avatar tab in Account Details", () => {
+    frontOfficePage.clickAvatarTab();
+})
+
+When("I choose different logo to update my avatar", () => {
+    frontOfficePage.clickAvatarLogo();
+})
+
 // Verification methods
 
 Then("The login page HiJack will be displayed", () => {
@@ -89,4 +97,8 @@ Then("The login error message should be displayed", () => {
 
 Then("The error message {string} should be displayed", (errorValue) => {
     frontOfficePage.verifyErrorMsg(errorValue);
+})
+
+Then("The message displayed in the account details should be {string}", (displayValue) => {
+    frontOfficePage.verifySuccessMessage(displayValue);
 })
