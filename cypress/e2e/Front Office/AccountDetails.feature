@@ -1,3 +1,4 @@
+@account @regression
 Feature: Account - Account Details
     #Author: Alfe Niño Laña 01/19/2024
 

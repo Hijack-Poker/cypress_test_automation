@@ -1,3 +1,4 @@
+@login @regression
 Feature: Front Office - Login Page
     #Author: Alfe Niño Laña 01/18/2024
 
