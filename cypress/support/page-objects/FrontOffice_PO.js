@@ -24,7 +24,7 @@ class FrontOffice_PO {
         .find("#GIhmN0AQ39")
         .shadow()
         .find("#input-vaadin-email-field-3")
-        .type("jpanares+2@oppy.tech");
+        .type("alana+17@oppy.tech");
 
       /// Input password
       cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
@@ -32,7 +32,7 @@ class FrontOffice_PO {
         .find("#b2gUaVb8UG")
         .shadow()
         .find("#input-vaadin-password-field-7")
-        .type("Admin123");
+        .type("P@ssword!1");
 
       /// Click Login button
       cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
@@ -45,7 +45,7 @@ class FrontOffice_PO {
   }
 
   clickProfile() {
-    cy.get("#navbarDropdownUserImage").click();
+    cy.get("a#navbarDropdownUserImage > img").click();
   }
 
   clickLogoutBtn() {
@@ -225,6 +225,21 @@ class FrontOffice_PO {
     } else {
       //blank for now
     }
+  }
+
+  clickHelpTab() {
+    cy.get("a#help-pill-vertical").click();
+  }
+
+  clickHelpLinkPortal() {
+    cy.get("#cardPillContentVertical [target]").click();
+  }
+
+  verifyHelpLinkPortal() {
+    cy.origin("https://hijack.freshdesk.com/support/solutions", () => {
+      cy.get('.fw-page-title')
+        .should("include", 'Knowledge base');
+    });
   }
 }
 export default FrontOffice_PO;

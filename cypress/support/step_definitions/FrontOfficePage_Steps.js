@@ -14,6 +14,7 @@ When("I logged in using the testing account", () => {
 });
 
 When("I click my profile", () => {
+    cy.wait(3000);
     frontOfficePage.clickProfile();
 });
 
@@ -69,6 +70,14 @@ When("I edit the {string} to {string} on Account Details", (fieldValue, textValu
     frontOfficePage.editNameField(fieldValue, textValue);
 })
 
+When("I click Help tab in Account Details", () => {
+    frontOfficePage.clickHelpTab();
+})
+
+When("I click the Help Portal link", () => {
+    frontOfficePage.clickHelpLinkPortal();
+})
+
 // Verification methods
 
 Then("The login page HiJack will be displayed", () => {
@@ -89,4 +98,8 @@ Then("The login error message should be displayed", () => {
 
 Then("The error message {string} should be displayed", (errorValue) => {
     frontOfficePage.verifyErrorMsg(errorValue);
+})
+
+Then("The Help Portal page should be displayed", () => {
+    frontOfficePage.verifyHelpLinkPortal();
 })
