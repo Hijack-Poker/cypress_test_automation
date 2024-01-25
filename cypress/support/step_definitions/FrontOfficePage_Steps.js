@@ -90,3 +90,7 @@ Then("The login error message should be displayed", () => {
 Then("The error message {string} should be displayed", (errorValue) => {
     frontOfficePage.verifyErrorMsg(errorValue);
 })
+
+Then("The message displayed in the account details should be {string}", (displayValue) => {
+    frontOfficePage.verifySuccessMessage(displayValue);
+})
