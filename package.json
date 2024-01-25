@@ -8,6 +8,7 @@
     "full-regression-headed-chrome": "cypress run --headed --browser chrome --spec 'cypress/e2e/Front Office/*.feature'",
     "full-regression-headless-chrome": "cypress run --browser chrome --spec 'cypress/e2e/Front Office/*.feature'",
     "login-test-headed-chrome": "cypress run --headed --browser chrome --spec 'cypress/e2e/Front Office/LoginPage.feature'",
+    "login-test-headless-chrome": "cypress run -e TAGS=\"@login\"",
     "full-regression-headed": "cypress run -e TAGS=\"@regression\" --headed",
     "account-test-headed": "cypress run -e TAGS=\"@account\" --headed"
   },
@@ -19,10 +20,24 @@
     "cypress": "^13.6.2",
     "cypress-social-logins": "^1.14.1",
     "cypress-xpath": "^2.0.1",
+    "multiple-cucumber-html-reporter": "^3.6.1",
     "ts-loader": "^9.5.1"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-formatter",
+      "output": "cypress/reports/cucumber-json/cucumber-report.json"
+    }
   },
   "dependencies": {
     "-": "^0.0.1",
