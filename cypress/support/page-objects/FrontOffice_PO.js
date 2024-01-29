@@ -100,31 +100,6 @@ class FrontOffice_PO {
   }
 
   clickLoginDetailsGoogle() {
-    // cy.origin("https://auth.descope.io", () => {
-    //   /// Click Login Email button
-    //   cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
-    //     .shadow()
-    //     .find("#bsRZVUo8ym")
-    //     .shadow()
-    //     .find("#bsRZVUo8ym")
-    //     .shadow()
-    //     .find(".vaadin-button-container")
-    //     .click();
-    // });
-    // cy.origin("https://accounts.google.com", () => {
-    //   /// Input email address
-    //   cy.get("#identifierId").type("alana@oppy.tech");
-
-    //   cy.get("#identifierNext .VfPpkd-vQzf8d").click();
-
-    //   /// Input password
-    //   cy.get("input[name='Passwd']").type("Tw1tt3rC@rb0n");
-
-    //   cy.get("#passwordNext .VfPpkd-vQzf8d").click();
-    // });
-
-    // logIntoGoogle("alana@oppy.tech", "Tw1tt3rC@rb0n");
-
     loginByGoogleApi();
   }
 
