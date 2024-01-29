@@ -1,6 +1,97 @@
 /// <reference types="cypress" />
 import "cypress-shadow-dom";
 
+beforeEach(() => {
+  cy.clearAllCookies();
+  cy.clearAllLocalStorage();
+});
+
+function logIntoGoogle(username, password) {
+  Cypress.on(
+    "uncaught:exception",
+    (err) =>
+      !err.message.includes("ResizeObserver loop") &&
+      !err.message.includes("Error in protected function")
+  );
+  cy.visit("https://account.hijackpoker-staging.online");
+
+  cy.origin("https://auth.descope.io", () => {
+    /// Click Login Email button
+    cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+      .shadow()
+      .find("#bsRZVUo8ym")
+      .shadow()
+      .find("#bsRZVUo8ym")
+      .shadow()
+      .find(".vaadin-button-container")
+      .click();
+  });
+
+  cy.origin(
+    "https://accounts.google.com",
+    {
+      args: {
+        username,
+        password,
+      },
+    },
+    ({ username, password }) => {
+      Cypress.on(
+        "uncaught:exception",
+        (err) =>
+          !err.message.includes("ResizeObserver loop") &&
+          !err.message.includes("Error in protected function")
+      );
+
+      cy.get('input[type="email"]').type(username, {
+        log: false,
+      });
+      // NOTE: The element exists on the original form but is hidden and gets rerendered, which leads to intermittent detached DOM issues
+      cy.contains("Next").click().wait(4000);
+      cy.get('[type="password"]').type(password, {
+        log: false,
+      });
+      cy.contains("Next").click().wait(4000);
+    }
+  );
+}
+
+function loginByGoogleApi() {
+  cy.log("Logging in to Google");
+  cy.request({
+    method: "POST",
+    url: "https://www.googleapis.com/oauth2/v4/token",
+    body: {
+      grant_type: "refresh_token",
+      client_id: Cypress.env("googleClientId"),
+      client_secret: Cypress.env("googleClientSecret"),
+      refresh_token: Cypress.env("googleRefreshToken"),
+    },
+  }).then(({ body }) => {
+    const { access_token, id_token } = body;
+
+    cy.request({
+      method: "GET",
+      url: "https://www.googleapis.com/oauth2/v3/userinfo",
+      headers: { Authorization: `Bearer ${access_token}` },
+    }).then(({ body }) => {
+      cy.log(body);
+      const userItem = {
+        token: id_token,
+        user: {
+          googleId: body.sub,
+          email: body.email,
+          givenName: body.given_name,
+          familyName: body.family_name,
+        },
+      };
+
+      window.localStorage.setItem("googleCypress", JSON.stringify(userItem));
+      cy.visit("https://account.hijackpoker-staging.online");
+    });
+  });
+}
+
 class FrontOffice_PO {
   navigate() {
     cy.fixture("config.json").then((data) => {
@@ -8,28 +99,77 @@ class FrontOffice_PO {
     });
   }
 
-  clickLoginDetails() {
+  clickLoginDetailsGoogle() {
+    // cy.origin("https://auth.descope.io", () => {
+    //   /// Click Login Email button
+    //   cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+    //     .shadow()
+    //     .find("#bsRZVUo8ym")
+    //     .shadow()
+    //     .find("#bsRZVUo8ym")
+    //     .shadow()
+    //     .find(".vaadin-button-container")
+    //     .click();
+    // });
+    // cy.origin("https://accounts.google.com", () => {
+    //   /// Input email address
+    //   cy.get("#identifierId").type("alana@oppy.tech");
+
+    //   cy.get("#identifierNext .VfPpkd-vQzf8d").click();
+
+    //   /// Input password
+    //   cy.get("input[name='Passwd']").type("Tw1tt3rC@rb0n");
+
+    //   cy.get("#passwordNext .VfPpkd-vQzf8d").click();
+    // });
+
+    // logIntoGoogle("alana@oppy.tech", "Tw1tt3rC@rb0n");
+
+    loginByGoogleApi();
+  }
+
+  clickLoginEmail() {
     cy.origin("https://auth.descope.io", () => {
+      Cypress.on(
+        "uncaught:exception",
+        (err) => !err.message.includes("NotAllowedError")
+      );
       /// Click Login Email button
       cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
         .shadow()
-        .find("#bsRZVUo8ym")
+        .find("#KAG9NgACSP")
         .shadow()
-        .find("#bsRZVUo8ym")
-        .shadow()
-        .find(".vaadin-button-container")
+        .find("#KAG9NgACSP")
+        .should("be.visible")
         .click();
-    });
-    cy.origin("https://accounts.google.com", () => {
-      /// Input email address
-      cy.get("#identifierId").type("alana@oppy.tech{enter}");
-
-      /// Input password
-      cy.get("[jscontroller='bzud8b'] [jsname='YPqjbf']").type("Tw1tt3rC@rb0n{enter}");
+      /// Fill-up email username
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#GIhmN0AQ39")
+        .shadow()
+        .find("#input-vaadin-email-field-3")
+        .type("jpanares+2@oppy.tech");
+      /// Fill-up password
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#b2gUaVb8UG")
+        .shadow()
+        .find("#input-vaadin-password-field-7")
+        .should("be.visible")
+        .type("Admin123");
+      /// Click Login button
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#VaCr2LiM1K")
+        .shadow()
+        .find("#VaCr2LiM1K")
+        .should("be.visible")
+        .click();
     });
   }
 
   clickProfile() {
+    cy.wait(6000);
     cy.get("#a#navbarDropdownUserImage > img").should("exist").click();
   }
 

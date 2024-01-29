@@ -7,9 +7,12 @@ Feature: Front Office - Login Page
     #-------------------------------------
 
     Scenario: Verify that player can logout and not access the website by manually entering the URL
+        # Given I logged in using the testing account
         Given I login in the HiJack Poker
-        When I logged in using the testing account
-        When I click my profile
+        # When I logged in using the testing account
+        When I click the Login with Email option
+        And I logged in using the testing account
+        And I click my profile
         And I click the logout button
         And I access the website by manually entering the URL
         Then The login page HiJack will be displayed

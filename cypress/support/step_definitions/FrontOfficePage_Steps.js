@@ -10,7 +10,7 @@ Given("I login in the HiJack Poker", () => {
 });
 
 When("I logged in using the testing account", () => {
-  frontOfficePage.clickLoginDetails();
+  frontOfficePage.clickLoginEmail();
 });
 
 When("I click my profile", () => {
