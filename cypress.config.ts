@@ -2,13 +2,18 @@ import { defineConfig } from "cypress";
 import * as createBundler from "@bahmutov/cypress-esbuild-preprocessor";
 import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
 import createEsbuildPlugin from "@badeball/cypress-cucumber-preprocessor/esbuild";
-import { plugins } from "cypress-social-logins";
-const googleSocialLogin = plugins.GoogleSocialLogin;
 
 
 
 export default defineConfig({
+  env: {
+    googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+    googleClientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+    googleClientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
+  },
   e2e: {
+    experimentalModifyObstructiveThirdPartyCode: true,
+    "chromeWebSecurity": false,
     specPattern: "**/*.feature",
     async setupNodeEvents(
       on: Cypress.PluginEvents,

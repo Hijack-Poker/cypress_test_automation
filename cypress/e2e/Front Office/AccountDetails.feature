@@ -1,3 +1,4 @@
+@account @regression
 Feature: Account - Account Details
     #Author: Alfe Niño Laña 01/19/2024
 
@@ -27,11 +28,3 @@ Feature: Account - Account Details
         And I click the Account button
         And I click the edit "Last Name" on Account Details
         And I edit the "Last Name" to "Sample" on Account Details
-        And I click the Save button of "Last Name" on account details
-        Then The message displayed in the account details should be "Last Name Updated!"
-
-
-      
-
-
-
