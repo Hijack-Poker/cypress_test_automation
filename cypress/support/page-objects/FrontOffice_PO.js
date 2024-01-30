@@ -328,5 +328,12 @@ class FrontOffice_PO {
       //blank for now
     }
   }
+
+  verifySuccessMessage(displayValue) {
+    cy.get("#ModalBody")
+    .should("be.visible")
+    .invoke("text")
+    .should("include", displayValue);
+  }
 }
 export default FrontOffice_PO;
