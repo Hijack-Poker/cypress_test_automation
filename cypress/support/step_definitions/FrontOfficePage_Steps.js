@@ -1,7 +1,6 @@
 import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import FrontOffice_PO from "../page-objects/FrontOffice_PO";
 
-
 const frontOfficePage = new FrontOffice_PO();
 
 // Action methods
@@ -72,6 +71,30 @@ When(
   }
 );
 
+When("I click the the Register Now with Email", () => {
+  frontOfficePage.clickRegisterButton();
+});
+
+When("I input the email to be verified for registration", () => {
+  frontOfficePage.inputRegisterEmail();
+});
+
+When("I click the submit button in the registration", () => {
+  frontOfficePage.clickRegSubmitBtn();
+});
+
+When("I type this verification code in the Registation modal", () => {
+  frontOfficePage.inputEmailVerificationCode();
+});
+
+When("I click the verification code submit button", () => {
+  frontOfficePage.clickSubmitBtnInVerification();
+});
+
+When("I input not an email in Registration", () => {
+  frontOfficePage.inputInvalidRegisterEmail()
+})
+
 // Verification methods
 
 Then("The login page HiJack will be displayed", () => {
@@ -92,4 +115,20 @@ Then("The login error message should be displayed", () => {
 
 Then("The error message {string} should be displayed", (errorValue) => {
   frontOfficePage.verifyErrorMsg(errorValue);
+});
+
+Then("The Verify Your Email modal should be displayed", () => {
+  frontOfficePage.verifyYourEmailIsDisplayed();
+});
+
+Then("Verification info message is displayed on registration modal", () => {
+  frontOfficePage.verifyRegisterCodeMsgDisplay();
+});
+
+Then("The failed error message for email code verification should be displayed", () => {
+  frontOfficePage.verifyFailedEmailCodeDisplayed();
+});
+
+Then("The failed error message for rmail format in registration should be displayed", () => {
+  frontOfficePage.verifyErrorMsgEmailFormatDisplayed();
 });

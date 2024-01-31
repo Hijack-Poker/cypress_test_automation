@@ -331,9 +331,188 @@ class FrontOffice_PO {
 
   verifySuccessMessage(displayValue) {
     cy.get("#ModalBody")
-    .should("be.visible")
-    .invoke("text")
-    .should("include", displayValue);
+      .should("be.visible")
+      .invoke("text")
+      .should("include", displayValue);
+  }
+
+  clickRegisterButton() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#I1tsVIdiWU")
+        .shadow()
+        .find("#I1tsVIdiWU")
+        .shadow()
+        .find(".vaadin-button-container")
+        .click();
+    });
+  }
+
+  verifyYourEmailIsDisplayed() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#LmrSIGOWZb")
+        .should("exist");
+    });
+  }
+
+  inputRegisterEmail() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#IgW48WJK2h")
+        .shadow()
+        .find("#input-vaadin-email-field-3")
+        .type("alana+017@opyy.tech");
+    });
+  }
+
+  inputInvalidRegisterEmail() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#IgW48WJK2h")
+        .shadow()
+        .find("#input-vaadin-email-field-3")
+        .type("lOremIpsuM");
+    });
+  }
+
+  clickRegSubmitBtn() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#DQfnTvyxi6")
+        .shadow()
+        .find("#DQfnTvyxi6")
+        .click();
+    });
+  }
+
+  verifyRegisterCodeMsgDisplay() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#auED4dEJkJ")
+        .should("exist");
+    });
+  }
+
+  inputEmailVerificationCode() {
+    cy.origin("https://auth.descope.io", () => {
+      ///1st code digit
+      cy.get('descope-wc[project-id="P2TjFGLikGRSHKrrxgAHf2o3cM7w"]')
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          'descope-text-field[type="tel"][class="descope-input-wrapper descope-text-field"][data-id="0"]'
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-35")
+        .click()
+        .type("1");
+
+      ///2nd code digit
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          "descope-text-field[type='tel'][class='descope-input-wrapper descope-text-field'][data-id='1']"
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-39")
+        .click()
+        .type("2");
+
+      ///3rd code digit
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          "descope-text-field[type='tel'][class='descope-input-wrapper descope-text-field'][data-id='2']"
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-43")
+        .click()
+        .type("3");
+
+      ///4th code digit
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          "descope-text-field[type='tel'][class='descope-input-wrapper descope-text-field'][data-id='3']"
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-47")
+        .click()
+        .type("4");
+
+      ///5th code digit
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          "descope-text-field[type='tel'][class='descope-input-wrapper descope-text-field'][data-id='4']"
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-51")
+        .click()
+        .type("5");
+
+      ///6th code digit
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#L1T9iO4p5U")
+        .shadow()
+        .find(
+          "descope-text-field[type='tel'][class='descope-input-wrapper descope-text-field'][data-id='5']"
+        )
+        .shadow()
+        .find("#input-vaadin-text-field-55")
+        .click()
+        .type("6");
+    });
+  }
+
+  clickSubmitBtnInVerification() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#submit")
+        .shadow()
+        .find("#submit")
+        .shadow()
+        .find(".vaadin-button-container")
+        .click();
+    });
+  }
+
+  verifyFailedEmailCodeDisplayed() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#fyz-aN6hyx")
+        .should("exist");
+    });
+  }
+
+  verifyErrorMsgEmailFormatDisplayed() {
+    cy.origin("https://auth.descope.io", () => {
+      cy.get("descope-wc[project-id='P2TjFGLikGRSHKrrxgAHf2o3cM7w']")
+        .shadow()
+        .find("#IgW48WJK2h")
+        .shadow()
+        .find("#error-message-vaadin-email-field-2")
+        .should("exist");
+    });
   }
 }
 export default FrontOffice_PO;
