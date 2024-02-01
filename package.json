@@ -10,7 +10,8 @@
     "login-test-headed-chrome": "cypress run --headed --browser chrome --spec 'cypress/e2e/Front Office/LoginPage.feature'",
     "login-test-headless-chrome": "cypress run -e TAGS=\"@login\"",
     "full-regression-headed": "cypress run -e TAGS=\"@regression\" --headed",
-    "account-test-headed": "cypress run -e TAGS=\"@account\" --headed"
+    "account-test-headed": "cypress run -e TAGS=\"@account\" --headed",
+    "smoke-test-headless-chrome": "cypress run -e TAGS=\"@smoke\""
   },
   "author": "Alfe Lna",
   "license": "ISC",
