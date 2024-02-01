@@ -1,55 +1,35 @@
 {
-  "name": "hijacktest",
+  "name": "platform-test-automation",
   "version": "1.0.0",
-  "description": "Cypress Cucumber Automation Framework",
+  "description": "cypress test automation",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "full-regression-headed-chrome": "cypress run --headed --browser chrome --spec 'cypress/e2e/Front Office/*.feature'",
-    "full-regression-headless-chrome": "cypress run --browser chrome --spec 'cypress/e2e/Front Office/*.feature'",
-    "login-test-headed-chrome": "cypress run --headed --browser chrome --spec 'cypress/e2e/Front Office/LoginPage.feature'",
-    "login-test-headless-chrome": "cypress run -e TAGS=\"@login\"",
-    "full-regression-headed": "cypress run -e TAGS=\"@regression\" --headed",
-    "account-test-headed": "cypress run -e TAGS=\"@account\" --headed"
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@bahmutov/cypress-esbuild-preprocessor": "latest"
   },
-  "author": "Alfe Lna",
+  "scripts": {
+    "lint:test": "./node_modules/.bin/eslint --ext .js",
+    "lint:fix": "./node_modules/.bin/eslint --ext .js --fix"
+  },
+  "author": "hijack-qa-auto",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
-    "cypress": "^13.6.2",
-    "cypress-social-logins": "^1.14.1",
-    "cypress-xpath": "^2.0.1",
-    "multiple-cucumber-html-reporter": "^3.6.1",
-    "ts-loader": "^9.5.1"
+    "cypress": "^13.6.4",
+    "eslint": "^8.56.0",
+    "eslint-plugin-cypress": "^2.15.1"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
-    "html": {
-      "enabled": true,
-      "output": "cypress/reports/cucumber-html/cucumber-report.html"
-    },
+    "stepDefinitions": [
+      "cypress/support/step-definitions/**/*.js",
+      "cypress/support/step-definitions/**/**/*.js"
+    ],
     "messages": {
-      "enabled": true,
-      "output": "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+      "enabled":true,
+      "output": "test-reports/hijack-qa-automation-report.ndjson"
     },
-    "json": {
-      "enabled": true,
-      "formatter": "cucumber-json-formatter",
-      "output": "cypress/reports/cucumber-json/cucumber-report.json"
+    "html": {
+      "enabled":true,
+      "output": "test-reports/hijack-qa-automation-report.html"
     }
-  },
-  "dependencies": {
-    "-": "^0.0.1",
-    "cypress-shadow-dom": "^1.4.1",
-    "D": "^1.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hijack-Poker/cypress_test_automation.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Hijack-Poker/cypress_test_automation/issues"
-  },
-  "homepage": "https://github.com/Hijack-Poker/cypress_test_automation#readme"
+  }
 }
