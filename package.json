@@ -25,11 +25,11 @@
     ],
     "messages": {
       "enabled":true,
-      "output": "test-reports/hijack-qa-automation-report.ndjson"
+      "output": "cypress/test-reports/hijack-qa-automation-report.ndjson"
     },
     "html": {
       "enabled":true,
-      "output": "test-reports/hijack-qa-automation-report.html"
+      "output": "cypress/test-reports/hijack-qa-automation-report.html"
     }
   }
 }

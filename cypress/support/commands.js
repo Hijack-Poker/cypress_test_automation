@@ -23,3 +23,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('navigateToPage', (pageName) => {
+  switch (pageName.toLowerCase()) {
+    case 'hijack login':
+      cy.visit('/index');
+      break;
+    case 'hijack cardhouse':
+      cy.visit('/hijack/cardhouse');
+      break;
+    case 'club login':
+      Cypress.config('baseUrl', Cypress.env('CLUBS_MANAGEMENT_URL'));
+      cy.visit('/');
+      break;
+    // case 'club austin transactions':
+    //   Cypress.config('baseUrl', Cypress.env('CLUBS_TRANSACTION_AUSTIN_URL'));
+    //   cy.visit('/');
+    //   break;
+    // case 'club dallas transactions':
+    //   Cypress.config('baseUrl', Cypress.env('CLUBS_TRANSACTION_DALLAS_URL'));
+    //   cy.visit('/');
+    //   break;
+    // case 'club rgv transactions':
+    //   Cypress.config('baseUrl', Cypress.env('CLUBS_TRANSACTION_RGV_URL'));
+    //   cy.visit('/');
+    //   break;
+    // case 'club spring transactions':
+    //   Cypress.config('baseUrl', Cypress.env('CLUBS_TRANSACTION_SPRING_URL'));
+    //   cy.visit('/');
+    //   break;
+    default:
+      cy.log('Invalid page name provided: ' + pageName.toLowerCase());
+  }
+});

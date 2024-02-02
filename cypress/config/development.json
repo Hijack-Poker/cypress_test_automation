@@ -1,0 +1,12 @@
+{
+  "baseUrl": "https://account.hijackpoker-develop.online",
+  "env": {
+    "FRONT_OFFICE_URL": "https://account.hijackpoker-develop.online",
+    "CLUBS_MANAGEMENT_URL": "https://clubs.hijackpoker-develop.online",
+    "GAME_METRICS_URL": "https://metrics.hijackpoker-develop.online",
+    "CLUBS_TRANSACTION_AUSTIN_URL": "https://clubs.hijackpoker-develop.online/app/e5e1befb-8f42-48e4-af39-7f8aee974a44",
+    "CLUBS_TRANSACTION_DALLAS_URL": "https://clubs.hijackpoker-develop.online/app/dab7619a-c0e7-401f-8342-15349e62ade6",
+    "CLUBS_TRANSACTION_RGV_URL": "https://clubs.hijackpoker-develop.online/app/971b2bba-4742-4a12-92c7-e7c90d71edfa",
+    "CLUBS_TRANSACTION_SPRING_URL": "https://clubs.hijackpoker-develop.online/app/81ef2434-0f80-4b0c-853f-93f083a9e9f1"
+  }
+}
