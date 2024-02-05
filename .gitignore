@@ -1,6 +1,6 @@
 # directories
 node_modules
-cypress/test-reports
+cypress/test-reports/*
 cypress/downloads
 
 # system files
