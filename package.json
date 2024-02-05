@@ -1,0 +1,40 @@
+{
+  "name": "platform-test-automation",
+  "version": "1.0.0",
+  "description": "cypress test automation",
+  "main": "index.js",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@bahmutov/cypress-esbuild-preprocessor": "latest"
+  },
+  "scripts": {
+    "cypress:dev-smoke": "npx cypress run --env tags=@smoke configFile=development",
+    "cypress:test1-smoke": "npx cypress run --env tags=@smoke configFile=testing-1",
+    "cypress:test2-smoke": "npx cypress run --env tags=@smoke configFile=testing-2",
+    "cypress:stage-smoke": "npx cypress run --env tags=@smoke configFile=staging",
+    "lint:test": "./node_modules/.bin/eslint --ext .js",
+    "lint:fix": "./node_modules/.bin/eslint --ext .js --fix"
+  },
+  "author": "hijack-qa-auto",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.4",
+    "cypress-browser-permissions": "^1.1.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-cypress": "^2.15.1"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/support/step-definitions/**/*.js",
+      "cypress/support/step-definitions/**/**/*.js"
+    ],
+    "messages": {
+      "enabled": true,
+      "output": "cypress/test-reports/hijack-qa-automation-report.ndjson"
+    },
+    "html": {
+      "enabled": true,
+      "output": "cypress/test-reports/hijack-qa-automation-report.html"
+    }
+  }
+}
