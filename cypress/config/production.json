@@ -1,0 +1,13 @@
+{
+  "baseUrl": "https://hijackpoker.online",
+  "env": {
+    "FRONT_OFFICE_ACCOUNT_URL": "https://account.hijackpoker.online",
+    "FRONT_OFFICE_PLAY_URL": "https://play.hijackpoker.online",
+    "CLUBS_MANAGEMENT_URL": "https://clubs.hijackpoker.online",
+    "GAME_METRICS_URL": "https://metrics.hijackpoker.online",
+    "browserPermissions": {
+      "notifications": "allow",
+      "geolocation": "allow"
+    }
+  }
+}

@@ -8,29 +8,36 @@ Feature: Front Office - Login Logout
 
   @smoke
   Scenario: Login With Email - Verify that player is redirected to cardhouse page after login and can enter lobby
-    Given I navigate to "HiJack Login" Page
-    When I click on "Login with Email" button in Hijack Login Page
-    # And I enter valid email address in Hijack Login Page
-    # And I enter valid password in Hijack Login Page
-    # And I click on "Login" button in Hijack Login Page
-    # Then HiJack "Cardhouse" page should be displayed
-    # When I click on "Lobby" button
-    # Then HiJack "Lobby" page should be displayed
+    Given I navigate to "Front Office Login" page
+    When I click on "Login with Email" button in Descope page
+    And I enter "valid" credentials in Descope page
+    And I click on "Login" button in Descope page
+    Then "Front Office Cardhouse" page should be displayed
+    When I click on "Enter Lobby button" in "Club House page" of "Front Office"
+    Then "Front Office Lobby" page should be displayed
 
-  # @smoke
-  # Scenario: Login With Email - Verify that player can logout and not access the website by manually entering the URL
-    # Given I login to HiJack Game via "Login With Email"
-    # When I click on my avatar
-    # And I click on "Logout" button
-    # Then "HiJack Login" page should be displayed
-    # When I navigate to "HiJack Cardhouse" Page
-    # Then "HiJack Login" page should be displayed
+  @smoke
+  Scenario: Login With Email - Verify that player can logout and not access the website by manually entering the URL
+    Given I navigate to "Front Office Login" page
+    When I am login to Auth Descope via UI
+    And I click on "Avatar button" in "Navigation bar" of "Front Office"
+    And I click on "Logout button" in "Navigation bar" of "Front Office"
+    Then Auth Descope page should be displayed
+    When I navigate to "Front Office Cardhouse" page
+    Then Auth Descope page should be displayed
 
-  # @smoke
-  # Scenario: Login With Email - Verify that user can successfully reset password, when they do the forgot password process
+  @smoke
+  Scenario: Login With Email - Verify that user can successfully reset password, when they do the forgot password process
+    Given I navigate to "Front Office Login" page
+    When I click on "Login with Email" button in Descope page
+    And I enter "valid" credentials in Descope page
+    And I click on "Forgot Password" button in Descope page
+    Then Reset Password modal should be displayed with text "We've sent a password reset link to"
 
-  # @smoke
-  # Scenario: Login With Email - Verify that user cannot login with invalid credentials
-  
-  # @smoke
-  # Scenario: Login With Email - Verify error message is displayed when user enters incorrect password
+  @smoke
+  Scenario: Login With Email - Verify that user cannot login with invalid credentials
+    Given I navigate to "Front Office Login" page
+    When I click on "Login with Email" button in Descope page
+    And I enter "invalid" credentials in Descope page
+    And I click on "Login" button in Descope page
+    Then Error message should be displayed with text "Wrong password or unknown user"
