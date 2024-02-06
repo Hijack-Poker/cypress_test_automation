@@ -8,7 +8,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "latest"
   },
   "scripts": {
-    "cypress:development": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=development",
+    "cypress:development": "npx cypress run --browser chrome --record --parallel --env tags=@smoke configFile=development",
     "cypress:testing-1": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=testing-1",
     "cypress:testing-2": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=testing-2",
     "cypress:staging": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=staging",
