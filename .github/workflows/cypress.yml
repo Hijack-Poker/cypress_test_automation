@@ -1,0 +1,49 @@
+name: Cypress Tests
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: Environment
+        required: true
+        default: 'development'
+        options: ['development', 'testing-1', 'testing-2', 'staging']
+      choice:
+        type: choice
+        description: Test Types
+        required: true
+        default: 'smoke'
+        options:
+        - smoke
+        - regression
+  pull_request:
+    branches:
+      - main
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container:
+        image: cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
+        options: --user 1001
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node -v
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        with:
+          record: true
+          parallel: true
+          tag: node-${{ matrix.node }}
+          build: npx cypress info
+          command: npm run cypress:development
