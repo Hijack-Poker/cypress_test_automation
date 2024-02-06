@@ -2,11 +2,6 @@ name: Cypress Tests
 on: 
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy'
-        required: true
-        default: 'development'
-        options: ['development', 'testing-1', 'testing-2', 'staging']
       choice:
         type: choice
         description: Test Types
@@ -15,7 +10,6 @@ on:
         options:
         - smoke
         - regression
-
   push:
     branches:
       - EN-2880
@@ -46,4 +40,4 @@ jobs:
           parallel: true
           tag: node-${{ matrix.node }}
           build: npx cypress info
-          command: npx cypress run --browser chrome --record --parallel --env tags=@${{ github.event.inputs.choice }} configFile=${{ github.event.inputs.environment }}
+          command: npx cypress run --browser chrome --record --parallel --env tags=@${{ github.event.inputs.choice }} configFile=development
