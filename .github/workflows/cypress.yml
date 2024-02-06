@@ -3,19 +3,17 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: environment
-        description: Environment
+        type: choice
+        description: Select Environment
         required: true
         default: 'development'
-        options: ['development', 'testing-1', 'testing-2', 'staging']
+        options: ['development','testing-1','testing-2','staging']
       choice:
         type: choice
-        description: Test Types
+        description: Select Test Type
         required: true
         default: 'smoke'
-        options:
-        - smoke
-        - regression
+        options: ['smoke','regression']
   pull_request:
     branches:
       - main
