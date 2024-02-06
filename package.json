@@ -8,10 +8,10 @@
     "@bahmutov/cypress-esbuild-preprocessor": "latest"
   },
   "scripts": {
-    "cypress:dev-smoke": "npx cypress run --env tags=@smoke configFile=development",
-    "cypress:test1-smoke": "npx cypress run --env tags=@smoke configFile=testing-1",
-    "cypress:test2-smoke": "npx cypress run --env tags=@smoke configFile=testing-2",
-    "cypress:stage-smoke": "npx cypress run --env tags=@smoke configFile=staging",
+    "cypress:development": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=development",
+    "cypress:testing-1": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=testing-1",
+    "cypress:testing-2": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=testing-2",
+    "cypress:staging": "npx cypress run --browser chrome --record --parallel --env tags=@$npm_package_config_choice configFile=staging",
     "lint:test": "./node_modules/.bin/eslint --ext .js",
     "lint:fix": "./node_modules/.bin/eslint --ext .js --fix"
   },
