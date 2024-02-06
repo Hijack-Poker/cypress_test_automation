@@ -41,9 +41,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
         with:
           record: true
           parallel: true
           tag: node-${{ matrix.node }}
           build: npx cypress info
-          command: npm run cypress:${{ github.event.inputs.environment }}
+          command: npm run cypress:$ENVIRONMENT
