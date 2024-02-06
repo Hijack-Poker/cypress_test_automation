@@ -46,4 +46,4 @@ jobs:
           parallel: true
           tag: node-${{ matrix.node }}
           build: npx cypress info
-          command: cypress:${{ github.event.inputs.environment }}
+          command: npm run cypress:${{ github.event.inputs.environment }}
