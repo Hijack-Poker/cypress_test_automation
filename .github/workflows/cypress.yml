@@ -10,6 +10,9 @@ on:
         options:
         - smoke
         - regression
+  push:
+    branches:
+      - EN-2880
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
