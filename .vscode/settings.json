@@ -1,0 +1,18 @@
+{
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "cypressHelper.cucumberFixtureAutocompleteOnQuotes": true,
+  "cypressHelper.cucumberTagsAutocomplete": {
+    "enable": false,
+    "allurePlugin": false,
+    "tags": [
+      "focus",
+      "smoke",
+      "regression",
+      "bugfix",
+      "failure"
+    ]
+  }
+}

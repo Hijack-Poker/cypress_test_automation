@@ -1,27 +1,41 @@
 {
-  "name": "hijacktest",
+  "name": "platform-test-automation",
   "version": "1.0.0",
-  "description": "Cypress Cucumber Automation Framework",
+  "description": "cypress test automation",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@bahmutov/cypress-esbuild-preprocessor": "latest"
   },
-  "author": "Alfe Lna",
+  "scripts": {
+    "cypress:local": "npx cypress run --env tags='not @bugfix and not @failure' configFile=development",
+    "cypress:development": "npx cypress run --record --parallel --env tags='not @bugfix and not @failure' configFile=development",
+    "cypress:testing-1": "npx cypress run --record --parallel --env tags='not @bugfix and not @failure' configFile=testing-1",
+    "cypress:testing-2": "npx cypress run --record --parallel --env tags='not @bugfix and not @failure' configFile=testing-2",
+    "cypress:staging": "npx cypress run --record --parallel --env tags='not @bugfix and not @failure' configFile=staging",
+    "lint:test": "./node_modules/.bin/eslint --ext .js",
+    "lint:fix": "./node_modules/.bin/eslint --ext .js --fix"
+  },
+  "author": "hijack-qa-auto",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^20.0.1",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
-    "cypress": "^13.6.2",
-    "cypress-social-logins": "^1.14.1",
-    "cypress-xpath": "^2.0.1",
-    "ts-loader": "^9.5.1"
+    "cypress": "^13.6.4",
+    "cypress-browser-permissions": "^1.1.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-cypress": "^2.15.1"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
-  },
-  "dependencies": {
-    "-": "^0.0.1",
-    "cypress-shadow-dom": "^1.4.1",
-    "D": "^1.0.0"
+    "stepDefinitions": [
+      "cypress/support/step-definitions/**/*.js",
+      "cypress/support/step-definitions/**/**/*.js"
+    ],
+    "messages": {
+      "enabled": true,
+      "output": "cypress/test-reports/hijack-qa-automation-report.ndjson"
+    },
+    "html": {
+      "enabled": true,
+      "output": "cypress/test-reports/hijack-qa-automation-report.html"
+    }
   }
 }
