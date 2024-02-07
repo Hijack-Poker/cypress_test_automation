@@ -1,5 +1,5 @@
 name: Cypress Tests
-run-name: Run Cypress Tests in ${{ github.event.inputs.environment }} by @${{ github.actor }}
+run-name: Run Cypress Tests in ${{ github.event.inputs.environment || 'development' }} by @${{ github.actor }}
 on: 
   workflow_dispatch:
     inputs:
@@ -35,6 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: Run Cypress Tests in ${{ github.event.inputs.environment }} by @${{ github.actor }}
         with:
           record: true
           parallel: true
