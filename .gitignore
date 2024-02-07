@@ -1,1 +1,8 @@
-/node_modules/
+# directories
+node_modules
+cypress/test-reports/*
+cypress/downloads
+
+# system files
+.DS_Store
+.env

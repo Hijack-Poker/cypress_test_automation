@@ -23,4 +23,50 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('c_navigateToPage', (pageName) => {
+  switch (pageName.toLowerCase()) {
+    case 'front office login':
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL'));
+      break;
+    case 'front office cardhouse':
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
+      break;
+    case 'club login':
+      cy.visit(Cypress.env('CLUBS_MANAGEMENT_URL'));
+      break;
+    case 'front office lobby':
+      cy.visit(Cypress.env('FRONT_OFFICE_PLAY_URL'));
+      break;
+    default:
+      throw new Error('Invalid page name provided: ' + pageName);
+  }
+});
 
+Cypress.Commands.add('c_verifyPageDisplayed', (pageName) => {
+  switch (pageName.toLowerCase()) {
+    case 'front office login':
+      cy.url().should('include', '/index');
+      break;
+    case 'front office cardhouse':
+      cy.url().should('include', '/hijack/cardhouse');
+      break;
+    case 'front office lobby':
+      cy.url().should('include', 'play.hijackpoker');
+      break;
+    default:
+      throw new Error('Invalid page name provided: ' + pageName);
+  }
+});
+
+Cypress.Commands.add('c_getLocatorByNamePage', (locatorFile, elementName, page) => {
+  const pageLocators = locatorFile[page.replace(/ /g, "_").toLowerCase()];
+  if (!pageLocators) {
+    throw new Error(`Page "${page}" not found in locator file."`);
+  }
+  const elementLocator = pageLocators[elementName.replace(/ /g, "_").toLowerCase()];
+  if (!elementLocator) {
+    throw new Error(`Element "${elementName}" not found on page "${page}."`);
+  }
+  // Use a callback to execute the logic
+  return cy.wrap(elementLocator);
+});
