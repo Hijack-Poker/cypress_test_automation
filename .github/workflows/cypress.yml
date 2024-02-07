@@ -1,4 +1,5 @@
 name: Cypress Tests
+run-name: Run Cypress Tests in ${{ github.event.inputs.environment || 'development' }} by @${{ github.actor }}
 on: 
   workflow_dispatch:
     inputs:
@@ -8,12 +9,6 @@ on:
         required: true
         default: 'development'
         options: ['development','testing-1','testing-2','staging']
-      choice:
-        type: choice
-        description: Select Test Type
-        required: true
-        default: 'smoke'
-        options: ['smoke','regression']
   pull_request:
     branches:
       - main
@@ -23,11 +18,11 @@ jobs:
     container:
         image: cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
         options: --user 1001
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2]    
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
       - run: node -v
 
       - name: Checkout
@@ -39,9 +34,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          COMMIT_INFO_MESSAGE: Run Cypress Tests in ${{ github.event.inputs.environment || 'development' }} by @${{ github.actor }}
         with:
           record: true
           parallel: true
-          tag: node-${{ matrix.node }}
+          browser: chrome
           build: npx cypress info
-          command: npm run cypress:development
+          command: npm run cypress:${{ github.event.inputs.environment || 'development' }}
