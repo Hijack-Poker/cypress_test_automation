@@ -9,7 +9,6 @@ on:
         required: true
         default: 'development'
         options: ['development','testing-1','testing-2','staging']
-
   pull_request:
     branches:
       - main
@@ -42,3 +41,4 @@ jobs:
           browser: chrome
           build: npx cypress info
           command: npm run cypress:${{ github.event.inputs.environment }}
+
