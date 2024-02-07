@@ -37,8 +37,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
           record: true
-          parallel: true'
-          tag: ${{ github.event.inputs.environment }}
+          parallel: true
           browser: chrome
           build: npx cypress info
           command: npm run cypress:${{ github.event.inputs.environment }}
