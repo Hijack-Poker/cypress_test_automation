@@ -21,7 +21,7 @@ async function setupNodeEvents(on, config) {
    */
   
   // This is to load cupress config per environment
-  const environmentName = config.env.configFile || 'development'
+  const environmentName = config.env.configFile || 'staging'
   console.log('loading settings for environment: %s', environmentName)
   // The configFile path will change according to environment
   const filePath = `./cypress/config/${environmentName}.json`

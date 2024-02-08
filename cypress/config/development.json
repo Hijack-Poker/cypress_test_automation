@@ -1,10 +1,10 @@
 {
-  "baseUrl": "https://hijackpoker-staging.online",
+  "baseUrl": "https://hijackpoker-develop.online",
   "env": {
-    "FRONT_OFFICE_ACCOUNT_URL": "https://account.hijackpoker-staging.online",
-    "FRONT_OFFICE_PLAY_URL": "https://play.hijackpoker-staging.online",
-    "CLUBS_MANAGEMENT_URL": "https://clubs.hijackpoker-staging.online",
-    "GAME_METRICS_URL": "https://metrics.hijackpoker-staging.online",
+    "FRONT_OFFICE_ACCOUNT_URL": "https://account.hijackpoker-develop.online",
+    "FRONT_OFFICE_PLAY_URL": "https://play.hijackpoker-develop.online",
+    "CLUBS_MANAGEMENT_URL": "https://clubs.hijackpoker-develop.online",
+    "GAME_METRICS_URL": "https://metrics.hijackpoker-develop.online",
     "browserPermissions": {
       "notifications": "allow",
       "geolocation": "allow"
