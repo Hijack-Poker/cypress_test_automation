@@ -13,9 +13,14 @@ export default {
   },
   navigation_bar: {
     avatar_button: 'div#navbarSupportedContent img',
-    logout_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(4)'
+    logout_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(4)',
+    account_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(3)'
   },
   lobby_page: {
 
+  },
+  account_settings_page: {
+    help_menu: 'a#help-pill-vertical',
+    go_to_help_portal_link: 'p.card-text>a'
   }
 };
