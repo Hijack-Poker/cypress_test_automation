@@ -53,6 +53,9 @@ Cypress.Commands.add('c_verifyPageDisplayed', (pageName) => {
     case 'front office lobby':
       cy.url().should('include', 'play.hijackpoker');
       break;
+    case 'front office profile':
+      cy.url().should('include', '/hijack/profile');
+      break;
     default:
       throw new Error('Invalid page name provided: ' + pageName);
   }
