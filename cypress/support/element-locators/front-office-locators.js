@@ -16,6 +16,7 @@ export default {
     logout_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(4)'
   },
   lobby_page: {
+    cashier_button: '.nav-link.cashier'
 
   }
 };
