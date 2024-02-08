@@ -122,7 +122,7 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
     cy.get(cashierPageLocators.cashier_page.deposit_notif).should('exist');
     break;
   case 'Request error':
-    cy.get(cashierPageLocators.cashier_page.notification_verication_msg).should('exist');
+    cy.get(cashierPageLocators.cashier_page.notification_verication_msg).should('be.visible');
     break;  
   default:
     throw new Error('Invalid input provided:' + element);      
