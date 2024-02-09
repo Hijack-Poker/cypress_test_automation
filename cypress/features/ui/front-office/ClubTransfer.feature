@@ -53,3 +53,21 @@ Feature: Front Office - Club Transfer
     And I input "10" amount in "Transfer"
     And I click "Send Transfer" button in Cashier
     Then The verification modal is displayed in Cashier Page
+
+  Scenario: Verify that transfer will not be successful if incorrect verification code is entered
+    Given I navigate to "Front Office Login" page
+    When I click on "Login with Email" button in Descope page
+    And I enter "valid" credentials in Descope page
+    And I click on "Login" button in Descope page
+    And I click on "Cashier button" in "Lobby page" of "Front Office"
+    And I click "Transfer" in the Cashier Menu
+    And I input "alana@oppy.tech" in the find user textbox
+    And I click "Find User" button in Cashier
+    And I click "Select User" button in Cashier
+    And I input "10" amount in "Transfer"
+    And I click "Send Transfer" button in Cashier
+    And I click "Process Withdraw" button in Cashier
+    And I click "Received code SMS button" button in Cashier
+    And I input "1234" in code textbox
+    And I click "Verify button" button in Cashier
+    Then The "Request error" notification should be displayed in Cashier page
