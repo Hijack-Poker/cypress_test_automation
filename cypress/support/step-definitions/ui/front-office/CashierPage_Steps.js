@@ -1,20 +1,7 @@
-import cashierPageLocators from "../../../element-locators/cashier-locators";
-import { Before, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import cashierPageLocators from "../../../element-locators/front-office-locators";
+import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-Before(() => {
-  // Load fixtures data
-  cy.fixture('player-details.json').then(function(data) {
-    this.playerDetails = data;
-  });
-  // Added uncaught exception handler inside origin
-  cy.origin("https://auth.descope.io", () => {
-    Cypress.on('uncaught:exception', (err) => { 
-      if(err.name.includes('NotAllowedError')) {
-        return false;
-      }
-    });
-  });
-});
+
 
 When('I click {string} in the Cashier Menu', (menuValue) => {
   switch (menuValue) {

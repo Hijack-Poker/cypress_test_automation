@@ -17,7 +17,8 @@ Feature: Front Office - Club Withdraw
     And I click "Process Withdraw" button in Cashier
     Then The "Withdraw" notification should be displayed in Cashier page
 
- Scenario: Verify that when user clicks "process withdrawal" a verification modal appears
+@smoke
+ Scenario: Verify user processes club withdrawal
     Given I navigate to "Front Office Login" page
     When I click on "Login with Email" button in Descope page
     And I enter "valid" credentials in Descope page
@@ -28,6 +29,7 @@ Feature: Front Office - Club Withdraw
     And I click "Process Withdraw" button in Cashier
     Then The verification modal is displayed in Cashier Page
 
+@smoke
  Scenario: Verify that withdrawal will not be successful if incorrect verification code is entered
     Given I navigate to "Front Office Login" page
     When I click on "Login with Email" button in Descope page
