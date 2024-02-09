@@ -21,7 +21,10 @@ export default {
 
   },
   account_settings_page: {
+    avatar_menu: 'a#avatar-pill-vertical',
     help_menu: 'a#help-pill-vertical',
-    go_to_help_portal_link: 'p.card-text>a'
+    go_to_help_portal_link: 'p.card-text>a',
+    avatar_images: 'p.card-text tr td img',
+    avatar_updated_modal: 'div#basicExampleModal'
   }
 };
