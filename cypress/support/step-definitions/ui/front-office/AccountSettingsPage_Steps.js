@@ -7,11 +7,11 @@ When('I click on Go to Help Portal link in Account Settings - Help page', () => 
 
 When('I select an avatar from the Avatar Selection section', () => {
   cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr','src').then((srcValue) => {
-    let index = 0;
-    let avatar_image = 'saloon';
+    let index = 1;
+    let avatar_image = 'bank';
     if (srcValue.includes('bank')) {
-      index = 1;
-      avatar_image = 'bank';
+      index = 0;
+      avatar_image = 'saloon';
     }
     cy.get(frontOfficeLocators.account_settings_page.avatar_images).eq(index).click();
     this.avatar_profile = avatar_image;
