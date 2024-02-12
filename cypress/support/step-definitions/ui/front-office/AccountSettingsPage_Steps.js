@@ -10,10 +10,6 @@ When('I click on Go to Help Portal link in Account Settings - Help page', () => 
   cy.get(frontOfficeLocators.account_settings_page.go_to_help_portal_link).invoke('removeAttr','target').click();
 });
 
-When('I click on Go to Help Portal link in Account Settings - Help page', () => {
-  cy.get(frontOfficeLocators.account_settings_page.go_to_help_portal_link).invoke('removeAttr','target').click();
-});
-
 When('I select an avatar from the Avatar Selection section', () => {
   cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr','src').then((srcValue) => {
     let index = 1;
@@ -108,7 +104,7 @@ Then('HiJack Help Portal is displayed with url {string}', (url)=> {
   });
 });
 
-Then('New Avatar is displayed in my Account Profile', ()=> {
+Then('New Avatar is displayed in Account Profile', ()=> {
   cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr','src').then((srcValue) => {
     expect(srcValue).includes(avatar_profile);
   });
