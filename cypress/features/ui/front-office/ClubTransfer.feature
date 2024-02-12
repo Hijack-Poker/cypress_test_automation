@@ -8,9 +8,7 @@ Feature: Front Office - Club Transfer
   @smoke
   Scenario: Verify that a player can search for another player
     Given I navigate to "Front Office Login" page
-    When I click on "Login with Email" button in Descope page
-    And I enter "valid" credentials in Descope page
-    And I click on "Login" button in Descope page
+    When I am login to Auth Descope via UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "sbramley@oppy.tech" in the find user textbox
@@ -20,9 +18,7 @@ Feature: Front Office - Club Transfer
  @smoke
   Scenario: Verify that a player can select a player from successful search results
     Given I navigate to "Front Office Login" page
-    When I click on "Login with Email" button in Descope page
-    And I enter "valid" credentials in Descope page
-    And I click on "Login" button in Descope page
+    When I am login to Auth Descope via UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "sbramley@oppy.tech" in the find user textbox
@@ -32,9 +28,7 @@ Feature: Front Office - Club Transfer
 
   Scenario: Verify that a player receives correct error message from unsuccessful player search
     Given I navigate to "Front Office Login" page
-    When I click on "Login with Email" button in Descope page
-    And I enter "valid" credentials in Descope page
-    And I click on "Login" button in Descope page
+    When I am login to Auth Descope via UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "Lorem Ipsum" in the find user textbox
@@ -44,9 +38,7 @@ Feature: Front Office - Club Transfer
    @smoke
   Scenario: Verify that a player can enter a valid dollar amount to transfer with a selected player account
     Given I navigate to "Front Office Login" page
-    When I click on "Login with Email" button in Descope page
-    And I enter "valid" credentials in Descope page
-    And I click on "Login" button in Descope page
+    When I am login to Auth Descope via UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "sbramley@oppy.tech" in the find user textbox
@@ -59,9 +51,7 @@ Feature: Front Office - Club Transfer
  @smoke
   Scenario: Verify that transfer will not be successful if incorrect verification code is entered
     Given I navigate to "Front Office Login" page
-    When I click on "Login with Email" button in Descope page
-    And I enter "valid" credentials in Descope page
-    And I click on "Login" button in Descope page
+    When I am login to Auth Descope via UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "sbramley@oppy.tech" in the find user textbox
