@@ -11,6 +11,9 @@ export default {
   club_house_page: {
     enter_lobby_button: '.enter-lobby-styles'
   },
+  club_selection_page: {
+    club_list: 'a.clublink>img'
+  },
   navigation_bar: {
     avatar_button: 'div#navbarSupportedContent img',
     logout_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(4)',
@@ -32,9 +35,11 @@ export default {
     first_name_textbox: 'input#firstname',
     last_name_textbox: 'input#lastname',
     address_textbox: 'input#address',
-    change_phone_button: 'button#_mfaAddFactorButton'
+    change_phone_button: 'button#_mfaAddFactorButton',
+    club_change_link: 'a[href*=cardhouseselection]'
   },
   common: {
     message_modal: 'div#basicExampleModal',
+    error_message_modal: 'div#ErrorMessagesModal'
   }
 };

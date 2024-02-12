@@ -31,6 +31,9 @@ Cypress.Commands.add('c_navigateToPage', (pageName) => {
     case 'front office cardhouse':
       cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
       break;
+    case 'front office profile':
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/profile');
+      break;  
     case 'club login':
       cy.visit(Cypress.env('CLUBS_MANAGEMENT_URL'));
       break;

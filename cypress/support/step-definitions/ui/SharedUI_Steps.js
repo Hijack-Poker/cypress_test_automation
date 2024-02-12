@@ -33,7 +33,7 @@ When('I click on {string} in {string} of {string}', (elementName, page, domain) 
 Then('The {string} of {string} is displayed with message {string}', (elementName, domain, messageValue) => {
   const locatorFile = getLocatorFile(domain);
   cy.c_getLocatorByNamePage(locatorFile, "common", elementName).then((elementLocator) => {
-    cy.get(elementLocator).find('#ModalBody').should('be.visible').and('contain',messageValue);
-    cy.get(elementLocator).contains('Close').click();
+    cy.get(elementLocator).should('be.visible').and('contain',messageValue);
+    cy.get(elementLocator).contains('×').click();
   });
 });
