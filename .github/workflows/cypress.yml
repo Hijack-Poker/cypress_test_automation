@@ -38,6 +38,5 @@ jobs:
         with:
           record: true
           parallel: true
-          browser: chrome
           build: npx cypress info
           command: npm run cypress:${{ github.event.inputs.environment || 'development' }}
