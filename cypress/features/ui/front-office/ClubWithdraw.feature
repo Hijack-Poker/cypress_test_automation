@@ -2,7 +2,7 @@ Feature: Front Office - Club Withdraw
   #Author: Alfe Niño Laña 02/07/2024
 
   #-------------------------------------
-  # JIRA ticket: EN-2785
+  # JIRA ticket: EN-2881
   #-------------------------------------
 
   @smoke
