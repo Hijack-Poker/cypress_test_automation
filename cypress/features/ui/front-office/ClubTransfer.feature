@@ -13,7 +13,7 @@ Feature: Front Office - Club Transfer
     And I click on "Login" button in Descope page
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
-    And I input "alana@oppy.tech" in the find user textbox
+    And I input "sbramley@oppy.tech" in the find user textbox
     And I click "Find User" button in Cashier
     Then The email should be displayed in Player Transfer
 
@@ -25,7 +25,7 @@ Feature: Front Office - Club Transfer
     And I click on "Login" button in Descope page
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
-    And I input "alana@oppy.tech" in the find user textbox
+    And I input "sbramley@oppy.tech" in the find user textbox
     And I click "Find User" button in Cashier
     And I click "Select User" button in Cashier
     Then The Amount to Transfer should be displayed in the page
@@ -49,7 +49,7 @@ Feature: Front Office - Club Transfer
     And I click on "Login" button in Descope page
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
-    And I input "alana@oppy.tech" in the find user textbox
+    And I input "sbramley@oppy.tech" in the find user textbox
     And I click "Find User" button in Cashier
     And I click "Select User" button in Cashier
     And I input "10" amount in "Transfer"
@@ -64,7 +64,7 @@ Feature: Front Office - Club Transfer
     And I click on "Login" button in Descope page
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
-    And I input "alana@oppy.tech" in the find user textbox
+    And I input "sbramley@oppy.tech" in the find user textbox
     And I click "Find User" button in Cashier
     And I click "Select User" button in Cashier
     And I input "10" amount in "Transfer"
