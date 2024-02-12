@@ -1,4 +1,4 @@
-Feature: Front Office - Login Logout
+Feature: Front Office - Account Help
   #Author: Anthony Mansueto 02/07/2024
 
   #-------------------------------------

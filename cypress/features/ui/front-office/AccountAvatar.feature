@@ -14,5 +14,5 @@ Feature: Front Office - Account Avatar
     Then "Front Office Profile" page should be displayed
     When I click on "Avatar menu" in "Account Settings page" of "Front Office"
     And I select an avatar from the Avatar Selection section
-    Then Avatar Updated modal is displayed with message "Avatar Updated!"
-    And New Avatar is displayed in my Account Profile
+    Then The "Message modal" of "Front Office" is displayed with message "Avatar Updated!"
+    And New Avatar is displayed in Account Profile
