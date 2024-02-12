@@ -17,7 +17,7 @@ export default {
     account_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(3)'
   },
   lobby_page: {
-
+    cashier_button: '.cashier.nav-link'
   },
   account_settings_page: {
     avatar_menu: 'a#avatar-pill-vertical',
@@ -46,7 +46,10 @@ export default {
     player_email: 'input#selectuserlabel_0',
     select_user_button: 'button#selectuser_0',
     label_txt: 'div#transferform > label',
-    user_not_found_modal: 'div#MessagesModal > .modal-content-message'
+    user_not_found_modal: 'div#MessagesModal > .modal-content-message',
+    send_transfer_button: 'button#mfa-button-transfer',
+    amount_to_transfer_textbox: 'input#transfer_amount_usd',
+    spinnerSelector: '.spinner'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',

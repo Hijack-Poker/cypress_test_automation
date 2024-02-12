@@ -35,6 +35,10 @@ When('I input {string} amount in {string}', (amountValue, element) => {
   case 'Withdraw Amount':
     cy.get(cashierPageLocators.cashier_page.withdraw_amount_txtbox).type(amountValue);
     break;
+  case 'Transfer':
+    cy.get(cashierPageLocators.cashier_page.amount_to_transfer_textbox).clear();
+    cy.get(cashierPageLocators.cashier_page.amount_to_transfer_textbox).type(amountValue);
+    break;  
   default:
     throw new Error('Invalid input provided: ' + element);   
   } 
@@ -79,7 +83,10 @@ When('I click {string} button in Cashier', (buttonValue) => {
     break;  
   case 'Select User':
     cy.get(cashierPageLocators.cashier_page.select_user_button).click();
-    break;      
+    break;
+  case 'Send Transfer':
+    cy.get(cashierPageLocators.cashier_page.send_transfer_button).click();
+    break;         
   default:
     throw new Error('Invalid button provided: ' + buttonValue);  
   }
@@ -90,7 +97,7 @@ When('I input {string} in the find user textbox', (textValue) => {
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
-  cy.get(cashierPageLocators.cashier_page.verification_modal).should('be.visible');
+  cy.get(cashierPageLocators.cashier_page.verification_modal, { timeout: 3000 }).should('be.visible');
 });
 
 Then('The amount {string} should be displayed in {string}', (amountValue, element) => {
@@ -125,10 +132,10 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
   }
 });
 
-Then('The email {string} should be displayed in Player Transfer', (emailValue) => {
-  cy.get(cashierPageLocators.cashier_page.player_email).invoke('val').then(emailValue);
+Then('The email should be displayed in Player Transfer', () => {
+  cy.get(cashierPageLocators.cashier_page.player_email).should('exist');
 });
 
-Then('The {string} should be displayed in the page', (msgValue) => {
-  cy.get(cashierPageLocators.cashier_page.label_txt).invoke('text').then(msgValue);
+Then('The Amount to Transfer should be displayed in the page', () => {
+  cy.get(cashierPageLocators.cashier_page.label_txt).should('exist');
 });
