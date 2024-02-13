@@ -117,7 +117,7 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
 });
 
 Then('The {string} type should be displayed in History page', (typeValue) => {
-  cy.get(cashierPageLocators.cashier_page.history_row_data, typeValue).should('be.visible'); 
+  cy.contains(cashierPageLocators.cashier_page.history_row_data, typeValue).should('exist'); 
 });
 
 Then('The transaction id should be displayed in History Page', () => {

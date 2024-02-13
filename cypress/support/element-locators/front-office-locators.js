@@ -44,7 +44,7 @@ export default {
     enter_code_txtbox: 'input#verificationCode',
     verify_code_button: 'input#Verify-button',
     notification_verication_msg: 'p#hiddentext',
-    history_row_data: 'td[style="vertical-align: middle;"]',
+    history_row_data: 'td',
     transaction_id_column: 'tr:nth-of-type(1) > td:nth-of-type(6)'
   },
   cashier_menu: {
