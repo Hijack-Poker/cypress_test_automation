@@ -43,7 +43,9 @@ export default {
     received_code_sms_button: 'input#sms-button',
     enter_code_txtbox: 'input#verificationCode',
     verify_code_button: 'input#Verify-button',
-    notification_verication_msg: 'p#hiddentext'
+    notification_verication_msg: 'p#hiddentext',
+    history_row_data: 'td[style="vertical-align: middle;"]',
+    transaction_id_column: 'tr:nth-of-type(1) > td:nth-of-type(6)'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',
