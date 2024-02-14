@@ -61,11 +61,13 @@ export default {
     notification_verication_msg: 'p#hiddentext',
     player_email: 'input#selectuserlabel_0',
     select_user_button: 'button#selectuser_0',
-    label_txt: 'div#transferform > label',
-    user_not_found_modal: 'div#MessagesModal > .modal-content-message',
+    amount_to_transfer_label: 'div#transferform > label',
     send_transfer_button: 'button#mfa-button-transfer',
-    amount_to_transfer_textbox: 'input#transfer_amount_usd',
-    spinnerSelector: '.spinner'
+    amount_to_transfer_textbox: 'div#transferform > label',
+    spinner_selector: '.spinner',
+    message_modal: 'p#MessageText',
+    send_money_label: 'form#transfer-form > label',
+    select_player_label: 'div#userlist > label'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',
