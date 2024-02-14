@@ -16,7 +16,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player can search for another player using phone number
-     Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope UI
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "+17073958726" in the find user textbox
