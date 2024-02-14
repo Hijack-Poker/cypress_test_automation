@@ -11,6 +11,9 @@ export default {
   club_house_page: {
     enter_lobby_button: '.enter-lobby-styles'
   },
+  club_selection_page: {
+    club_list: 'a.clublink>img'
+  },
   navigation_bar: {
     avatar_button: 'div#navbarSupportedContent img',
     logout_button: 'div#navbarSupportedContent li:nth-child(4) a:nth-child(4)',
@@ -21,10 +24,23 @@ export default {
   },
   account_settings_page: {
     avatar_menu: 'a#avatar-pill-vertical',
+    avatar_images: 'p.card-text tr td img',
     help_menu: 'a#help-pill-vertical',
     go_to_help_portal_link: 'p.card-text>a',
-    avatar_images: 'p.card-text tr td img',
-    avatar_updated_modal: 'div#basicExampleModal'
+    display_name_edit: '#editdisplayname',
+    first_name_edit: '#editfirstname',
+    last_name_edit: '#editlastname',
+    address_edit: '#editaddress',
+    display_name_textbox: 'input#displayname',
+    first_name_textbox: 'input#firstname',
+    last_name_textbox: 'input#lastname',
+    address_textbox: 'input#address',
+    change_phone_button: 'button#_mfaAddFactorButton',
+    club_change_link: 'a[href*=cardhouseselection]',
+  },
+  common: {
+    message_modal: 'div#basicExampleModal',
+    error_message_modal: 'div#ErrorMessagesModal'
   },
   cashier_page: {
     deposit_amount_txtbox: 'input#deposit_amount_usd',

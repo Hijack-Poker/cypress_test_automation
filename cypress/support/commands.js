@@ -31,6 +31,9 @@ Cypress.Commands.add('c_navigateToPage', (pageName) => {
     case 'front office cardhouse':
       cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
       break;
+    case 'front office profile':
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/profile');
+      break;  
     case 'club login':
       cy.visit(Cypress.env('CLUBS_MANAGEMENT_URL'));
       break;
@@ -61,7 +64,7 @@ Cypress.Commands.add('c_verifyPageDisplayed', (pageName) => {
   }
 });
 
-Cypress.Commands.add('c_getLocatorByNamePage', (locatorFile, elementName, page) => {
+Cypress.Commands.add('c_getLocatorByNamePage', (locatorFile, page, elementName) => {
   const pageLocators = locatorFile[page.replace(/ /g, "_").toLowerCase()];
   if (!pageLocators) {
     throw new Error(`Page "${page}" not found in locator file."`);
@@ -72,4 +75,10 @@ Cypress.Commands.add('c_getLocatorByNamePage', (locatorFile, elementName, page) 
   }
   // Use a callback to execute the logic
   return cy.wrap(elementLocator);
+});
+
+
+Cypress.Commands.add('c_generateRandomString', (length) => {
+  const randomString = Array.from({ length }, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('');
+  return cy.wrap(randomString);
 });
