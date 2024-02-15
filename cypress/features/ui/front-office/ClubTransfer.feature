@@ -12,7 +12,7 @@ Feature: Front Office - Club Transfer
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer2@oppy.tech" in the find user textbox
     And I click "Find User" button in Cashier
-    Then The email "amansueto+qaautoplayer2@oppy.tech" should be displayed in Player Transfer
+    Then The email of the user should be displayed in Player Transfer
 
   @smoke
   Scenario: Verify that a player can search for another player using phone number
@@ -21,7 +21,7 @@ Feature: Front Office - Club Transfer
     And I click "Transfer" in the Cashier Menu
     And I input "+13239991158" in the find user textbox
     And I click "Find User" button in Cashier
-    Then The email "amansueto+qaautoplayer2@oppy.tech" should be displayed in Player Transfer
+    Then The email of the user should be displayed in Player Transfer
 
   @smoke
   Scenario: Verify that a player can select a player from successful search results

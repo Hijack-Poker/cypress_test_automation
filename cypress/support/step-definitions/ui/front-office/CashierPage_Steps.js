@@ -1,8 +1,14 @@
 import cashierPageLocators from "../../../element-locators/front-office-locators";
-import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Before, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-let email_input;
+let user_input;
 
+Before(() => {
+  // Load fixtures data
+  cy.fixture('player-details.json').then(function(data) {
+    this.playerDetails = data;
+  });
+});
 
 When('I click {string} in the Cashier Menu', (menuValue) => {
   switch (menuValue.toLowerCase()) {
@@ -95,8 +101,8 @@ When('I click {string} button in Cashier', (buttonValue) => {
 });
 
 When('I input {string} in the find user textbox', (textValue) => {
-  email_input = textValue;
-  cy.get(cashierPageLocators.cashier_page.find_user_txtbox).type(email_input);
+  user_input = textValue;
+  cy.get(cashierPageLocators.cashier_page.find_user_txtbox).type(user_input);
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
@@ -138,10 +144,13 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
   }
 });
 
-Then('The email {string} should be displayed in Player Transfer', () => {
+Then('The email of the user should be displayed in Player Transfer', () => {
+  if (user_input == this.playerDetails.player2_phone_number) {
+    user_input == this.playerDetails.player2_email;
+  }
   cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
-    expect(emailValue).includes(email_input);
-  });
+    expect(emailValue).includes(user_input);
+  }); 
 });
 
 Then('The {string} section should be displayed in the Player Transfer page', (element) => {
