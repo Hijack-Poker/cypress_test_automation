@@ -63,7 +63,7 @@ export default {
     select_user_button: 'button#selectuser_0',
     amount_to_transfer_label: 'div#transferform > label',
     send_transfer_button: 'button#mfa-button-transfer',
-    amount_to_transfer_textbox: 'div#transferform > label',
+    amount_to_transfer_textbox: 'input#transfer_amount_usd',
     spinner_selector: '.spinner',
     message_modal: 'p#MessageText',
     send_money_label: 'form#transfer-form > label',

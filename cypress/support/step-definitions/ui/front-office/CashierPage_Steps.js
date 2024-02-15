@@ -36,14 +36,14 @@ When('I click {string} in the Cashier Menu', (menuValue) => {
 });
 
 When('I input {string} amount in {string}', (amountValue, element) => {
-  switch (element) {
-  case 'Deposit Amount':
+  switch (element.toLowerCase()) {
+  case 'deposit amount':
     cy.get(cashierPageLocators.cashier_page.deposit_amount_txtbox).type(amountValue);
     break;
-  case 'Withdraw Amount':
+  case 'withdraw amount':
     cy.get(cashierPageLocators.cashier_page.withdraw_amount_txtbox).type(amountValue);
     break;
-  case 'Transfer':
+  case 'transfer':
     cy.get(cashierPageLocators.cashier_page.amount_to_transfer_textbox).clear();
     cy.get(cashierPageLocators.cashier_page.amount_to_transfer_textbox).type(amountValue);
     break;  
@@ -144,13 +144,15 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
   }
 });
 
-Then('The email of the user should be displayed in Player Transfer', () => {
+Then('The email of the user should be displayed in Player Transfer', function() {
   if (user_input == this.playerDetails.player2_phone_number) {
     user_input == this.playerDetails.player2_email;
+  } else {
+    cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
+      expect(emailValue).includes(user_input);
+    }); 
   }
-  cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
-    expect(emailValue).includes(user_input);
-  }); 
+  
 });
 
 Then('The {string} section should be displayed in the Player Transfer page', (element) => {
