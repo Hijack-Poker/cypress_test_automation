@@ -19,9 +19,9 @@ Feature: Front Office - Club Transfer
     Given I login to Front Office via Auth Descope UI
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
-    And I input "+17073958726" in the find user textbox
+    And I input "+13239991158" in the find user textbox
     And I click "Find User" button in Cashier
-    Then The email "alana@oppy.tech" should be displayed in Player Transfer
+    Then The email "amansueto+qaautoplayer2@oppy.tech" should be displayed in Player Transfer
 
   @smoke
   Scenario: Verify that a player can select a player from successful search results
@@ -35,9 +35,8 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player receives correct error message from unsuccessful player search
-    Given I navigate to "Front Office Login" page
-    When I am login to Auth Descope via UI
-    And I click on "Cashier button" in "Lobby page" of "Front Office"
+    Given I login to Front Office via Auth Descope UI
+    When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "Lorem Ipsum" in the find user textbox
     And I click "Find User" button in Cashier
@@ -45,8 +44,7 @@ Feature: Front Office - Club Transfer
 
   @smoke   
   Scenario: Verify that a player receives an error message when using own email in player search
-    Given I navigate to "Front Office Login" page
-    When I am login to Auth Descope via UI
+    Given I login to Front Office via Auth Descope UI
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer@oppy.tech" in the find user textbox
