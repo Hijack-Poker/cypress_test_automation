@@ -1,6 +1,8 @@
 import cashierPageLocators from "../../../element-locators/front-office-locators";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
+let email_input;
+
 
 When('I click {string} in the Cashier Menu', (menuValue) => {
   switch (menuValue.toLowerCase()) {
@@ -93,7 +95,8 @@ When('I click {string} button in Cashier', (buttonValue) => {
 });
 
 When('I input {string} in the find user textbox', (textValue) => {
-  cy.get(cashierPageLocators.cashier_page.find_user_txtbox).type(textValue);
+  email_input = textValue;
+  cy.get(cashierPageLocators.cashier_page.find_user_txtbox).type(email_input);
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
@@ -135,8 +138,10 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
   }
 });
 
-Then('The email {string} should be displayed in Player Transfer', (emailValue) => {
-  cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then(emailValue);
+Then('The email {string} should be displayed in Player Transfer', () => {
+  cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
+    expect(emailValue).includes(email_input);
+  });
 });
 
 Then('The {string} section should be displayed in the Player Transfer page', (element) => {
