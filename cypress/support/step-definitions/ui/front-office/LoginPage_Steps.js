@@ -52,11 +52,11 @@ When('I click on {string} button in Descope page', (button) => {
 
 When('I enter {string} credentials in Descope page', function(validity) {
   const { email_textbox, password_textbox } = frontOfficeLocators.login_page;
-  let { email, password } = this.playerDetails;
+  let { player1_email, password } = this.playerDetails;
   if (validity === 'invalid') {
     password = "invalidPassword";
   }
-  cy.origin("https://auth.descope.io", { args: {email_textbox, password_textbox, playerEmail: email, playerPassword: password} }, ( {email_textbox, password_textbox, playerEmail, playerPassword}) => {
+  cy.origin("https://auth.descope.io", { args: {email_textbox, password_textbox, playerEmail: player1_email, playerPassword: password} }, ( {email_textbox, password_textbox, playerEmail, playerPassword}) => {
     cy.get(email_textbox).type(playerEmail);
     cy.get(password_textbox).type(playerPassword, { force: true }); // added option to avoid error
   });
