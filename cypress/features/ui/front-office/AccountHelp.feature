@@ -8,7 +8,7 @@ Feature: Front Office - Account Help
 
   @smoke
   Scenario: Verify that player is redirected to freshdesk website when clicking the Help Portal
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I click on "Help menu" in "Account Settings page" of "Front Office"

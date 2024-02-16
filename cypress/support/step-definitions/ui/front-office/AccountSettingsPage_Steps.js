@@ -7,11 +7,11 @@ let randomString;
 let current_club;
 
 When('I click on Go to Help Portal link in Account Settings - Help page', () => {
-  cy.get(frontOfficeLocators.account_settings_page.go_to_help_portal_link).invoke('removeAttr','target').click();
+  cy.get(frontOfficeLocators.account_settings_page.go_to_help_portal_link).invoke('removeAttr', 'target').click();
 });
 
 When('I select an avatar from the Avatar Selection section', () => {
-  cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr','src').then((srcValue) => {
+  cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr', 'src').then((srcValue) => {
     let index = 1;
     let avatar_image = 'bank';
     if (srcValue.includes('bank')) {
@@ -36,8 +36,8 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       cy.get(editButton).should('be.visible').click();
       cy.get(inputTextbox).clear().type(fieldValue);
       cy.get(saveButton).should('be.visible').click();
-      cy.get(frontOfficeLocators.common.message_modal).find('#ModalBody').should('be.visible');
-      cy.get(frontOfficeLocators.common.message_modal).contains('Close').click();
+      cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').should('be.visible').contains('Updated');
+      cy.get(frontOfficeLocators.common.message_modal).should('be.visible').contains('×').click();
     });
   });
 });
@@ -85,7 +85,7 @@ When('I click on Change Club link in Account Profile page', () => {
     }
     cy.get(frontOfficeLocators.account_settings_page.club_change_link).should('be.visible').click();
     current_club = club_index;
-  }); 
+  });
 });
 
 When('New Club is displayed in the Club Selection field in Account Profile page', () => {
@@ -98,14 +98,14 @@ When('New Club is displayed in the Club Selection field in Account Profile page'
   });
 });
 
-Then('HiJack Help Portal is displayed with url {string}', (url)=> {
-  cy.origin("https://hijack.freshdesk.com/support/solutions", { args: {url}} ,({url}) => {
+Then('HiJack Help Portal is displayed with url {string}', (url) => {
+  cy.origin("https://hijack.freshdesk.com/support/solutions", { args: { url } }, ({ url }) => {
     cy.url().should('include', url);
   });
 });
 
-Then('New Avatar is displayed in Account Profile', ()=> {
-  cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr','src').then((srcValue) => {
+Then('New Avatar is displayed in Account Profile', () => {
+  cy.get(frontOfficeLocators.navigation_bar.avatar_button).invoke('attr', 'src').then((srcValue) => {
     expect(srcValue).includes(avatar_profile);
   });
 });
@@ -114,7 +114,6 @@ Then('The Account Details fields is displayed with these values', (dataTable) =>
   dataTable.rawTable.forEach((row) => {
     const displayedValue = row[0].trim();
     const fieldValue = `input[value="${displayedValue} ${randomString}"]`;
-    
     cy.get(fieldValue).should('be.visible');
   });
 });

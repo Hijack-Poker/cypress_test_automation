@@ -1,22 +1,26 @@
 import frontOfficeLocators from "../../../element-locators/front-office-locators";
-import { Before, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Before(() => {
   // Load fixtures data
-  cy.fixture('player-details.json').then(function(data) {
+  cy.fixture('player-details.json').then(function (data) {
     this.playerDetails = data;
   });
   // Added uncaught exception handler inside origin
   cy.origin("https://auth.descope.io", () => {
-    Cypress.on('uncaught:exception', (err) => { 
-      if(err.name.includes('NotAllowedError')) {
+    Cypress.on('uncaught:exception', (err) => {
+      if (err.name.includes('NotAllowedError')) {
         return false;
       }
     });
   });
 });
 
-When('I login to Front Office via Auth Descope UI', function() {
+Given('I login to Front Office via Auth Descope API', function () {
+  cy.c_loginDescopeViaAPI(this.playerDetails.player1_email, this.playerDetails.password);
+});
+
+Given('I login to Front Office via Auth Descope UI', function () {
   cy.c_navigateToPage("front office login");
   const { email_textbox, password_textbox, login_with_email_button, login_button } = frontOfficeLocators.login_page;
   const { player1_email, password } = this.playerDetails;
@@ -47,10 +51,10 @@ When('I click on {string} button in Descope page', (button) => {
   const element = value;
   cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
     cy.get(element).click();
-  }); 
+  });
 });
 
-When('I enter {string} credentials in Descope page', function(validity) {
+When('I enter {string} credentials in Descope page', function (validity) {
   const { email_textbox, password_textbox } = frontOfficeLocators.login_page;
   let { player1_email, password } = this.playerDetails;
   if (validity === 'invalid') {
@@ -69,15 +73,15 @@ Then('Auth Descope page should be displayed', () => {
 });
 
 Then('Reset Password modal should be displayed with text {string}', (text) => {
-  const {reset_password_modal} = frontOfficeLocators.login_page;
-  cy.origin("https://auth.descope.io", { args: {reset_password_modal, text}} ,({reset_password_modal, text}) => {
-    cy.get(reset_password_modal).should('be.visible').and('contain',text);
+  const { reset_password_modal } = frontOfficeLocators.login_page;
+  cy.origin("https://auth.descope.io", { args: { reset_password_modal, text } }, ({ reset_password_modal, text }) => {
+    cy.get(reset_password_modal).should('be.visible').and('contain', text);
   });
 });
 
 Then('Error message should be displayed with text {string}', (text) => {
-  const {error_message} = frontOfficeLocators.login_page;
-  cy.origin("https://auth.descope.io", { args: {error_message, text}} ,({error_message, text}) => {
-    cy.get(error_message).should('be.visible').and('contain',text);
+  const { error_message } = frontOfficeLocators.login_page;
+  cy.origin("https://auth.descope.io", { args: { error_message, text } }, ({ error_message, text }) => {
+    cy.get(error_message).should('be.visible').and('contain', text);
   });
 });
