@@ -3,6 +3,7 @@ const { addCucumberPreprocessorPlugin } = require("@badeball/cypress-cucumber-pr
 const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
 const { createEsbuildPlugin } = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions')
+require('dotenv').config()
 
 // Implement node event listeners here
 async function setupNodeEvents(on, config) {
@@ -19,7 +20,7 @@ async function setupNodeEvents(on, config) {
   /**
    * ENV AND FIXTURES CONFIG
    */
-  
+
   // This is to load cupress config per environment
   const environmentName = config.env.configFile || 'development'
   console.log('loading settings for environment: %s', environmentName)
@@ -32,11 +33,23 @@ async function setupNodeEvents(on, config) {
     config.baseUrl = configFile.baseUrl
   }
 
+  config.env = {
+    ...config.env,
+    browserPermissions: {
+      notifications: "allow",
+      geolocation: "allow"
+    },
+    descope_project_id: process.env.DESCOPE_PROJECT_ID,
+    descope_management_key: process.env.DESCOPE_MANAGEMENT_KEY,
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET
+  };
+
   if (configFile.env) {
     config.env = {
       ...config.env,
       ...configFile.env,
-    }
+    };
   }
 
   // Browser Permissions for Geolocation and so on
