@@ -40,7 +40,7 @@ Feature: Front Office - Account Details Update
 
   @smoke
   Scenario: Verify that error message appears when inputting invalid characters in the required fields
-  Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope UI
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I set the following Account Details fields to "invalid"
