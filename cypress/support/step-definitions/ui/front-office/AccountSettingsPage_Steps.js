@@ -34,6 +34,8 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       const saveButton = `button[onclick="submitchange('${fieldName.toLowerCase().replace(/ /g, "")}')"]`;
 
       cy.get(editButton).should('be.visible').click().then(() => {
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(3000);
         cy.get(inputTextbox).clear().type(fieldValue);
         cy.get(saveButton).should('be.visible').click();
         cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').should('be.visible').contains('Updated');
