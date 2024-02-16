@@ -67,7 +67,9 @@ export default {
     spinner_selector: '.spinner',
     message_modal: 'p#MessageText',
     send_money_label: 'form#transfer-form > label',
-    select_player_label: 'div#userlist > label'
+    select_player_label: 'div#userlist > label',
+    transaction_id_column: 'tr:nth-of-type(1) > td:nth-of-type(6)',
+    table_type: 'td'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',
