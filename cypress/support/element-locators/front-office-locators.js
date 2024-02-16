@@ -44,7 +44,7 @@ export default {
   },
   cashier_page: {
     deposit_amount_txtbox: 'input#deposit_amount_usd',
-    club_location_selector: 'select#selectedclub',
+    club_location_selector: '#selectedclub',
     club_location_withdraw_selector: 'select#selectedclub_withdraw',
     withdraw_amount_txtbox: 'input#withdrawal_amount_usd',
     find_user_txtbox: 'input#usertovalidate',
