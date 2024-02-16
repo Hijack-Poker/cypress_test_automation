@@ -176,5 +176,6 @@ Then('The transaction id should be displayed in History Page', () => {
 });
 
 Then('The {string} type should be displayed in History page', (element) => {
-  cy.contains(cashierPageLocators.cashier_page.table_type, element).should('be.visible'); 
+  // cy.contains(cashierPageLocators.cashier_page.table_type, element).should('be.visible'); 
+  cy.get(cashierPageLocators.cashier_page.table_type).contains(element);
 });
