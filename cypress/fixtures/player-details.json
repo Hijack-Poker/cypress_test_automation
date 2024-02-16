@@ -1,4 +1,6 @@
 {
-  "email": "amansueto+qaautoplayer@oppy.tech",
-  "password": "Password123!"
+  "player1_email": "amansueto+qaautoplayer@oppy.tech",
+  "player2_email": "amansueto+qaautoplayer2@oppy.tech",
+  "password": "Password123!",
+  "player2_phone_number": "+13239991158"
 }

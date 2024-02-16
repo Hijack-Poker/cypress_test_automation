@@ -18,9 +18,8 @@ Feature: Front Office - Login Logout
 
   @smoke
   Scenario: Login With Email - Verify that player can logout and not access the website by manually entering the URL
-    Given I navigate to "Front Office Login" page
-    When I am login to Auth Descope via UI
-    And I click on "Avatar button" in "Navigation bar" of "Front Office"
+    Given I login to Front Office via Auth Descope UI
+    When I click on "Avatar button" in "Navigation bar" of "Front Office"
     And I click on "Logout button" in "Navigation bar" of "Front Office"
     Then Auth Descope page should be displayed
     When I navigate to "Front Office Cardhouse" page

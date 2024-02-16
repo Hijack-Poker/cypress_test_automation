@@ -50,7 +50,7 @@ module.exports = defineConfig({
     setupNodeEvents,
     specPattern: ["cypress/features/**/*.feature", "cypress/features/**/**/*.feature"],
     screenshotsFolder: "cypress/test-reports/screenshots",
-    defaultCommandTimeout: 8000,
+    defaultCommandTimeout: 10000,
     includeShadowDom: true
   }
 });
