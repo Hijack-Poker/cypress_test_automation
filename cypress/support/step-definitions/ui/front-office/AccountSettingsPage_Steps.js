@@ -37,7 +37,7 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       cy.get(inputTextbox).clear().type(fieldValue);
       cy.get(saveButton).should('be.visible').click();
       cy.get(frontOfficeLocators.common.message_modal).find('#ModalBody').should('be.visible');
-      cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
+      cy.get(frontOfficeLocators.common.message_modal).should('be.visible').contains('×').click();
     });
   });
 });
