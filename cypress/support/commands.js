@@ -1,28 +1,14 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const projectId = Cypress.env('descope_project_id')
+const managementKey = Cypress.env('descope_management_key')
+
+// Define the authorization header
+const authHeader = {
+  'Authorization': `Bearer ${projectId}:${managementKey}`,
+}
+
+/**
+ * HELPERS
+ */
 Cypress.Commands.add('c_navigateToPage', (pageName) => {
   switch (pageName.toLowerCase()) {
     case 'front office login':
@@ -33,7 +19,7 @@ Cypress.Commands.add('c_navigateToPage', (pageName) => {
       break;
     case 'front office profile':
       cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/profile');
-      break;  
+      break;
     case 'club login':
       cy.visit(Cypress.env('CLUBS_MANAGEMENT_URL'));
       break;
@@ -82,3 +68,48 @@ Cypress.Commands.add('c_generateRandomString', (length) => {
   const randomString = Array.from({ length }, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('');
   return cy.wrap(randomString);
 });
+
+/**
+ * DESCOPE AUTHENTICATION
+ */
+Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
+  let cleanedString = stringToken.replace(/ /g, '%20').replace(/"/g, '%22').replace(/,/g, '%2C');
+  return cleanedString;
+});
+
+Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://dsauth.hijack.poker/v1/auth/password/signin',
+    headers: authHeader,
+    body: {
+      loginId: userEmail,
+      password: userPassword
+    },
+  }).then(({ body }) => {
+    const formData = {
+      grant_type: 'refresh_token',
+      refresh_token: body["refreshJwt"],
+      scope: 'openid profile descope:custom_claims',
+      client_id: Cypress.env('client_id'),
+      client_secret: Cypress.env('client_secret'),
+    };
+    const urlEncodedData = new URLSearchParams(formData).toString();
+    const headers = {
+      ...authHeader,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    cy.request({
+      method: 'POST',
+      url: 'https://api.descope.com/oauth2/v1/token',
+      headers: headers,
+      body: urlEncodedData
+    }).then(({ body }) => {
+      const token_cookie = JSON.stringify({ access_token: body.access_token, id_token: body.id_token, refresh_token: body.refresh_token });
+      cy.c_createEncodedTokenCookie(token_cookie).then((encodedToken) => {
+        cy.setCookie('token-storage', encodedToken);
+      });
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
+    })
+  })
+})

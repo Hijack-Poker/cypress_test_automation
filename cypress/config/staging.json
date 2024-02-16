@@ -4,10 +4,6 @@
     "FRONT_OFFICE_ACCOUNT_URL": "https://account.hijackpoker-staging.online",
     "FRONT_OFFICE_PLAY_URL": "https://play.hijackpoker-staging.online",
     "CLUBS_MANAGEMENT_URL": "https://clubs.hijackpoker-staging.online",
-    "GAME_METRICS_URL": "https://metrics.hijackpoker-staging.online",
-    "browserPermissions": {
-      "notifications": "allow",
-      "geolocation": "allow"
-    }
+    "GAME_METRICS_URL": "https://metrics.hijackpoker-staging.online"
   }
 }
