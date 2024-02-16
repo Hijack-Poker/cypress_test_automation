@@ -53,7 +53,7 @@ When('I input {string} amount in {string}', (amountValue, element) => {
 });
 
 When('I click the club location selector', () => {
-  cy.get('select#selectedclub').click();
+  cy.get('select#selectedclub').select();
 });
 
 When('I select a club location', () => {
