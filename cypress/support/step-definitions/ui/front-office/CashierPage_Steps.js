@@ -134,10 +134,10 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
     cy.get(cashierPageLocators.cashier_page.notification_verication_msg).should('be.visible');
     break; 
   case 'user not found':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('no user was found ').should('be.visible');
+    cy.get(cashierPageLocators.cashier_page.message_modal).should('be.visible').contains('no user was found ');
     break; 
   case 'account are restricted':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('account are restricted').should('be.visible');
+    cy.get(cashierPageLocators.cashier_page.message_modal).should('be.visible').contains('account are restricted');
     break;     
   default:
     throw new Error('Invalid input provided:' + element);      
