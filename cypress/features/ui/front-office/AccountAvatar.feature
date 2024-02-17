@@ -8,7 +8,7 @@ Feature: Front Office - Account Avatar
 
   @smoke
   Scenario: Verify that user can successfully edit their avatar
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I click on "Avatar menu" in "Account Settings page" of "Front Office"
