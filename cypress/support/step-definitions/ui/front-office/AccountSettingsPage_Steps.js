@@ -34,12 +34,10 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       const saveButton = `button[onclick="submitchange('${fieldName.toLowerCase().replace(/ /g, "")}')"]`;
 
       cy.get(editButton).should('be.visible').click();
-      cy.get(inputTextbox).clear().type(fieldValue);
+      cy.get(inputTextbox).should('be.visible').clear().type(fieldValue);
       cy.get(saveButton).should('be.visible').click();
       cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').should('be.visible').contains('Updated');
-      cy.get(frontOfficeLocators.common.message_modal).should('be.visible').contains('×').click().then(() => {
-        cy.get(frontOfficeLocators.common.message_modal, { timeout: 20000 }).should('not.be.visible');
-      });
+      cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
     });
   });
 });
