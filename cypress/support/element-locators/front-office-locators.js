@@ -39,7 +39,7 @@ export default {
     club_change_link: 'a[href*=cardhouseselection]',
   },
   common: {
-    message_modal: '.modal.fade.show[aria-modal="true"]',
+    message_modal: '.modal[aria-modal="true"]',
     error_message_modal: 'div#ErrorMessagesModal'
   },
   cashier_page: {
@@ -52,7 +52,7 @@ export default {
     refresh_history_button: 'button#refreshhistory',
     process_deposit_button: '#deposit-form .btn-primary',
     process_withdraw_button: '#club-withdrawal-form .btn-primary',
-    verification_modal: 'div#MFAModalCenter  .modal-content',
+    verification_modal: 'div#MFAModalCenter[aria-modal="true"]',
     withdrawal_notif: 'div#mfa-alert-box-clubwithdraw',
     deposit_notif: 'div#mfa-alert-box-clubdeposit',
     received_code_sms_button: 'input#sms-button',
@@ -65,7 +65,6 @@ export default {
     send_transfer_button: 'button#mfa-button-transfer',
     amount_to_transfer_textbox: 'input#transfer_amount_usd',
     spinner_selector: '.spinner',
-    message_modal: 'p#MessageText',
     send_money_label: 'form#transfer-form > label',
     select_player_label: 'div#userlist > label'
   },
