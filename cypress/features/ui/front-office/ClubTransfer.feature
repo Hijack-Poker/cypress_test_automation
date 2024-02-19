@@ -63,7 +63,7 @@ Feature: Front Office - Club Transfer
     And I click "Send Transfer" button in Cashier
     Then The verification modal is displayed in Cashier Page
 
- @smoke
+  @smoke
   Scenario: Verify that transfer will not be successful if incorrect verification code is entered
     Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"

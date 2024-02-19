@@ -52,11 +52,7 @@ export default {
     refresh_history_button: 'button#refreshhistory',
     process_deposit_button: '#deposit-form .btn-primary',
     process_withdraw_button: '#club-withdrawal-form .btn-primary',
-<<<<<<< HEAD
     verification_modal: 'div#MFAModalCenter[aria-modal="true"]',
-=======
-    verification_modal: '.modal-content',
->>>>>>> 30d3500ffa387f2319091ab9d8eaef0af7586db8
     withdrawal_notif: 'div#mfa-alert-box-clubwithdraw',
     deposit_notif: 'div#mfa-alert-box-clubdeposit',
     received_code_sms_button: 'input#sms-button',

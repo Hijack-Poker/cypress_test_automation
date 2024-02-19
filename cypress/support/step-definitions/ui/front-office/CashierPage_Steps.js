@@ -101,11 +101,7 @@ When('I input {string} in the find user textbox', (textValue) => {
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
-<<<<<<< HEAD
   cy.get(cashierPageLocators.cashier_page.verification_modal).should('be.visible');
-=======
-  cy.get(cashierPageLocators.cashier_page.verification_modal, {timeout: 5000}).should('be.visible');
->>>>>>> 30d3500ffa387f2319091ab9d8eaef0af7586db8
 });
 
 Then('The amount {string} should be displayed in {string}', (amountValue, element) => {
