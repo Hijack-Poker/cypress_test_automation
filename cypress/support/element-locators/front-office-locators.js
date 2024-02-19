@@ -39,7 +39,7 @@ export default {
     club_change_link: 'a[href*=cardhouseselection]',
   },
   common: {
-    message_modal: '.modal[aria-modal="true"]',
+    message_modal: '.modal.show[aria-modal="true"]',
     error_message_modal: 'div#ErrorMessagesModal'
   },
   cashier_page: {
