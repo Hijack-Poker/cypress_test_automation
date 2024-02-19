@@ -11,10 +11,9 @@ Feature: Front Office - Club Deposit
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Deposit" in the Cashier Menu
     And I input '11' amount in "Deposit Amount"
-    And I click the club location selector
     And I select a club location
     And I click "Process Deposit" button in Cashier
-    Then The verification modal is displayed in Cashier page
+    Then The verification modal is displayed in Cashier Page
 
   Scenario: Verify that user cannot input invalid amount in club deposit amount
     Given I login to Front Office via Auth Descope UI
@@ -24,7 +23,7 @@ Feature: Front Office - Club Deposit
     And I click the club location selector
     And I select a club location
     And I click "Process Deposit" button in Cashier
-    Then The "Deposit" notification should be displayed in Cashier page   
+    Then The "Deposit" notification should be displayed in Cashier page 
 
   Scenario: Verify that deposit will not be successful if incorrect verification code is entered
     Given I login to Front Office via Auth Descope UI

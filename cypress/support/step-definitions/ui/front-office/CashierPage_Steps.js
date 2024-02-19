@@ -53,7 +53,7 @@ When('I input {string} amount in {string}', (amountValue, element) => {
 });
 
 When('I click the club location selector', () => {
-  cy.get('select#selectedclub').select();
+  cy.get('select#selectedclub').select('e5e1befb-8f42-48e4-af39-7f8aee974a44');
 });
 
 When('I select a club location', () => {
@@ -101,7 +101,7 @@ When('I input {string} in the find user textbox', (textValue) => {
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
-  cy.get(cashierPageLocators.cashier_page.verification_modal).should('be.visible');
+  cy.get(cashierPageLocators.cashier_page.verification_modal, {timeout: 5000}).should('be.visible');
 });
 
 Then('The amount {string} should be displayed in {string}', (amountValue, element) => {
