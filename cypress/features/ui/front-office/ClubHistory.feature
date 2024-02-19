@@ -24,7 +24,7 @@ Feature: Front Office - Club History
     Given I login to Front Office via Auth Descope UI
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "History" in the Cashier Menu
-    Then The transaction id should be displayed in History Page
+    Then The table datas should be displayed in History Page
 
   @smoke
   Scenario: Verify that user can refresh history list
