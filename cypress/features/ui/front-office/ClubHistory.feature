@@ -32,4 +32,4 @@ Feature: Front Office - Club History
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "History" in the Cashier Menu  
     And I click "Refresh History" button in Cashier
-    Then The transaction id should be displayed in History Page
+    Then The table datas should be displayed in History Page

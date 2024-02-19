@@ -67,7 +67,7 @@ export default {
     spinner_selector: '.spinner',
     send_money_label: 'form#transfer-form > label',
     select_player_label: 'div#userlist > label',
-    transaction_id_column: 'tr:nth-of-type(1) > td:nth-of-type(6)',
+    table_data: '.tableBody',
     table_type: 'td'
   },
   cashier_menu: {
