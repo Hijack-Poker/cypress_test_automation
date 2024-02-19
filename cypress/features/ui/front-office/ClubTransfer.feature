@@ -7,7 +7,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player can search for another player
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer2@oppy.tech" in the find user textbox
@@ -16,7 +16,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player can search for another player using phone number
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "+13239991158" in the find user textbox
@@ -25,7 +25,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player can select a player from successful search results
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer2@oppy.tech" in the find user textbox
@@ -35,7 +35,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player receives correct error message from unsuccessful player search
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "Lorem Ipsum" in the find user textbox
@@ -44,7 +44,7 @@ Feature: Front Office - Club Transfer
 
   @smoke   
   Scenario: Verify that a player receives an error message when using own email in player search
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer@oppy.tech" in the find user textbox
@@ -53,7 +53,7 @@ Feature: Front Office - Club Transfer
 
   @smoke
   Scenario: Verify that a player can enter a valid dollar amount to transfer with a selected player account
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer2@oppy.tech" in the find user textbox
@@ -63,9 +63,9 @@ Feature: Front Office - Club Transfer
     And I click "Send Transfer" button in Cashier
     Then The verification modal is displayed in Cashier Page
 
- @smoke
+  @smoke
   Scenario: Verify that transfer will not be successful if incorrect verification code is entered
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     Then The "Send Money" section should be displayed in the Player Transfer page

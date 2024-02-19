@@ -52,17 +52,12 @@ When('I input {string} amount in {string}', (amountValue, element) => {
   } 
 });
 
-When('I select {string} in the {string} location', (clubValue, element) => {
-  switch (element.toLowerCase()) {
-  case 'club deposit':
-    cy.get(cashierPageLocators.cashier_page.club_location_selector).select(clubValue);
-    break;
-  case 'club withdraw':
-    cy.get(cashierPageLocators.cashier_page.club_location_withdraw_selector).select(clubValue);
-    break;
-  default:
-    throw new Error('Invalid input provided: ' + element);      
-  }
+When('I click the club location selector', () => {
+  cy.get('select#selectedclub').select('e5e1befb-8f42-48e4-af39-7f8aee974a44');
+});
+
+When('I select a club location', () => {
+  cy.get(cashierPageLocators.cashier_page.club_location_selector).select('e5e1befb-8f42-48e4-af39-7f8aee974a44');
 });
 
 When('I input {string} in code textbox', (codeValue) => {
@@ -106,7 +101,7 @@ When('I input {string} in the find user textbox', (textValue) => {
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
-  cy.get(cashierPageLocators.cashier_page.verification_modal, { timeout: 3000 }).should('be.visible');
+  cy.get(cashierPageLocators.cashier_page.verification_modal).should('be.visible');
 });
 
 Then('The amount {string} should be displayed in {string}', (amountValue, element) => {
@@ -134,10 +129,10 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
     cy.get(cashierPageLocators.cashier_page.notification_verication_msg).should('be.visible');
     break; 
   case 'user not found':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('no user was found ').should('be.visible');
+    cy.get(cashierPageLocators.common.message_modal).find('#MessageText').should('be.visible').contains('no user was found ');
     break; 
   case 'account are restricted':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('account are restricted').should('be.visible');
+    cy.get(cashierPageLocators.common.message_modal).find('#MessageText').should('be.visible').contains('account are restricted');
     break;     
   default:
     throw new Error('Invalid input provided:' + element);      
