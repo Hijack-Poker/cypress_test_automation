@@ -7,7 +7,7 @@ Feature: Front Office - Club Deposit
 
   @smoke
   Scenario: Verify that user can enter valid amount for club deposit
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Deposit" in the Cashier Menu
     And I input '11' amount in "Deposit Amount"
@@ -15,8 +15,9 @@ Feature: Front Office - Club Deposit
     And I click "Process Deposit" button in Cashier
     Then The verification modal is displayed in Cashier Page
 
+  @smoke
   Scenario: Verify that user cannot input invalid amount in club deposit amount
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Deposit" in the Cashier Menu
     And I input '11000' amount in "Deposit Amount"
@@ -25,8 +26,9 @@ Feature: Front Office - Club Deposit
     And I click "Process Deposit" button in Cashier
     Then The "Deposit" notification should be displayed in Cashier page 
 
+  @smoke
   Scenario: Verify that deposit will not be successful if incorrect verification code is entered
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Deposit" in the Cashier Menu
     And I input '10' amount in "Deposit Amount"

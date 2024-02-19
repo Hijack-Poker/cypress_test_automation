@@ -1,6 +1,8 @@
 /* eslint-disable cypress/unsafe-to-chain-command */
 import frontOfficeLocators from "../../../element-locators/front-office-locators";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { registerCommand } from 'cypress-wait-for-stable-dom';
+registerCommand();
 
 let avatar_profile;
 let randomString;
@@ -34,10 +36,12 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       const saveButton = `button[onclick="submitchange('${fieldName.toLowerCase().replace(/ /g, "")}')"]`;
 
       cy.get(editButton).should('be.visible').click();
-      cy.get(inputTextbox).clear().type(fieldValue);
+      cy.get(inputTextbox).should('be.visible').clear().type(fieldValue);
       cy.get(saveButton).should('be.visible').click();
+
+      cy.waitForStableDOM({ pollInterval: 2000, timeout: 10000 }); // waits for a stable DOM after page refresh
       cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').should('be.visible').contains('Updated');
-      cy.get(frontOfficeLocators.common.message_modal).should('be.visible').contains('×').click();
+      cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
     });
   });
 });

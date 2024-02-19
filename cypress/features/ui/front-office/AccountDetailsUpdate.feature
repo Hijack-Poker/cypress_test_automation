@@ -7,7 +7,7 @@ Feature: Front Office - Account Details Update
 
   @smoke
   Scenario: Verify that player can successfully edit their account details
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I edit the Account Details fields with these values
@@ -24,7 +24,7 @@ Feature: Front Office - Account Details Update
 
   @smoke
   Scenario: Verify that error message appears when inputting blank characters in the required fields
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I set the following Account Details fields to "empty"
@@ -40,7 +40,7 @@ Feature: Front Office - Account Details Update
 
   @smoke
   Scenario: Verify that error message appears when inputting invalid characters in the required fields
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I set the following Account Details fields to "invalid"
@@ -59,7 +59,7 @@ Feature: Front Office - Account Details Update
   
   @smoke
   Scenario:Verify that player can successfully change their cardhouse
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I click on Change Club link in Account Profile page

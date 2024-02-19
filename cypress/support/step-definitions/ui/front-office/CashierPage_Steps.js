@@ -101,7 +101,7 @@ When('I input {string} in the find user textbox', (textValue) => {
 });
 
 Then('The verification modal is displayed in Cashier Page', () => {
-  cy.get(cashierPageLocators.cashier_page.verification_modal, {timeout: 5000}).should('be.visible');
+  cy.get(cashierPageLocators.cashier_page.verification_modal).should('be.visible');
 });
 
 Then('The amount {string} should be displayed in {string}', (amountValue, element) => {
@@ -129,10 +129,10 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
     cy.get(cashierPageLocators.cashier_page.notification_verication_msg).should('be.visible');
     break; 
   case 'user not found':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('no user was found ').should('be.visible');
+    cy.get(cashierPageLocators.common.message_modal).find('#MessageText').should('be.visible').contains('no user was found ');
     break; 
   case 'account are restricted':
-    cy.get(cashierPageLocators.cashier_page.message_modal).contains('account are restricted').should('be.visible');
+    cy.get(cashierPageLocators.common.message_modal).find('#MessageText').should('be.visible').contains('account are restricted');
     break;     
   default:
     throw new Error('Invalid input provided:' + element);      
