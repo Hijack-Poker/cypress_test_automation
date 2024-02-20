@@ -66,7 +66,9 @@ export default {
     amount_to_transfer_textbox: 'input#transfer_amount_usd',
     spinner_selector: '.spinner',
     send_money_label: 'form#transfer-form > label',
-    select_player_label: 'div#userlist > label'
+    select_player_label: 'div#userlist > label',
+    history_table_data: '.tableBody',
+    history_table_type: 'td'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',
