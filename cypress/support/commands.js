@@ -113,3 +113,12 @@ Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
     })
   })
 })
+
+// TABLE HANDLING
+Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelector, expectedValue) => {
+  cy.get(tableSelector).find('tr').each(($element) => {
+    if ($element.includes(expectedValue)) {
+      cy.wrap($element).find(columnSelector).should('equal', expectedValue);
+    }
+  });
+});

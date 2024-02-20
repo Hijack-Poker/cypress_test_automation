@@ -67,8 +67,8 @@ export default {
     spinner_selector: '.spinner',
     send_money_label: 'form#transfer-form > label',
     select_player_label: 'div#userlist > label',
-    table_data: '.tableBody',
-    table_type: 'td'
+    history_table_data: '.tableBody',
+    history_table_type: 'td'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',

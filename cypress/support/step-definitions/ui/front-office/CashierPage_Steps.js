@@ -167,10 +167,9 @@ Then('The {string} section should be displayed in the Player Transfer page', (el
 });
 
 Then('The table datas should be displayed in History Page', () => {
-  cy.get(cashierPageLocators.cashier_page.table_data).should('be.visible');
+  cy.get(cashierPageLocators.cashier_page.history_table_data).should('be.visible');
 });
 
-Then('The {string} type should be displayed in History page', (element) => {
-  // cy.contains(cashierPageLocators.cashier_page.table_type, element).should('be.visible'); 
-  cy.get(cashierPageLocators.cashier_page.table_type).contains(element);
+Then('The {string} type should be displayed in History page', (element) => { 
+  cy.get(cashierPageLocators.cashier_page.history_table_type).contains(element);
 });
