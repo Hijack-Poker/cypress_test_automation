@@ -68,7 +68,7 @@ export default {
     send_money_label: 'form#transfer-form > label',
     select_player_label: 'div#userlist > label',
     history_table_data: '.tableBody',
-    history_table_type: 'td'
+    history_type_column: 'td:nth-child(5)'
   },
   cashier_menu: {
     club_deposit_button: '#depositclub-pill-vertical',

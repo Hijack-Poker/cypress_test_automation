@@ -161,9 +161,13 @@ Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
  * TABLE HANDLING
  */
 Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelector, expectedValue) => {
-  cy.get(tableSelector).find('tr').each(($element) => {
-    if ($element.includes(expectedValue)) {
-      cy.wrap($element).find(columnSelector).should('equal', expectedValue);
+  let exist = false;
+  cy.get(tableSelector).find('tr').each(($element, index, $list) => { //eslint-disable-line
+    const getValue = $element.find(columnSelector).text();
+    if(getValue.includes(expectedValue)) {
+      exist = true;
     }
+  }).then(() => {
+    expect(exist).to.be.true;
   });
 });

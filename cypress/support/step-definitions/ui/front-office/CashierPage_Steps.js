@@ -163,6 +163,7 @@ Then('The table datas should be displayed in History Page', () => {
   cy.get(cashierPageLocators.cashier_page.history_table_data).should('be.visible');
 });
 
-Then('The {string} type should be displayed in History page', (element) => { 
-  cy.get(cashierPageLocators.cashier_page.history_table_type).contains(element);
+Then('The {string} type should be displayed in History page', (type) => {
+  const { history_table_data, history_type_column } = cashierPageLocators.cashier_page;
+  cy.c_verifyValueExistInColumn(history_table_data, history_type_column, type);
 });
