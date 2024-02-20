@@ -78,14 +78,14 @@ Cypress.Commands.add('c_generateRandomString', (length) => {
   return cy.wrap(randomString);
 });
 
-/**
- * DESCOPE APP
- */
 Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
   let cleanedString = stringToken.replace(/ /g, '%20').replace(/"/g, '%22').replace(/,/g, '%2C');
   return cleanedString;
 });
 
+/**
+ * DESCOPE APP
+ */
 Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   cy.request({
     method: 'POST',
@@ -123,7 +123,7 @@ Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   })
 })
 
-Cypress.Commands.add('c_createTestUser', (loginId, deliveryMethod) => {
+Cypress.Commands.add('c_createTestUser', () => {
   cy.request({
     method: 'POST',
     url: 'https://api.descope.com/v1/mgmt/user/create',
@@ -157,7 +157,9 @@ Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
   });
 });
 
-// TABLE HANDLING
+/**
+ * TABLE HANDLING
+ */
 Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelector, expectedValue) => {
   cy.get(tableSelector).find('tr').each(($element) => {
     if ($element.includes(expectedValue)) {
