@@ -14,6 +14,7 @@ Feature: Club Management -  Dashboard
   Scenario: Verify that each user has one of the following statuses: active, suspended, not active, or deleted
     Given I logged in Club Management API   
     When I click the "Users" in the User Management Dashboard
+    Then The "Active" status is displayed in the Users 
 
   Scenario: Verify that clicking on a user's name allows viewing their profile
 
