@@ -1,30 +1,11 @@
 import frontOfficeLocators from "../../../element-locators/front-office-locators";
-import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
-Before(() => {
-  // Load fixtures data
-  cy.fixture('player-details.json').then(function (data) {
-    this.playerDetails = data;
-  });
-  // Added uncaught exception handler inside origin
-  cy.origin("https://auth.descope.io", () => {
-    Cypress.on('uncaught:exception', (err) => {
-      if (err.name.includes('NotAllowedError')) {
-        return false;
-      }
-    });
-  });
-});
-
-Given('I login to Front Office via Auth Descope API', function () {
-  cy.c_loginDescopeViaAPI(this.playerDetails.player1_email, this.playerDetails.password);
-});
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 Given('I login to Front Office via Auth Descope UI', function () {
   cy.c_navigateToPage("front office login");
   const { email_textbox, password_textbox, login_with_email_button, login_button } = frontOfficeLocators.login_page;
-  const { player1_email, password } = this.playerDetails;
-  cy.origin("https://auth.descope.io", { args: { login_with_email_button, login_button, email_textbox, password_textbox, playerEmail: player1_email, playerPassword: password } }, ({ login_with_email_button, login_button, email_textbox, password_textbox, playerEmail, playerPassword }) => { 
+  const { player1, common } = this.userDetails;
+  cy.origin("https://auth.descope.io", { args: { login_with_email_button, login_button, email_textbox, password_textbox, playerEmail: player1.email, playerPassword: common.password } }, ({ login_with_email_button, login_button, email_textbox, password_textbox, playerEmail, playerPassword }) => { 
     cy.get(login_with_email_button).click();
     cy.get(email_textbox).type(playerEmail);
     cy.get(password_textbox).type(playerPassword, { force: true });
@@ -50,17 +31,22 @@ When('I click on {string} button in Descope page', (button) => {
   }
   const element = value;
   cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
+    Cypress.on('uncaught:exception', (err) => {
+      if (err.name.includes('NotAllowedError')) {
+        return false;
+      }
+    });
     cy.get(element).click();
   });
 });
 
 When('I enter {string} credentials in Descope page', function (validity) {
   const { email_textbox, password_textbox } = frontOfficeLocators.login_page;
-  let { player1_email, password } = this.playerDetails;
+  let { player1, common } = this.userDetails;
   if (validity === 'invalid') {
-    password = "invalidPassword";
+    common.password = "invalidPassword";
   }
-  cy.origin("https://auth.descope.io", { args: {email_textbox, password_textbox, playerEmail: player1_email, playerPassword: password} }, ( {email_textbox, password_textbox, playerEmail, playerPassword}) => {
+  cy.origin("https://auth.descope.io", { args: {email_textbox, password_textbox, playerEmail: player1.email, playerPassword: common.password} }, ( {email_textbox, password_textbox, playerEmail, playerPassword}) => {
     cy.get(email_textbox).type(playerEmail);
     cy.get(password_textbox).type(playerPassword, { force: true }); // added option to avoid error
   });

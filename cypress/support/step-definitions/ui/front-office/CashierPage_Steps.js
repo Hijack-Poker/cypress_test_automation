@@ -1,14 +1,7 @@
 import cashierPageLocators from "../../../element-locators/front-office-locators";
-import { Before, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 let user_input;
-
-Before(() => {
-  // Load fixtures data
-  cy.fixture('player-details.json').then(function(data) {
-    this.playerDetails = data;
-  });
-});
 
 When('I click {string} in the Cashier Menu', (menuValue) => {
   switch (menuValue.toLowerCase()) {
@@ -140,8 +133,8 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
 });
 
 Then('The email of the user should be displayed in Player Transfer', function() {
-  if (user_input == this.playerDetails.player2_phone_number) {
-    user_input == this.playerDetails.player2_email;
+  if (user_input == this.userDetails.player2.phone_number) {
+    user_input == this.userDetails.player2.email;
   } else {
     cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
       expect(emailValue).includes(user_input);
