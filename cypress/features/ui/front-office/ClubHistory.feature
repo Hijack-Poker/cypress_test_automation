@@ -17,7 +17,7 @@ Feature: Front Office - Club History
 
   @smoke
   Scenario: Verify that club withdrawal is reflected in history
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "History" in the Cashier Menu
     Then The table datas should be displayed in History Page
@@ -25,7 +25,7 @@ Feature: Front Office - Club History
 
   @smoke
   Scenario: Verify that transfer transactions are reflected in history
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "History" in the Cashier Menu
     Then The table datas should be displayed in History Page
@@ -33,7 +33,7 @@ Feature: Front Office - Club History
 
   @smoke
   Scenario: Verify that user can refresh history list
-    Given I login to Front Office via Auth Descope UI
+    Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "History" in the Cashier Menu  
     And I click "Refresh History" button in Cashier
