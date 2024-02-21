@@ -6,6 +6,16 @@ const authHeader = {
   'Authorization': `Bearer ${projectId}:${managementKey}`,
 }
 
+// Define the test user details
+const testUser = {
+  loginId: "amansueto+testuserregister@oppy.tech",
+  email: "amansueto+testuserregister@oppy.tech",
+  phone: "+13239991158",
+  verifiedEmail: true,
+  verifiedPhone: true,
+  test: true,
+}
+
 /**
  * HELPERS
  */
@@ -63,20 +73,19 @@ Cypress.Commands.add('c_getLocatorByNamePage', (locatorFile, page, elementName) 
   return cy.wrap(elementLocator);
 });
 
-
 Cypress.Commands.add('c_generateRandomString', (length) => {
   const randomString = Array.from({ length }, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join('');
   return cy.wrap(randomString);
 });
 
-/**
- * DESCOPE AUTHENTICATION
- */
 Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
   let cleanedString = stringToken.replace(/ /g, '%20').replace(/"/g, '%22').replace(/,/g, '%2C');
   return cleanedString;
 });
 
+/**
+ * DESCOPE APP
+ */
 Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   cy.request({
     method: 'POST',
@@ -114,11 +123,51 @@ Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   })
 })
 
-// TABLE HANDLING
-Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelector, expectedValue) => {
-  cy.get(tableSelector).find('tr').each(($element) => {
-    if ($element.includes(expectedValue)) {
-      cy.wrap($element).find(columnSelector).should('equal', expectedValue);
+Cypress.Commands.add('c_createTestUser', () => {
+  cy.request({
+    method: 'POST',
+    url: 'https://api.descope.com/v1/mgmt/user/create',
+    headers: authHeader,
+    body: testUser,
+  }).then((response) => {
+     if (response.status === 200) {
+        cy.log("User successfully created.")
+      } else {
+        throw new Error("Failed to create user");
+      }
+  });
+});
+
+Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://api.descope.com/v1/mgmt/tests/generate/otp',
+    headers: authHeader,
+    body: {
+        "loginId": loginId,
+        "deliveryMethod": deliveryMethod
     }
+  }).then((response) => {
+      if (response.status === 200) {
+        const otpCode = response.body.code;
+        return otpCode;
+      } else {
+        throw new Error(`Failed to generate OTP. Status code: ${response.status}`);
+      }
+  });
+});
+
+/**
+ * TABLE HANDLING
+ */
+Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelector, expectedValue) => {
+  let exist = false;
+  cy.get(tableSelector).find('tr').each(($element, index, $list) => { //eslint-disable-line
+    const getValue = $element.find(columnSelector).text();
+    if(getValue.includes(expectedValue)) {
+      exist = true;
+    }
+  }).then(() => {
+    expect(exist).to.be.true;
   });
 });

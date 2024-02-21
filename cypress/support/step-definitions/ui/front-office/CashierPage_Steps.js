@@ -1,14 +1,7 @@
 import cashierPageLocators from "../../../element-locators/front-office-locators";
-import { Before, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 let user_input;
-
-Before(() => {
-  // Load fixtures data
-  cy.fixture('player-details.json').then(function(data) {
-    this.playerDetails = data;
-  });
-});
 
 When('I click {string} in the Cashier Menu', (menuValue) => {
   switch (menuValue.toLowerCase()) {
@@ -140,8 +133,8 @@ Then('The {string} notification should be displayed in Cashier page', (element) 
 });
 
 Then('The email of the user should be displayed in Player Transfer', function() {
-  if (user_input == this.playerDetails.player2_phone_number) {
-    user_input == this.playerDetails.player2_email;
+  if (user_input == this.userDetails.player2.phone_number) {
+    user_input == this.userDetails.player2.email;
   } else {
     cy.get(cashierPageLocators.cashier_page.player_email).invoke('attr','value').then((emailValue) => {
       expect(emailValue).includes(user_input);
@@ -167,9 +160,12 @@ Then('The {string} section should be displayed in the Player Transfer page', (el
 });
 
 Then('The table datas should be displayed in History Page', () => {
-  cy.get(cashierPageLocators.cashier_page.history_table_data).should('be.visible');
+  cy.waitForStableDOM({ pollInterval: 2000, timeout: 10000 }); // waits for a stable DOM after page refresh
+  const { history_pane, history_table_data } = cashierPageLocators.cashier_page;
+  cy.get(history_pane).find(history_table_data).should('exist');
 });
 
-Then('The {string} type should be displayed in History page', (element) => { 
-  cy.get(cashierPageLocators.cashier_page.history_table_type).contains(element);
+Then('The {string} type should be displayed in History page', (type) => {
+  const { history_table_data, history_type_column } = cashierPageLocators.cashier_page;
+  cy.c_verifyValueExistInColumn(history_table_data, history_type_column, type);
 });
