@@ -1,0 +1,19 @@
+{
+  "player1": {
+    "email": "amansueto+qaautoplayer@oppy.tech",
+    "phone_number": "+17736445831"
+  },
+  "player2": {
+    "email": "amansueto+qaautoplayer2@oppy.tech",
+    "phone_number": "+13239991158"
+  },
+  "test_user1": {
+    "email": "amansueto+descopetestuser1@oppy.tech"
+  },
+  "test_user_register": {
+    "email": "amansueto+testuserregister@oppy.tech"
+  },
+  "common": {
+    "password": "Password123!"
+  }
+}
