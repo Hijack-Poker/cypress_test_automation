@@ -67,6 +67,7 @@ export default {
     spinner_selector: '.spinner',
     send_money_label: 'form#transfer-form > label',
     select_player_label: 'div#userlist > label',
+    history_pane: 'div#historyPillVertical.show',
     history_table_data: '.tableBody',
     history_type_column: 'td:nth-child(5)'
   },
