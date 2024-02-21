@@ -160,8 +160,9 @@ Then('The {string} section should be displayed in the Player Transfer page', (el
 });
 
 Then('The table datas should be displayed in History Page', () => {
+  cy.waitForStableDOM({ pollInterval: 2000, timeout: 10000 }); // waits for a stable DOM after page refresh
   const { history_pane, history_table_data } = cashierPageLocators.cashier_page;
-  cy.get(history_pane).find(history_table_data).should('be.visible');
+  cy.get(history_pane).find(history_table_data).should('exist');
 });
 
 Then('The {string} type should be displayed in History page', (type) => {

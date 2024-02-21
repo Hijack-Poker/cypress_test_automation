@@ -18,3 +18,7 @@ import './commands'
 
 // Import hooks
 import './hooks';
+
+// Import cypress wait for dom
+import { registerCommand } from 'cypress-wait-for-stable-dom'
+registerCommand()
