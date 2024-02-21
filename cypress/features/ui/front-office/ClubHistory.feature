@@ -31,7 +31,8 @@ Feature: Front Office - Club History
     Then The table datas should be displayed in History Page
     And The "Transfer" type should be displayed in History page
 
-  @smoke
+  #Bug ticket: EN-3002
+  @smoke @bugfix
   Scenario: Verify that user can refresh history list
     Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
