@@ -14,32 +14,6 @@ Given('I login to Front Office via Auth Descope UI', function () {
   cy.c_verifyPageDisplayed("front office cardhouse");
 });
 
-When('I click on {string} button in Descope page', (button) => {
-  let value;
-  switch (button.toLowerCase()) {
-  case 'login with email':
-    value = frontOfficeLocators.login_page.login_with_email_button;
-    break;
-  case 'login':
-    value = frontOfficeLocators.login_page.login_button;
-    break;
-  case 'forgot password':
-    value = frontOfficeLocators.login_page.forgot_password;
-    break;
-  default:
-    throw new Error('Invalid button name provided: ' + button);
-  }
-  const element = value;
-  cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
-    Cypress.on('uncaught:exception', (err) => {
-      if (err.name.includes('NotAllowedError')) {
-        return false;
-      }
-    });
-    cy.get(element).click();
-  });
-});
-
 When('I enter {string} credentials in Descope page', function (validity) {
   const { email_textbox, password_textbox } = frontOfficeLocators.login_page;
   let { player1, common } = this.userDetails;
