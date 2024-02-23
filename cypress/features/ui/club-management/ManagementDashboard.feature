@@ -35,15 +35,15 @@ Feature: Club Management -  Dashboard
   Scenario: Verify that selecting the "active" checkbox displays only active status users
     Given I logged in Club Management API
     When I click the "Users" in the User Management Dashboard
-    And I click the "Active" checkbox button in the User page
-    Then The users data should displayed in the Users table
+    And I click the "active" checkbox button in the User page
+    Then The "Active" status is displayed in the Users table
 
   @smoke
   Scenario: Verify that selecting the "suspended" checkbox displays only suspended users
     Given I logged in Club Management API
     When I click the "Users" in the User Management Dashboard
-    And I click the "Suspended" checkbox button in the User page
-    Then The users data should displayed in the Users table
+    And I click the "suspended" checkbox button in the User page
+    Then The "Suspended" status is displayed in the Users table
 
   Scenario: Verify that clicking on the "Create Employee" button redirects the admin to the create user tab
     Given I logged in Club Management API
