@@ -1,8 +1,6 @@
 /* eslint-disable cypress/unsafe-to-chain-command */
 import frontOfficeLocators from "../../../element-locators/front-office-locators";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { registerCommand } from 'cypress-wait-for-stable-dom';
-registerCommand();
 
 let avatar_profile;
 let randomString;

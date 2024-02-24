@@ -6,7 +6,20 @@ export default {
     password_textbox: 'input[name="password"]',
     forgot_password: 'descope-button#vGbww3RITJ',
     reset_password_modal: 'descope-text#7ekqaI_T5T',
-    error_message: '[data-type="error-message"]'
+    register_now_with_email: 'descope-button#I1tsVIdiWU',
+    error_message: '[data-type="error-message"]',
+    submit_button: 'descope-button#submit',
+    resend_button: 'descope-button#resend'
+  },
+  registration_page: {
+    email_textbox: 'input[name="email"]',
+    submit_button: 'descope-button#DQfnTvyxi6',
+    verify_your_email_modal: 'descope-text#LmrSIGOWZb',
+    verification_modal: 'descope-text#auED4dEJkJ',
+    verification_passcode: 'descope-passcode#L1T9iO4p5U',
+    registration_form: 'descope-text#JC9w5MolwQ',
+    code_error_message: '[data-type="error-message"]',
+    email_error_message: 'div#error-message-vaadin-email-field-2'
   },
   club_house_page: {
     enter_lobby_button: '.enter-lobby-styles'

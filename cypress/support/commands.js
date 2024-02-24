@@ -49,6 +49,9 @@ Cypress.Commands.add('c_verifyPageDisplayed', (pageName) => {
     case 'front office cardhouse':
       cy.url().should('include', '/hijack/cardhouse');
       break;
+    case 'front office cardhouse selection':
+      cy.url().should('include', '/hijack/cardhouseselection');
+      break;
     case 'front office lobby':
       cy.url().should('include', 'play.hijackpoker');
       break;
@@ -145,7 +148,7 @@ Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
     headers: authHeader,
     body: {
         "loginId": loginId,
-        "deliveryMethod": deliveryMethod
+        "deliveryMethod": deliveryMethod.toLowerCase()
     }
   }).then((response) => {
       if (response.status === 200) {
