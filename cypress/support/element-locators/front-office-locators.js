@@ -8,7 +8,7 @@ export default {
     reset_password_modal: 'descope-text#7ekqaI_T5T',
     register_now_with_email: 'descope-button#I1tsVIdiWU',
     error_message: '[data-type="error-message"]',
-    submit_button: 'descope-button#submit',
+    code_submit_button: 'descope-button#submit',
     resend_button: 'descope-button#resend'
   },
   registration_page: {
@@ -18,8 +18,16 @@ export default {
     verification_modal: 'descope-text#auED4dEJkJ',
     verification_passcode: 'descope-passcode#L1T9iO4p5U',
     registration_form: 'descope-text#JC9w5MolwQ',
+    unique_display_name_label: 'descope-text-field[label="Unique Display Name"]',
+    first_name_label: 'descope-text-field[label="First Name"]',
+    last_name_label: 'descope-text-field[label="Last Name"]',
+    phone_label: 'descope-phone-field-internal[name="phone"] descope-text-field',
+    password_label: 'descope-password[label="Password"]',
+    confirm_password_label: 'descope-password[label="Confirm password"]',
+    submit_registration_button: 'descope-button#HanAkXLH2l',
     code_error_message: '[data-type="error-message"]',
-    email_error_message: 'div#error-message-vaadin-email-field-2'
+    email_error_message: 'div#error-message-vaadin-email-field-2',
+    field_error_message: 'div[slot="error-message"][role="alert"]'
   },
   club_house_page: {
     enter_lobby_button: '.enter-lobby-styles'
