@@ -1,4 +1,4 @@
-Feature: Front Office - Registration Fields and Buttons
+Feature: Front Office - Registration Fields and Buttons Validation
   #Author: Anthony Mansueto 02/22/2024
 
   #-------------------------------------
@@ -82,3 +82,26 @@ Feature: Front Office - Registration Fields and Buttons
     And I edit the Registration form field "Confirm Password" with value "Password"
     And I click on "Submit registration" button in Descope page
     Then Error message should be displayed in "Registration form modal" with message "Password must contain at least one number"
+
+    #Bug ticket: EN-3070
+    @smoke @bugfix
+    Scenario: Verify that the Unique Display Name, First Name and Last Name fields enforces a maximum character limit, and the system displays a validation error message when the limit is exceeded.
+    Given I go to Registration Form modal in Descope page
+    Then "Registration form" modal should be displayed in Descope
+    When I populate the Registration form fields with these values
+    | Field               | Value                  |
+    | Unique Display Name | QAAUTO                 |
+    | First Name          | QAAUTO Test First Name |
+    | Last Name           | QAAUTO Test Last Name  |
+    | Phone               | 3239991159             |
+    | Password            | Password123!           |
+    | Confirm Password    | Password123!           |
+    And I edit the Registration form field "Last Name" with value "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    And I click on "Submit registration" button in Descope page
+    Then Error message should be displayed in "Registration form field" with message "TBD"
+    When I edit the Registration form field "First Name" with value "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    And I click on "Submit registration" button in Descope page
+    Then Error message should be displayed in "Registration form field" with message "TBD"
+    When I edit the Registration form field "Unique Display Name" with value "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    And I click on "Submit registration" button in Descope page
+    Then Error message should be displayed in "Registration form field" with message "TBD"
