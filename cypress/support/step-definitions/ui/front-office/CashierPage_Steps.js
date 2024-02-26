@@ -58,9 +58,16 @@ When('I input {string} in code textbox', (codeValue) => {
 });
 
 When('I input the generated in code textbox', () => {
-  const str = this.otpCode;
-  let arrValue = str();
-  cy.get(cashierPageLocators.cashier_page.enter_code_txtbox).type(arrValue);
+  cy.get(cashierPageLocators.cashier_page.enter_code_txtbox)
+    .should('be.visible')
+    .then(($textbox) => {
+      const otpCode = this.otpCode;
+      if (otpCode !== undefined) {
+        cy.wrap($textbox).type(otpCode);
+      } else {
+        cy.log('OTP code is undefined.');
+      }
+    });
 });
 
 When('I click {string} button in Cashier', (buttonValue) => {
