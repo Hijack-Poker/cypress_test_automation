@@ -57,6 +57,12 @@ When('I input {string} in code textbox', (codeValue) => {
   cy.get(cashierPageLocators.cashier_page.enter_code_txtbox).type(codeValue);
 });
 
+When('I input the generated in code textbox', () => {
+  const str = this.otpCode;
+  let arrValue = str();
+  cy.get(cashierPageLocators.cashier_page.enter_code_txtbox).type(arrValue);
+});
+
 When('I click {string} button in Cashier', (buttonValue) => {
   switch (buttonValue.toLowerCase()) {
   case 'process deposit':
