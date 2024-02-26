@@ -1,3 +1,4 @@
+import { should } from "chai";
 import profilePageLocator from "../../../element-locators/clubs-locators";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
@@ -19,6 +20,16 @@ When('I search {string} in the Users search bar', (userValue) => {
 
 When('I click the {string} checkbox button in the User page', (statusValue) => {
   cy.get(profilePageLocator.users_management_page.status_check_box).filter(`[value="${statusValue}"]`).click();
+});
+
+When('I click View Profile of {string} on Users table', (userValue) => {
+  cy.contains(profilePageLocator.users_management_page.user_row_data, userValue).within(() => {
+    cy.get(profilePageLocator.users_management_page.view_profile_button).click();
+  });
+});     
+
+When('I scrolled down in the User Management page', () => {
+  cy.scrollTo('bottom');
 });
 
 Then('The Request New Pin button should be displayed in Request New Pin tab', () => {
@@ -47,4 +58,20 @@ Then('The name {string} should be displayed in the Basic Information page', (nam
 
 Then('The data of {string} should be displayed in the Users table', (userValue) => {
   cy.contains(profilePageLocator.users_management_page.user_table_data, userValue).should('be.visible');
+});
+
+Then('The {string} is still displayed in the Club Managements Page', (txtValue) => {
+  switch(txtValue.toLowerCase()) {
+  case 'logout button':
+    cy.get(profilePageLocator.club_management_page.logout_button).should('be.visible');
+    break;
+  case 'navigation bar':
+    cy.get(profilePageLocator.club_management_page.navigation_bar).should('be.visible');
+    break;
+  case 'clubhouse dropdown':
+    cy.get(profilePageLocator.club_management_page.club_locatio_dropdown).should('be.visible');
+    break;
+  default:
+    throw new Error('Invalid element provided: ' + txtValue);      
+  }
 });
