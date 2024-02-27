@@ -53,7 +53,7 @@ Then('{string} modal should be displayed in Descope', (modalName) => {
   });
 });
 
-When('I enter generated OTP for test users in Descope Email Verification modal', function () {
+When('I enter generated OTP for test users in Descope Verification modal', function () {
   const str = this.otpCode;
   let arrValue = str.split('');
   const { verification_passcode } = frontOfficeLocators.registration_page;
@@ -67,7 +67,7 @@ When('I enter generated OTP for test users in Descope Email Verification modal',
   });
 });
 
-When('I enter 6-digit OTP {string} in Descope Email Verification modal', function (otpCode) {
+When('I enter 6-digit OTP {string} in Descope Verification modal', function (otpCode) {
   let arrValue = otpCode.split('');
   const { verification_passcode } = frontOfficeLocators.registration_page;
   cy.origin("https://auth.descope.io", { args: {arrValue, verification_passcode} }, ( {arrValue, verification_passcode} ) => {
@@ -94,7 +94,8 @@ When('I populate the Registration form fields with these values', (dataTable) =>
         } else if (fieldName.includes('Password')) {
           cy.get(fieldLabel).find('input').should('be.visible').type(fieldValue + randomString);
         } else {
-          cy.get(fieldLabel).find('input').should('be.visible').type(fieldValue);
+          // eslint-disable-next-line cypress/unsafe-to-chain-command
+          cy.get(fieldLabel).find('input').should('be.visible').clear().type(fieldValue);
         }
       });
     });
@@ -130,7 +131,7 @@ Then('Error message should be displayed in {string} with message {string}', (loc
   cy.origin("https://auth.descope.io", { args: { location, errorMessage, code_error_message, email_error_message, field_error_message } }, ( { location, errorMessage, code_error_message, email_error_message, field_error_message }) => {
     let locatorValue; 
     switch (location.toLowerCase()) {
-    case 'email verification modal':
+    case 'otp verification modal':
     case 'registration form modal':  
       locatorValue = code_error_message;
       break;
@@ -138,6 +139,7 @@ Then('Error message should be displayed in {string} with message {string}', (loc
       locatorValue = email_error_message;
       break;
     case 'registration form field':
+    case 'otp verification field':
       locatorValue = field_error_message;
       break;  
     default:

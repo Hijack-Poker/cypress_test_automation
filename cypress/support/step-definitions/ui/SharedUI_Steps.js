@@ -25,7 +25,7 @@ Then('{string} page should be displayed', (page) => {
 When('I click on {string} button in Descope page', (button) => {
   let value;
   const { login_with_email_button, login_button, forgot_password, register_now_with_email, code_submit_button, resend_button } = frontOfficeLocators.login_page;
-  const { submit_registration_button } = frontOfficeLocators.registration_page;
+  const { submit_registration_button, im_ready_button } = frontOfficeLocators.registration_page;
   switch (button.toLowerCase()) {
   case 'login with email':
     value = login_with_email_button;
@@ -47,6 +47,9 @@ When('I click on {string} button in Descope page', (button) => {
     break;  
   case 'resend':
     value = resend_button;
+    break;
+  case 'im ready':
+    value = im_ready_button;
     break;    
   default:
     throw new Error('Invalid button name provided: ' + button);
