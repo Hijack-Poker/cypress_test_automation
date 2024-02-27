@@ -40,7 +40,7 @@ Feature: Front Office - Club Deposit
     And I click "Verify button" button in Cashier
     Then The "Request error" notification should be displayed in Cashier page
 
-  @smoke
+  @smoke @failure
   Scenario: Verify that confirmation modal is displayed once correct verification is entered
     Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
