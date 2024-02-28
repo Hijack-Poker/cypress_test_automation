@@ -27,7 +27,8 @@ export default {
     submit_registration_button: 'descope-button#HanAkXLH2l',
     code_error_message: '[data-type="error-message"]',
     email_error_message: 'div#error-message-vaadin-email-field-2',
-    field_error_message: 'div[slot="error-message"][role="alert"]'
+    field_error_message: 'div[slot="error-message"][role="alert"]',
+    im_ready_button: 'descope-button#04xtUWhDpa'
   },
   club_house_page: {
     enter_lobby_button: '.enter-lobby-styles'
