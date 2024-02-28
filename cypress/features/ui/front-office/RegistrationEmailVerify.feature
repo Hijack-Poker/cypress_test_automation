@@ -11,7 +11,7 @@ Feature: Front Office - Registration Verify Your Email
     When I click on "Register Now with Email" button in Descope page
     Then "Verify Your Email" modal should be displayed in Descope
     When I enter valid Email in Verify Your Email page
-    Then "Email Verification" modal should be displayed in Descope
+    Then "Verification" modal should be displayed in Descope
     When I use API to Generate OTP via "Email" for "test user registration"
     When I enter generated OTP for test users in Descope Email Verification modal
     And I click on "Submit" button in Descope page
@@ -23,7 +23,7 @@ Feature: Front Office - Registration Verify Your Email
     When I click on "Register Now with Email" button in Descope page
     Then "Verify Your Email" modal should be displayed in Descope
     When I enter valid Email in Verify Your Email page
-    Then "Email Verification" modal should be displayed in Descope
+    Then "Verification" modal should be displayed in Descope
     When I enter 6-digit OTP "123456" in Descope Email Verification modal
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "Email Verification modal" with message "Failed to verify email code"
@@ -42,7 +42,7 @@ Feature: Front Office - Registration Verify Your Email
     When I click on "Register Now with Email" button in Descope page
     Then "Verify Your Email" modal should be displayed in Descope
     When I enter "amansueto+descopetestuser1@oppy.tech" in Email textbox on Verify Your Email modal
-    Then "Email Verification" modal should be displayed in Descope
+    Then "Verification" modal should be displayed in Descope
     When I use API to Generate OTP via "Email" for "test user 1"
     When I enter generated OTP for test users in Descope Email Verification modal
     And I click on "Submit" button in Descope page

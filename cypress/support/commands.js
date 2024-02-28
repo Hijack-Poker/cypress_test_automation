@@ -89,6 +89,18 @@ Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
 /**
  * DESCOPE APP
  */
+
+Cypress.Commands.add('c_clickElementInDescope', (element) => {
+  cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
+    Cypress.on('uncaught:exception', (err) => {
+      if (err.name.includes('NotAllowedError') || err.name.includes('Error')) {
+        return false;
+      }
+    });
+    cy.get(element).click();
+  });
+});
+
 Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   cy.request({
     method: 'POST',
@@ -157,6 +169,17 @@ Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
       } else {
         throw new Error(`Failed to generate OTP. Status code: ${response.status}`);
       }
+  });
+});
+
+Cypress.Commands.add('c_enterOTPCode', (arrOTP, locator) => {
+  cy.origin("https://auth.descope.io", { args: {arrOTP, locator} }, ( {arrOTP, locator} ) => {
+    cy.get(locator).find('vaadin-text-field').each(($el, index) => {
+      if (index+1 < arrOTP.length) {
+        cy.get(`vaadin-text-field[data-id="${index+1}"]`).find('input').type(arrOTP[index+1], {force: true});
+      }
+    });
+    cy.get(`vaadin-text-field[data-id="0"]`).find('input').type(arrOTP[0], {force: true});
   });
 });
 
