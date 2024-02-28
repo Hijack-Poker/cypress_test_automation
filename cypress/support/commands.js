@@ -174,3 +174,43 @@ Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelecto
     expect(exist).to.be.true;
   });
 });
+
+/**
+ * GOOGLE LOGIN
+ */
+Cypress.Commands.add('c_loginViaGoggle', (userEmail, userPassword) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://www.googleapis.com/oauth2/v4/token',
+    body: {
+      grant_type: 'refresh_token',
+      loginId: userEmail,
+      password: userPassword
+    },
+  }).then(({ body }) => {
+    const formData = {
+      grant_type: 'refresh_token',
+      refresh_token: body["refreshJwt"],
+      scope: 'openid profile descope:custom_claims',
+      client_id: Cypress.env('client_id'),
+      client_secret: Cypress.env('client_secret'),
+    };
+    const urlEncodedData = new URLSearchParams(formData).toString();
+    const headers = {
+      ...authHeader,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    cy.request({
+      method: 'POST',
+      url: 'https://api.descope.com/oauth2/v1/token',
+      headers: headers,
+      body: urlEncodedData
+    }).then(({ body }) => {
+      const token_cookie = JSON.stringify({ access_token: body.access_token, id_token: body.id_token, refresh_token: body.refresh_token });
+      cy.c_createEncodedTokenCookie(token_cookie).then((encodedToken) => {
+        cy.setCookie('token-storage', encodedToken);
+      });
+      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
+    })
+  })
+})
