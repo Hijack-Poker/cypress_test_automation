@@ -46,4 +46,4 @@ Feature: Front Office - Registration Verify Your Email
     When I use API to Generate OTP via "Email" for "test user 1"
     When I enter generated OTP for test users in Descope Verification modal
     And I click on "Submit" button in Descope page
-    Then "Front Office Cardhouse Selection" page should be displayed
+    Then "Front Office Cardhouse" page should be displayed
