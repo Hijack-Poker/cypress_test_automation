@@ -178,39 +178,28 @@ Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelecto
 /**
  * GOOGLE LOGIN
  */
-Cypress.Commands.add('c_loginViaGoggle', (userEmail, userPassword) => {
+Cypress.Commands.add('c_loginViaGoggle', () => {
   cy.request({
     method: 'POST',
     url: 'https://www.googleapis.com/oauth2/v4/token',
     body: {
       grant_type: 'refresh_token',
-      loginId: userEmail,
-      password: userPassword
+      client_id: Cypress.env('googleClientId'),
+      client_secret: Cypress.env('googleClientSecret'),
+      refresh_token: Cypress.env('googleRefreshToken'),
     },
   }).then(({ body }) => {
-    const formData = {
-      grant_type: 'refresh_token',
-      refresh_token: body["refreshJwt"],
-      scope: 'openid profile descope:custom_claims',
-      client_id: Cypress.env('client_id'),
-      client_secret: Cypress.env('client_secret'),
-    };
-    const urlEncodedData = new URLSearchParams(formData).toString();
-    const headers = {
-      ...authHeader,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
+    const { id_token } = body;
+    const googleAuth = { email: 'alana@oppy.tech' };
+    const accessTokenString = id_token.toString();
     cy.request({
       method: 'POST',
-      url: 'https://api.descope.com/oauth2/v1/token',
-      headers: headers,
-      body: urlEncodedData
-    }).then(({ body }) => {
-      const token_cookie = JSON.stringify({ access_token: body.access_token, id_token: body.id_token, refresh_token: body.refresh_token });
-      cy.c_createEncodedTokenCookie(token_cookie).then((encodedToken) => {
-        cy.setCookie('token-storage', encodedToken);
-      });
-      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
-    })
-  })
-})
+      url: `https://backoffice.hijackpoker-staging.online/api/club-members/search?email=${googleAuth?.email}`,
+      body: { jwt: id_token },
+    }).then(({ body: { accessToken } }) => {
+      const accessTokenString = accessToken?.toString();
+      cy.setCookie('goggleLogin', accessTokenString);
+      
+    });
+  });
+});

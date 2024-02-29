@@ -33,3 +33,7 @@ When('I use API to Generate OTP via {string} for {string}', function (deliveryMe
     this.otpCode = otpCode;
   });
 });
+
+When("I use Google API to login on Club Management site", () => {
+  cy.c_loginViaGoggle();
+});

@@ -42,7 +42,10 @@ async function setupNodeEvents(on, config) {
     descope_project_id: process.env.DESCOPE_PROJECT_ID,
     descope_management_key: process.env.DESCOPE_MANAGEMENT_KEY,
     client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET
+    client_secret: process.env.CLIENT_SECRET,
+    googleClientId: process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN
   };
 
   if (configFile.env) {
