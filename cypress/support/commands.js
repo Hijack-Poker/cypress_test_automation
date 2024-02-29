@@ -86,6 +86,11 @@ Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
   return cleanedString;
 });
 
+Cypress.Commands.add('c_executeFunction', (func, ...args) => {
+  // Execute the provided function with arguments within Cypress environment
+  return cy.then(() => func(...args));
+});
+
 /**
  * DESCOPE APP
  */
@@ -132,8 +137,9 @@ Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
       const token_cookie = JSON.stringify({ access_token: body.access_token, id_token: body.id_token, refresh_token: body.refresh_token });
       cy.c_createEncodedTokenCookie(token_cookie).then((encodedToken) => {
         cy.setCookie('token-storage', encodedToken);
+        // Return the id_token  
+        return cy.wrap(body.id_token);
       });
-      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
     })
   })
 })
