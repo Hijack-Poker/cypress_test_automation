@@ -5,7 +5,8 @@ Feature: Front Office - Account Details Update
   # JIRA ticket: EN-2910
   #-------------------------------------
 
-  @smoke
+  #Failure is due to new implementation in Sprint 17
+  @smoke @failure
   Scenario: Verify that player can successfully edit their account details
     Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page

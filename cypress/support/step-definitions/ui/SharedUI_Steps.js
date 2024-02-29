@@ -24,7 +24,8 @@ Then('{string} page should be displayed', (page) => {
 // Descope Buttons only
 When('I click on {string} button in Descope page', (button) => {
   let value;
-  const { login_with_email_button, login_button, forgot_password, register_now_with_email, submit_button, resend_button } = frontOfficeLocators.login_page;
+  const { login_with_email_button, login_button, forgot_password, register_now_with_email, code_submit_button, resend_button } = frontOfficeLocators.login_page;
+  const { submit_registration_button, im_ready_button } = frontOfficeLocators.registration_page;
   switch (button.toLowerCase()) {
   case 'login with email':
     value = login_with_email_button;
@@ -39,23 +40,22 @@ When('I click on {string} button in Descope page', (button) => {
     value = register_now_with_email;
     break;
   case 'submit':
-    value = submit_button;
+    value = code_submit_button;
     break;
+  case 'submit registration':
+    value = submit_registration_button;
+    break;  
   case 'resend':
     value = resend_button;
+    break;
+  case 'im ready':
+    value = im_ready_button;
     break;    
   default:
     throw new Error('Invalid button name provided: ' + button);
   }
   const element = value;
-  cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
-    Cypress.on('uncaught:exception', (err) => {
-      if (err.name.includes('NotAllowedError')) {
-        return false;
-      }
-    });
-    cy.get(element).click();
-  });
+  cy.c_clickElementInDescope(element);
 });
 
 //Example: I click on "Login button" in "Login Page" of "Front Office"

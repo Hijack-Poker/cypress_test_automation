@@ -37,7 +37,7 @@ When('I edit the Account Details fields with these values', (dataTable) => {
       cy.get(inputTextbox).should('be.visible').clear().type(fieldValue);
       cy.get(saveButton).should('be.visible').click();
 
-      cy.waitForStableDOM({ pollInterval: 2000, timeout: 10000 }); // waits for a stable DOM after page refresh
+      cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 }); // waits for a stable DOM after page refresh
       cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').should('be.visible').contains('Updated');
       cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
     });

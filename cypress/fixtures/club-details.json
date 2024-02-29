@@ -1,0 +1,26 @@
+{
+  "austin": {
+    "name": "Texas Card House Austin",
+    "locationId": "e5e1befb-8f42-48e4-af39-7f8aee974a44"
+  },
+  "dallas": {
+    "name": "Texas Card House Dallas",
+    "locationId": "dab7619a-c0e7-401f-8342-15349e62ade6"
+  },
+  "rio": {
+    "name": "Texas Card House Rio Grande Valley",
+    "locationId": "971b2bba-4742-4a12-92c7-e7c90d71edfa"
+  },
+  "spring": {
+    "name": "Texas Card House Spring",
+    "locationId": "81ef2434-0f80-4b0c-853f-93f083a9e9f1"
+  },
+  "houston": {
+    "name": "Texas Card House Houston",
+    "locationId": "30e72d59-3510-47d3-b29d-60f9cc6986e0"
+  },
+  "colinas": {
+    "name": "Texas Card House Las Colinas",
+    "locationId": "618835bd-4def-4565-9768-6cf9435100c7"
+  }
+}

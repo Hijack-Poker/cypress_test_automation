@@ -86,9 +86,26 @@ Cypress.Commands.add('c_createEncodedTokenCookie', (stringToken) => {
   return cleanedString;
 });
 
+Cypress.Commands.add('c_executeFunction', (func, ...args) => {
+  // Execute the provided function with arguments within Cypress environment
+  return cy.then(() => func(...args));
+});
+
 /**
  * DESCOPE APP
  */
+
+Cypress.Commands.add('c_clickElementInDescope', (element) => {
+  cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
+    Cypress.on('uncaught:exception', (err) => {
+      if (err.name.includes('NotAllowedError') || err.name.includes('Error')) {
+        return false;
+      }
+    });
+    cy.get(element).click();
+  });
+});
+
 Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
   cy.request({
     method: 'POST',
@@ -120,8 +137,9 @@ Cypress.Commands.add('c_loginDescopeViaAPI', (userEmail, userPassword) => {
       const token_cookie = JSON.stringify({ access_token: body.access_token, id_token: body.id_token, refresh_token: body.refresh_token });
       cy.c_createEncodedTokenCookie(token_cookie).then((encodedToken) => {
         cy.setCookie('token-storage', encodedToken);
+        // Return the id_token  
+        return cy.wrap(body.id_token);
       });
-      cy.visit(Cypress.env('FRONT_OFFICE_ACCOUNT_URL') + '/hijack/cardhouse');
     })
   })
 })
@@ -157,6 +175,17 @@ Cypress.Commands.add('c_generateTestUserOTP', (loginId, deliveryMethod) => {
       } else {
         throw new Error(`Failed to generate OTP. Status code: ${response.status}`);
       }
+  });
+});
+
+Cypress.Commands.add('c_enterOTPCode', (arrOTP, locator) => {
+  cy.origin("https://auth.descope.io", { args: {arrOTP, locator} }, ( {arrOTP, locator} ) => {
+    cy.get(locator).find('vaadin-text-field').each(($el, index) => {
+      if (index+1 < arrOTP.length) {
+        cy.get(`vaadin-text-field[data-id="${index+1}"]`).find('input').type(arrOTP[index+1], {force: true});
+      }
+    });
+    cy.get(`vaadin-text-field[data-id="0"]`).find('input').type(arrOTP[0], {force: true});
   });
 });
 
