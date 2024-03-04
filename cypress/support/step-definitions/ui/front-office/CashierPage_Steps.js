@@ -58,10 +58,10 @@ When('I input {string} in code textbox', (codeValue) => {
 });
 
 When('I input the generated in code textbox', () => {
+  const otpCode = this.otpCode;
   cy.get(cashierPageLocators.cashier_page.enter_code_txtbox)
     .should('be.visible')
     .then(($textbox) => {
-      const otpCode = this.otpCode;
       if (otpCode !== undefined) {
         cy.wrap($textbox).type(otpCode);
       } else {

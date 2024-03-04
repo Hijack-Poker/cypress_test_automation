@@ -50,7 +50,7 @@ Feature: Front Office - Club Deposit
     And I select a club location
     And I click "Process Deposit" button in Cashier
     And I click "Received code SMS button" button in Cashier
-    And I use API to Generate OTP via "SMS" for test user
+    And I use API to Generate OTP via "SMS" for "test user 1"
     And I input the generated in code textbox
     And I click "Verify button" button in Cashier
     Then The "Deposit" notification should be displayed in Cashier page

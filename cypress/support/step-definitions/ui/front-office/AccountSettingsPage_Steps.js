@@ -117,12 +117,13 @@ When('I enter {string} in Verify Your Phone modal', function (text) {
   let value;
   let index;
   let buttonLocator;
+  const otpValue = this.otpCode;
   if (text == "phone number") {
     value = current_phone;
     index = 0;
     buttonLocator = frontOfficeLocators.common.send_text_button;
   } else if (text == "OTP code") {
-    value = this.otpCode;
+    value = otpValue;
     index = 1;
     buttonLocator = frontOfficeLocators.common.submit_code_button;
   } else {

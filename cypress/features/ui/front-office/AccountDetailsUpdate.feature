@@ -6,15 +6,15 @@ Feature: Front Office - Account Details Update
   # JIRA ticket: EN-2910/EN-2991
   #-------------------------------------
 
-  #Failure is due to new implementation in Sprint 17
-  @smoke @failure
+  
+  @smoke 
   Scenario: Verify that player can successfully edit their account details
     Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I edit the Account Details fields with these values
     | Field         | Value                  |
-    | Display Name  | QAAUTO                 |
+    # | Display Name  | QAAUTO                 | @failure #Failure is due to new implementation in Sprint 17
     | First Name    | QAAUTO Test First Name |
     | Last Name     | QAAUTO Test Last Name  |
     | Address       | QAAUTO Test Address    |

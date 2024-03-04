@@ -31,18 +31,6 @@ Given('I am logged in as {string} in Front Office', function (userType) {
   });
 });
 
-When('I use API to Generate OTP via {string} for test user', function (method) {
-  const allowedMethods = ['email', 'sms'];
-  if (!allowedMethods.includes(method.toLowerCase())) {
-    throw new Error(`Selected method is not acceptable: ${method}`);
-  } else {
-    cy.c_generateTestUserOTP(this.userDetails.test_user1.email, method.toLowerCase()).then((otpCode) => {
-      this.otpCode = otpCode;
-      cy.log("GENERATED OTP CODE: " + this.otpCode);
-    });
-  }
-});
-
 When('I use API to Generate OTP via {string} for {string}', function (deliveryMethod, testUser) {
   const { test_user1, test_user_register } = this.userDetails;
   let userSelected;
@@ -58,5 +46,6 @@ When('I use API to Generate OTP via {string} for {string}', function (deliveryMe
   }
   cy.c_generateTestUserOTP(userSelected, deliveryMethod).then((otpCode) => {
     this.otpCode = otpCode;
+    cy.log("GENERATED OTP CODE: " + this.otpCode);
   });
 });
