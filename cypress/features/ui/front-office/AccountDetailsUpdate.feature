@@ -1,8 +1,9 @@
 Feature: Front Office - Account Details Update
   #Author: Anthony Mansueto 02/09/2024
+  #Modified by: Anthony Mansueto 03/01/2024 - Added blocked scenarios
 
   #-------------------------------------
-  # JIRA ticket: EN-2910
+  # JIRA ticket: EN-2910/EN-2991
   #-------------------------------------
 
   #Failure is due to new implementation in Sprint 17
@@ -59,7 +60,7 @@ Feature: Front Office - Account Details Update
     Then The "Error Message modal" of "Front Office" is displayed with message "Address should contain only letters, spaces, and numbers."
   
   @smoke
-  Scenario:Verify that player can successfully change their cardhouse
+  Scenario: Verify that player can successfully change their cardhouse
     Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
@@ -67,3 +68,18 @@ Feature: Front Office - Account Details Update
     And I set a new Club in the Cardhouse Selection page
     And I navigate to "Front Office Profile" page
     Then New Club is displayed in the Club Selection field in Account Profile page
+
+  @smoke @testUser
+  Scenario: Verify that player can successfully change phone number
+    Given I am logged in as "test user 1" in Front Office
+    When I navigate to "Front Office Profile" page
+    Then "Front Office Profile" page should be displayed
+    When I click on Change Phone in Account Profile page
+    Then The "Verify Your Phone modal" of "Front Office" is displayed
+    And "Enter your phone number" label is displayed in Verify Your Phone modal
+    When I enter "phone number" in Verify Your Phone modal
+    Then "Enter your code" label is displayed in Verify Your Phone modal
+    When I use API to Generate OTP via "SMS" for test user
+    And I enter "OTP code" in Verify Your Phone modal
+    Then "Phone successfully enrolled!" label is displayed in Verify Your Phone modal
+    And I click on "Finish button" in "common" of "Front Office"

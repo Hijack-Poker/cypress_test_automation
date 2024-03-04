@@ -62,7 +62,11 @@ export default {
   },
   common: {
     message_modal: '.modal.show[aria-modal="true"]',
-    error_message_modal: 'div#ErrorMessagesModal'
+    error_message_modal: 'div#ErrorMessagesModal',
+    verify_your_phone_modal: 'div#_mfaEnrollmentModal[aria-modal="true"]',
+    send_text_button: 'button#send-text',
+    submit_code_button: 'button#_mfaEnrollVerifyButton',
+    finish_button: 'button#_mfaFinishEnrollButton'
   },
   cashier_page: {
     deposit_amount_txtbox: 'input#deposit_amount_usd',
