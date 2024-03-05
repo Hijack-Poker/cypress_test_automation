@@ -66,6 +66,14 @@ When('I click on {string} in {string} of {string}', (elementName, page, domain) 
   });
 });
 
+//Example: The "Avatar Update modal" of "Front Office" is displayed
+Then('The {string} of {string} is displayed', (elementName, domain) => {
+  const locatorFile = getLocatorFile(domain);
+  cy.c_getLocatorByNamePage(locatorFile, "common", elementName).then((elementLocator) => {
+    cy.get(elementLocator).should('be.visible');
+  });
+});
+
 //Example: The "Avatar Update modal" of "Front Office" is displayed with message "Update Success!"
 Then('The {string} of {string} is displayed with message {string}', (elementName, domain, messageValue) => {
   const locatorFile = getLocatorFile(domain);
