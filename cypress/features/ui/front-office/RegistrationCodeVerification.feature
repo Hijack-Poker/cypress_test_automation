@@ -1,5 +1,6 @@
 Feature: Front Office - Registration Code Verification
   #Author: Anthony Mansueto 02/26/2024
+  #Modified by: Anthony Mansueto 03/01/2024 - manual review
 
   #-------------------------------------
   # JIRA ticket: EN-2992
@@ -23,7 +24,7 @@ Feature: Front Office - Registration Code Verification
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "OTP Verification field" with message "Must be a 6 digits number"
 
-  @smoke @testUser
+  @smoke @testUser 
   Scenario: Verify that when the user submits an invalid 6-digit code (e.g., incorrect code or expired code), the system displays a relevant error message.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
@@ -37,6 +38,11 @@ Feature: Front Office - Registration Code Verification
     | Confirm Password    | Password123!           |
     And I click on "Submit registration" button in Descope page
     Then "Verification" modal should be displayed in Descope
+    When I use API to Generate OTP via "SMS" for "test user registration"
+    And I enter generated OTP for test users in Descope Verification modal
+    And I use API to Generate OTP via "SMS" for "test user registration"
+    And I click on "Submit" button in Descope page
+    Then Error message should be displayed in "OTP Verification modal" with message "Failed to verify SMS code"
     When I enter 6-digit OTP "123456" in Descope Verification modal
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "OTP Verification modal" with message "Failed to verify SMS code"
