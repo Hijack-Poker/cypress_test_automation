@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@badeball/cypress-cucumber-preprocessor": "latest",
-    "@bahmutov/cypress-esbuild-preprocessor": "latest"
+    "@bahmutov/cypress-esbuild-preprocessor": "latest",
+    "react-google-login": "^5.2.2"
   },
   "scripts": {
     "cypress:local": "npx cypress run --env tags='not @bugfix and not @failure',configFile=development",

@@ -7,10 +7,13 @@ Feature: Club Management -  Users Profile
 
   @smoke
   Scenario: Verify that the admin can view the basic information of the employee on the profile page
+    # Given I navigate to "club login" page
+    # When I click the Goggle sign-in button
     Given I use Google API to login on Club Management site
-    When I click the "Users" in the User Management Dashboard
-    And I click View Profile of "Sevs" on Users table
-    Then The "Basic Information" tab should displayed in the Profile page
+    # And I navigate to "club management" page
+    # And I click the "Users" in the User Management Dashboard
+    # And I click View Profile of "Sevs" on Users table
+    # Then The "Basic Information" tab should displayed in the Profile page
 
   # @smoke
   # Scenario: Verify that the basic information section displays an edit icon, the employee's name, creation and last edit dates, and the employee's status

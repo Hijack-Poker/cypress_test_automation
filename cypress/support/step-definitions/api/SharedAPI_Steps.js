@@ -64,3 +64,7 @@ When('I use API to Generate OTP via {string} for {string}', function (deliveryMe
 When("I use Google API to login on Club Management site", () => {
   cy.c_loginViaGoggle();
 });
+
+When("I click the Goggle sign-in button", () => {
+  cy.get('parent-selector').contains('Mag-sign in sa Google').click();
+});
