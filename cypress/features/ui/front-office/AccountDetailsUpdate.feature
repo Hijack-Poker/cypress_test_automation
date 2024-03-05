@@ -80,5 +80,6 @@ Feature: Front Office - Account Details Update
     When I enter phone number in Verify Your Phone modal
     Then "Enter your code" label is displayed in Verify Your Phone modal
     When I use API to Generate OTP via "SMS" for "test user 1" then enter in "Verify Your Phone modal"
+    And I click on "Submit Code button" in "common" of "Front Office"
     Then "Phone successfully enrolled!" label is displayed in Verify Your Phone modal
     And I click on "Finish button" in "common" of "Front Office"
