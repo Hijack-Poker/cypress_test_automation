@@ -113,24 +113,9 @@ When('I enter new phone number in Verify Your Phone modal', () => {
   cy.get(frontOfficeLocators.common.send_text_button).click();
 });
 
-When('I enter {string} in Verify Your Phone modal', function (text) {
-  let value;
-  let index;
-  let buttonLocator;
-  const otpValue = this.otpCode;
-  if (text == "phone number") {
-    value = current_phone;
-    index = 0;
-    buttonLocator = frontOfficeLocators.common.send_text_button;
-  } else if (text == "OTP code") {
-    value = otpValue;
-    index = 1;
-    buttonLocator = frontOfficeLocators.common.submit_code_button;
-  } else {
-    throw new Error('Invalid value provided: ' + text);
-  }
-  cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').eq(index).should('be.visible').type(value);
-  cy.get(buttonLocator).click();
+When('I enter phone number in Verify Your Phone modal', function () {
+  cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').eq(0).should('be.visible').type(current_phone);
+  cy.get(frontOfficeLocators.common.send_text_button).click();
 });
 
 Then('{string} label is displayed in Verify Your Phone modal', (label) => {

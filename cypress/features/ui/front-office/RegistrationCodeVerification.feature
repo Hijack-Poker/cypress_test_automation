@@ -38,8 +38,7 @@ Feature: Front Office - Registration Code Verification
     | Confirm Password    | Password123!           |
     And I click on "Submit registration" button in Descope page
     Then "Verification" modal should be displayed in Descope
-    When I use API to Generate OTP via "SMS" for "test user registration"
-    And I enter generated OTP for test users in Descope Verification modal
+    When I use API to generate OTP via "SMS" for "test user registration" then enter in Descope Verification modal
     And I use API to Generate OTP via "SMS" for "test user registration"
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "OTP Verification modal" with message "Failed to verify SMS code"
@@ -61,8 +60,7 @@ Feature: Front Office - Registration Code Verification
     | Confirm Password    | Password123!           |
     And I click on "Submit registration" button in Descope page
     Then "Verification" modal should be displayed in Descope
-    When I use API to Generate OTP via "SMS" for "test user registration"
-    When I enter generated OTP for test users in Descope Verification modal
+    When I use API to generate OTP via "SMS" for "test user registration" then enter in Descope Verification modal
     And I click on "Submit" button in Descope page
     And I click on "Im Ready" button in Descope page
     Then "Front Office Cardhouse" page should be displayed

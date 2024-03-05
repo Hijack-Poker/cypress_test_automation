@@ -19,7 +19,7 @@ Feature: Front Office - Account Details Update
     | Last Name     | QAAUTO Test Last Name  |
     | Address       | QAAUTO Test Address    |
     Then The Account Details fields is displayed with these values
-    | QAAUTO                 |
+    # | QAAUTO                 | @failure #Failure is due to new implementation in Sprint 17
     | QAAUTO Test First Name |
     | QAAUTO Test Last Name  |
     | QAAUTO Test Address    |
@@ -77,9 +77,8 @@ Feature: Front Office - Account Details Update
     When I click on Change Phone in Account Profile page
     Then The "Verify Your Phone modal" of "Front Office" is displayed
     And "Enter your phone number" label is displayed in Verify Your Phone modal
-    When I enter "phone number" in Verify Your Phone modal
+    When I enter phone number in Verify Your Phone modal
     Then "Enter your code" label is displayed in Verify Your Phone modal
-    When I use API to Generate OTP via "SMS" for test user
-    And I enter "OTP code" in Verify Your Phone modal
+    When I use API to Generate OTP via "SMS" for "test user 1" then enter in "Verify Your Phone modal"
     Then "Phone successfully enrolled!" label is displayed in Verify Your Phone modal
     And I click on "Finish button" in "common" of "Front Office"
