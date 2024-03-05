@@ -71,3 +71,7 @@ When('I use API to Generate OTP via {string} for {string} then enter in {string}
     }
   });
 });
+
+When('I use API to update Custom Attribute {string} of {string} user with value {string}', function (attributeKey, loginId, attributeValue) {
+  cy.c_updateCustomAttribute(loginId, attributeKey, attributeValue);
+});
