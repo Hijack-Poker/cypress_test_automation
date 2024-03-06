@@ -8,6 +8,7 @@ Feature: Front Office - Club Deposit
   @smoke
   Scenario: Verify that user can enter valid amount for club deposit
     Given I login to Front Office via Auth Descope API
+    And I use API to update Custom Attribute "idVerified" of "amansueto+qaautoplayer@oppy.tech" user with value "APPROVED"
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Deposit" in the Cashier Menu
     And I input '11' amount in "Deposit Amount"

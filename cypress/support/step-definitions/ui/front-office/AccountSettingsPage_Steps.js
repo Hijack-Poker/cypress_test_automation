@@ -118,6 +118,23 @@ When('I enter phone number in Verify Your Phone modal', function () {
   cy.get(frontOfficeLocators.common.send_text_button).click();
 });
 
+When('I edit the Account Details Display Name with {string}', (displayName) => {
+  const { display_name_edit, display_name_textbox, save_display_button } = frontOfficeLocators.account_settings_page;
+  cy.c_generateRandomString(4).then((generatedRandomString) => {
+    randomString = generatedRandomString;
+    cy.get(display_name_edit).should('be.visible').click();
+    cy.get(display_name_textbox).should('be.visible').clear().type(displayName + randomString);
+    cy.get(save_display_button).should('be.visible').click();
+
+    cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 }); // waits for a stable DOM after page refresh
+    cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').invoke('text').then((text) => {
+      if (text.includes('Display Name Updated')) {
+        cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
+      }
+    });
+  });
+});
+
 Then('{string} label is displayed in Verify Your Phone modal', (label) => {
   cy.get(frontOfficeLocators.common.verify_your_phone_modal).contains(label).should('be.visible');
 });

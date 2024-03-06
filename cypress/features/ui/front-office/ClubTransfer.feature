@@ -8,6 +8,7 @@ Feature: Front Office - Club Transfer
   @smoke
   Scenario: Verify that a player can search for another player
     Given I login to Front Office via Auth Descope API
+    And I use API to update Custom Attribute "idVerified" of "amansueto+qaautoplayer@oppy.tech" user with value "APPROVED"
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Transfer" in the Cashier Menu
     And I input "amansueto+qaautoplayer2@oppy.tech" in the find user textbox

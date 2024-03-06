@@ -3,23 +3,23 @@ Feature: Front Office - Account Details Update
   #Modified by: Anthony Mansueto 03/01/2024 - Added blocked scenarios
 
   #-------------------------------------
-  # JIRA ticket: EN-2910/EN-2991
+  # JIRA ticket: EN-2910/EN-2991/EN-2967
   #-------------------------------------
-
   
   @smoke 
   Scenario: Verify that player can successfully edit their account details
     Given I login to Front Office via Auth Descope API
+    And I use API to update Custom Attribute "displayNameDateCh" of "amansueto+qaautoplayer@oppy.tech" user with value ""
     When I navigate to "Front Office Profile" page
     Then "Front Office Profile" page should be displayed
     When I edit the Account Details fields with these values
     | Field         | Value                  |
-    # | Display Name  | QAAUTO                 | @failure #Failure is due to new implementation in Sprint 17
+    | Display Name  | QAAUTO                 |
     | First Name    | QAAUTO Test First Name |
     | Last Name     | QAAUTO Test Last Name  |
     | Address       | QAAUTO Test Address    |
     Then The Account Details fields is displayed with these values
-    # | QAAUTO                 | @failure #Failure is due to new implementation in Sprint 17
+    | QAAUTO                 |
     | QAAUTO Test First Name |
     | QAAUTO Test Last Name  |
     | QAAUTO Test Address    |
@@ -83,3 +83,13 @@ Feature: Front Office - Account Details Update
     And I click on "Submit Code button" in "common" of "Front Office"
     Then "Phone successfully enrolled!" label is displayed in Verify Your Phone modal
     And I click on "Finish button" in "common" of "Front Office"
+
+  @smoke 
+  Scenario: Verify user is only allowed to change display name once per day
+    Given I login to Front Office via Auth Descope API
+    And I use API to update Custom Attribute "displayNameDateCh" of "amansueto+qaautoplayer@oppy.tech" user with value ""
+    When I navigate to "Front Office Profile" page
+    Then "Front Office Profile" page should be displayed
+    When I edit the Account Details Display Name with "QAAUTO1"
+    And I edit the Account Details Display Name with "QAAUTO2"
+    Then The "Message modal" of "Front Office" is displayed with message "You can update your display name once a day. Thank you!!"

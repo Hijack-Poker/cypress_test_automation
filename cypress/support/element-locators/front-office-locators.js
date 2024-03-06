@@ -59,6 +59,7 @@ export default {
     address_textbox: 'input#address',
     change_phone_button: 'button#_mfaAddFactorButton',
     club_change_link: 'a[href*=cardhouseselection]',
+    save_display_button: 'button[onclick="submitchange(\'displayname\')"]'
   },
   common: {
     message_modal: '.modal.show[aria-modal="true"]',

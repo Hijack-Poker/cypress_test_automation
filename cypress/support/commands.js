@@ -94,7 +94,6 @@ Cypress.Commands.add('c_executeFunction', (func, ...args) => {
 /**
  * DESCOPE APP
  */
-
 Cypress.Commands.add('c_clickElementInDescope', (element) => {
   cy.origin("https://auth.descope.io", { args: { element } }, ({ element }) => {
     Cypress.on('uncaught:exception', (err) => {
@@ -187,6 +186,25 @@ Cypress.Commands.add('c_enterOTPCode', (arrOTP, locator) => {
     });
     cy.get(`vaadin-text-field[data-id="0"]`).find('input').type(arrOTP[0], {force: true});
   });
+});
+
+Cypress.Commands.add('c_updateCustomAttribute', (loginId, attributeKey, attributeValue) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://api.descope.com/v1/mgmt/user/update/customAttribute',
+    headers: authHeader,
+    body: {
+      loginId: loginId,
+      attributeKey: attributeKey,
+      attributeValue: attributeValue
+    },
+  }).then((response) => {
+    if (response.status === 200) {
+       cy.log("Custom Attribute successfully updated.")
+     } else {
+       throw new Error("Failed to update Custom Attribute");
+     }
+ });
 });
 
 /**

@@ -8,6 +8,7 @@ Feature: Front Office - Club Withdraw
   @smoke
   Scenario: Verify that user cannot input invalid amount in club withdrawal amount
     Given I login to Front Office via Auth Descope API
+    And I use API to update Custom Attribute "idVerified" of "amansueto+qaautoplayer@oppy.tech" user with value "APPROVED"
     When I click on "Cashier button" in "Lobby page" of "Front Office"
     And I click "Club Withdraw" in the Cashier Menu
     And I input '11000' amount in "Withdraw Amount"
