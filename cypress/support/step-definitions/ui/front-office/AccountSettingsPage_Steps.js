@@ -5,6 +5,7 @@ import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 let avatar_profile;
 let randomString;
 let current_club;
+let current_phone;
 
 When('I click on Go to Help Portal link in Account Settings - Help page', () => {
   cy.get(frontOfficeLocators.account_settings_page.go_to_help_portal_link).invoke('removeAttr', 'target').click();
@@ -98,6 +99,44 @@ When('New Club is displayed in the Club Selection field in Account Profile page'
       expect(text).to.include("Austin");
     }
   });
+});
+
+When('I click on Change Phone in Account Profile page', () => {
+  cy.get('div.form-groupbox').find('.col-10').invoke('text').then((text) => {
+    current_phone = text;
+    cy.get(frontOfficeLocators.account_settings_page.change_phone_button).click();
+  });
+});
+
+When('I enter new phone number in Verify Your Phone modal', () => {
+  cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').should('be.visible').type(current_phone);
+  cy.get(frontOfficeLocators.common.send_text_button).click();
+});
+
+When('I enter phone number in Verify Your Phone modal', function () {
+  cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').eq(0).should('be.visible').type(current_phone);
+  cy.get(frontOfficeLocators.common.send_text_button).click();
+});
+
+When('I edit the Account Details Display Name with {string}', (displayName) => {
+  const { display_name_edit, display_name_textbox, save_display_button } = frontOfficeLocators.account_settings_page;
+  cy.c_generateRandomString(4).then((generatedRandomString) => {
+    randomString = generatedRandomString;
+    cy.get(display_name_edit).should('be.visible').click();
+    cy.get(display_name_textbox).should('be.visible').clear().type(displayName + randomString);
+    cy.get(save_display_button).should('be.visible').click();
+
+    cy.waitForStableDOM({ pollInterval: 1000, timeout: 10000 }); // waits for a stable DOM after page refresh
+    cy.get(frontOfficeLocators.common.message_modal).find('div#ModalBody').invoke('text').then((text) => {
+      if (text.includes('Display Name Updated')) {
+        cy.get(frontOfficeLocators.common.message_modal).contains('×').click();
+      }
+    });
+  });
+});
+
+Then('{string} label is displayed in Verify Your Phone modal', (label) => {
+  cy.get(frontOfficeLocators.common.verify_your_phone_modal).contains(label).should('be.visible');
 });
 
 Then('HiJack Help Portal is displayed with url {string}', (url) => {

@@ -53,17 +53,25 @@ Then('{string} modal should be displayed in Descope', (modalName) => {
   });
 });
 
-When('I enter generated OTP for test users in Descope Verification modal', function () {
-  const str = this.otpCode;
-  let arrValue = str.split('');
-  const { verification_passcode } = frontOfficeLocators.registration_page;
-  cy.origin("https://auth.descope.io", { args: {arrValue, verification_passcode} }, ( {arrValue, verification_passcode} ) => {
-    cy.get(verification_passcode).find('vaadin-text-field').each(($el, index) => {
-      if (index+1 < arrValue.length) {
-        cy.get(`vaadin-text-field[data-id="${index+1}"]`).find('input').type(arrValue[index+1], {force: true});
-      }
+When('I use API to generate OTP via {string} for {string} then enter in Descope Verification modal', function (deliveryMethod, testUser) {
+  const { test_user1, test_user_register } = this.userDetails;
+  let userSelected;
+  if (testUser == 'test user 1') {
+    userSelected = test_user1.email;
+  } else if (testUser == 'test user registration') {
+    userSelected = test_user_register.email;
+  }
+  cy.c_generateTestUserOTP(userSelected , deliveryMethod).then((otpCode) => {
+    let arrValue = otpCode.split('');
+    const { verification_passcode } = frontOfficeLocators.registration_page;
+    cy.origin("https://auth.descope.io", { args: {arrValue, verification_passcode} }, ( {arrValue, verification_passcode} ) => {
+      cy.get(verification_passcode).find('vaadin-text-field').each(($el, index) => {
+        if (index+1 < arrValue.length) {
+          cy.get(`vaadin-text-field[data-id="${index+1}"]`).find('input').type(arrValue[index+1], {force: true});
+        }
+      });
+      cy.get(`vaadin-text-field[data-id="0"]`).find('input').type(arrValue[0], {force: true});
     });
-    cy.get(`vaadin-text-field[data-id="0"]`).find('input').type(arrValue[0], {force: true});
   });
 });
 
