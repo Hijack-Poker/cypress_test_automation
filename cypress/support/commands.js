@@ -1,3 +1,5 @@
+const { data } = require("cypress/types/jquery");
+
 const projectId = Cypress.env('descope_project_id')
 const managementKey = Cypress.env('descope_management_key')
 
@@ -228,25 +230,20 @@ Cypress.Commands.add('c_loginViaGoggle', () => {
     cy.log(id_token);
     //Add code add id_token to local storage
     window.localStorage.setItem('auth', id_token) 
-    const handleGetRequest = (url, storageKey) => {
-      cy.request({
-        method: 'GET',
-        url,
-      }).then(({ response, status }) => {
-        if (status === 200) {
-          window.localStorage.setItem(storageKey, JSON.stringify(response.body));
-        } else {
-          cy.log(`Error: GET request to ${url} failed with status ${status}`);
-        }
-      });
-    };
-
-    // Make GET requests and store responses in localStorage
-    handleGetRequest('https://backoffice.hijackpoker-develop.online/api/clubs/get-all-clubs-data?dealerId=1', 'clubs');
-    handleGetRequest('https://backoffice.hijackpoker-develop.online/api/club-members/search?email=alana@oppy.tech', 'club');
-  }).catch((error) => {
-    cy.log(`Error in c_loginViaGoggle: ${error}`);  
+    cy.request({
+      method: 'GET',
+      url: `https://backoffice.hijackpoker-staging.online/api/clubs/get-all-clubs-data?dealerId=1`,
+    }).then((response) => {
+      cy.log('API Response:', JSON.stringify(response));
+      window.localStorage.setItem('club', JSON.stringify(response.body));
+    })
+    cy.request({
+      method: 'GET',
+      url: `https://backoffice.hijackpoker-staging.online/api/club-members/search?email=amansuet0@oppy.tech`,
+    }).then(({ body }) => {
+      cy.log('Response Body:', body);
+    })  
+    // cy.visit('https://clubs.hijackpoker-staging.online/management');
   });
-  cy.visit('https://clubs.hijackpoker-staging.online/management');
 });
 
