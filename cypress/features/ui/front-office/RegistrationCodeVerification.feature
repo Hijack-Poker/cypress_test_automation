@@ -6,7 +6,7 @@ Feature: Front Office - Registration Code Verification
   # JIRA ticket: EN-2992
   #-------------------------------------
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify that the input field on the Code Verification Page only accepts 6-digit numbers, and attempts to enter more or fewer digits are blocked or restricted.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
@@ -24,7 +24,7 @@ Feature: Front Office - Registration Code Verification
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "OTP Verification field" with message "Must be a 6 digits number"
 
-  @smoke @testUser 
+  @testUser 
   Scenario: Verify that when the user submits an invalid 6-digit code (e.g., incorrect code or expired code), the system displays a relevant error message.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
