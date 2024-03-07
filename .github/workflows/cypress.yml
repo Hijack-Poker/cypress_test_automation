@@ -3,6 +3,12 @@ run-name: Run Cypress Tests in ${{ github.event.inputs.environment || 'developme
 on: 
   workflow_dispatch:
     inputs:
+      testType:
+        type: choice
+        description: Select Test Type
+        required: true
+        default: 'smoke'
+        options: ['smoke','regression']
       environment:
         type: choice
         description: Select Environment
@@ -43,4 +49,4 @@ jobs:
           record: true
           parallel: true
           build: npx cypress info
-          command: npm run cypress:${{ github.event.inputs.environment || 'development' }}
+          command: npm run cypress:${{ github.event.inputs.testType || 'smoke' }}-${{ github.event.inputs.environment || 'development' }}
