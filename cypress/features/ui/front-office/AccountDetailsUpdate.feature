@@ -24,7 +24,6 @@ Feature: Front Office - Account Details Update
     | QAAUTO Test Last Name  |
     | QAAUTO Test Address    |
 
-  @smoke
   Scenario: Verify that error message appears when inputting blank characters in the required fields
     Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page
@@ -40,7 +39,6 @@ Feature: Front Office - Account Details Update
     When I click on "Save" button for "Last Name" field
     Then The "Error Message modal" of "Front Office" is displayed with message "Last Name should not be empty!"
 
-  @smoke
   Scenario: Verify that error message appears when inputting invalid characters in the required fields
     Given I login to Front Office via Auth Descope API
     When I navigate to "Front Office Profile" page

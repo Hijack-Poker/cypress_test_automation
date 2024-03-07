@@ -9,6 +9,10 @@
   },
   "scripts": {
     "cypress:local": "npx cypress run --env tags='not @bugfix and not @failure',configFile=development",
+    "cypress:smoke-development": "npx cypress run --browser chrome --record --parallel --env tags='@smoke and not @bugfix and not @failure',configFile=development",
+    "cypress:smoke-testing-1": "npx cypress run --browser chrome --record --parallel --env tags='@smoke and not @bugfix and not @failure',configFile=testing-1",
+    "cypress:smoke-testing-2": "npx cypress run --env tags='@smoke and not @bugfix and not @failure',configFile=testing-2",
+    "cypress:smoke-staging": "npx cypress run --browser chrome --record --parallel --env tags='@smoke and not @bugfix and not @failure',configFile=staging",
     "cypress:development": "npx cypress run --browser chrome --record --parallel --env tags='not @bugfix and not @failure',configFile=development",
     "cypress:testing-1": "npx cypress run --browser chrome --record --parallel --env tags='not @bugfix and not @failure',configFile=testing-1",
     "cypress:testing-2": "npx cypress run --browser chrome --record --parallel --env tags='not @bugfix and not @failure',configFile=testing-2",
