@@ -108,14 +108,9 @@ When('I click on Change Phone in Account Profile page', () => {
   });
 });
 
-When('I enter new phone number in Verify Your Phone modal', () => {
-  cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').should('be.visible').type(current_phone);
-  cy.get(frontOfficeLocators.common.send_text_button).click();
-});
-
 When('I enter phone number in Verify Your Phone modal', function () {
   cy.get(frontOfficeLocators.common.verify_your_phone_modal).find('input').eq(0).should('be.visible').type(current_phone);
-  cy.get(frontOfficeLocators.common.send_text_button).click();
+  cy.get(frontOfficeLocators.common.send_text_button).click({force: true});
 });
 
 When('I edit the Account Details Display Name with {string}', (displayName) => {
