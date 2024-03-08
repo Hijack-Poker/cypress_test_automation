@@ -1,5 +1,5 @@
 name: Cypress Tests
-run-name: Run Cypress - ${{ github.event.inputs.testType }} Tests in ${{ github.event.inputs.environment }} by @${{ github.actor }}
+run-name: Run Cypress - ${{ github.event.inputs.testType }} tests in ${{ github.event.inputs.environment }} by @${{ github.actor }}
 on: 
   workflow_dispatch:
     inputs:
