@@ -2,9 +2,9 @@ Feature: Front Office - Account Avatar
   #Author: Anthony Mansueto 02/08/2024
   #Modified by: Anthony Mansueto 02/12/2024
 
-  #-------------------------------------
+  #----------------------------------
   # JIRA ticket: EN-2791
-  #-------------------------------------
+  #----------------------------------
 
   @smoke
   Scenario: Verify that user can successfully edit their avatar
