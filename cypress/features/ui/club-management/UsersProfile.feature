@@ -7,9 +7,8 @@ Feature: Club Management -  Users Profile
 
   @smoke
   Scenario: Verify that the admin can view the basic information of the employee on the profile page
-    # Given I navigate to "club login" page
-    # When I click the Goggle sign-in button
-    Given I use Google API to login on Club Management site
+    Given I login in club management using Google API
+    
     # And I navigate to "club management" page
     # And I click the "Users" in the User Management Dashboard
     # And I click View Profile of "Sevs" on Users table

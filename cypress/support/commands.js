@@ -1,4 +1,4 @@
-const { data } = require("cypress/types/jquery");
+
 
 const projectId = Cypress.env('descope_project_id')
 const managementKey = Cypress.env('descope_management_key')
@@ -230,38 +230,59 @@ Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelecto
 /**
  * GOOGLE LOGIN
  */
-Cypress.Commands.add('c_loginViaGoggle', () => {
-    
+// 
+
+Cypress.Commands.add("c_loginWithGoogleAPI", () => {
+  cy.visit('https://clubs.hijackpoker-develop.online');
+  // Call Google API to get authentication data
   cy.request({
     method: 'POST',
     url: 'https://www.googleapis.com/oauth2/v4/token',
-     body: {
+    headers: authHeader,
+    body: {
       grant_type: 'refresh_token',
       client_id: Cypress.env('googleClientId'),
       client_secret: Cypress.env('googleClientSecret'),
       refresh_token: Cypress.env('googleRefreshToken'),
-    },
+    }  
   }).then(({ body }) => {
     const id_token = body.id_token;
-    const testBody = JSON.stringify(body);
-    cy.log(testBody);
-    cy.log(id_token);
-    //Add code add id_token to local storage
-    window.localStorage.setItem('auth', id_token) 
+    cy.log('header:', authHeader); 
+    // Store authentication data in localStorage
+    // localStorage.setItem('auth', id_token);
+    window.localStorage.setItem('auth', id_token);
+    cy.log('1st:', JSON.stringify(id_token));
+    // Call your other API endpoints to get data
     cy.request({
       method: 'GET',
-      url: `https://backoffice.hijackpoker-staging.online/api/clubs/get-all-clubs-data?dealerId=1`,
-    }).then((response) => {
-      cy.log('API Response:', JSON.stringify(response));
-      window.localStorage.setItem('club', JSON.stringify(response.body));
-    })
-    cy.request({
-      method: 'GET',
-      url: `https://backoffice.hijackpoker-staging.online/api/club-members/search?email=amansuet0@oppy.tech`,
+      url: 'https://backoffice.hijackpoker-staging.online/api/clubs/get-all-clubs-data?dealerId=1',
     }).then(({ body }) => {
-      cy.log('Response Body:', body);
-    })  
+      const clubsData = JSON.parse(body);
+
+      // Store clubs data in localStorage
+      // localStorage.setItem('clubs', JSON.stringify(clubsData));
+      window.localStorage.setItem('clubs', JSON.stringify(clubsData));
+      cy.log('2nd:', JSON.stringify(clubsData));
+      cy.request({
+        method: 'GET',
+        url: 'https://backoffice.hijackpoker-staging.online/api/club-members/search?email=alana@oppy.tech',
+      }).then(({ body }) => {
+        const otherData = JSON.parse(body);
+        const club = clubsData.data[0];
+        // Store otherData in localStorage
+        localStorage.setItem('club', JSON.stringify(club));
+        cy.log('3rd:', JSON.stringify(club));
+        // Visit the homepage
+        cy.then(() => {
+          cy.visit('https://clubs.hijackpoker-staging.online/management');
+        });
+      });
+    });
+    // cy.intercept('GET', 'https://clubs.hijackpoker-staging.online/management').as('managementRequest');
     // cy.visit('https://clubs.hijackpoker-staging.online/management');
+    // cy.wait('@managementRequest');
+    
   });
 });
+
 

@@ -80,6 +80,10 @@ When("I use Google API to login on Club Management site", () => {
   cy.c_loginViaGoggle();
 });
 
+When("I login in club management using Google API", () => {
+  cy.c_loginWithGoogleAPI();
+});
+
 When("I click the Goggle sign-in button", () => {
   cy.get('parent-selector').contains('Mag-sign in sa Google').click();
 });
