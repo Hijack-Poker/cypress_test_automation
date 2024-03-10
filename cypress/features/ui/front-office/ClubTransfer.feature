@@ -34,7 +34,6 @@ Feature: Front Office - Club Transfer
     And I click "Select User" button in Cashier
     Then The "Amount to Transfer" section should be displayed in the Player Transfer page
 
-  @smoke
   Scenario: Verify that a player receives correct error message from unsuccessful player search
     Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"
@@ -42,8 +41,7 @@ Feature: Front Office - Club Transfer
     And I input "Lorem Ipsum" in the find user textbox
     And I click "Find User" button in Cashier
     Then The "User not found" notification should be displayed in Cashier page
-
-  @smoke   
+ 
   Scenario: Verify that a player receives an error message when using own email in player search
     Given I login to Front Office via Auth Descope API
     And I click on "Cashier button" in "Lobby page" of "Front Office"
@@ -64,7 +62,6 @@ Feature: Front Office - Club Transfer
     And I click "Send Transfer" button in Cashier
     Then The verification modal is displayed in Cashier Page
 
-  @smoke
   Scenario: Verify that transfer will not be successful if incorrect verification code is entered
     Given I login to Front Office via Auth Descope API
     When I click on "Cashier button" in "Lobby page" of "Front Office"

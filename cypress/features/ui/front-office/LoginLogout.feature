@@ -33,7 +33,6 @@ Feature: Front Office - Login Logout
     And I click on "Forgot Password" button in Descope page
     Then Reset Password modal should be displayed with text "We've sent a password reset link to"
 
-  @smoke
   Scenario: Login With Email - Verify that user cannot login with invalid credentials
     Given I navigate to "Front Office Login" page
     When I click on "Login with Email" button in Descope page

@@ -16,7 +16,7 @@ Feature: Front Office - Registration Verify Your Email
     And I click on "Submit" button in Descope page
     Then "Registration form" modal should be displayed in Descope
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify that when an invalid code is entered, the system prevents the user from proceeding to the next step.
     Given I navigate to "Front Office Login" page
     When I click on "Register Now with Email" button in Descope page
@@ -27,7 +27,7 @@ Feature: Front Office - Registration Verify Your Email
     And I click on "Submit" button in Descope page
     Then Error message should be displayed in "OTP Verification modal" with message "Failed to verify email code"
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify that when an email address is entered in an incorrect format (e.g., missing "@" or domain), the system displays a validation error message.
     Given I navigate to "Front Office Login" page
     When I click on "Register Now with Email" button in Descope page

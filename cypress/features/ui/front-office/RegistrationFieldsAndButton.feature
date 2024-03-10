@@ -5,7 +5,7 @@ Feature: Front Office - Registration Fields and Buttons Validation
   # JIRA ticket: EN-2990
   #-------------------------------------
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify user should be able to see and fill in the Unique Display Name, FirstName, LastName, Phone, Password, ConfirmPassword field on the registration page.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
@@ -40,14 +40,14 @@ Feature: Front Office - Registration Fields and Buttons Validation
     And I click on "Submit registration" button in Descope page
     Then "Verification" modal should be displayed in Descope
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify that when the user clicks the "Submit" button with one or more required fields left empty, it displays a pop-up error message stating "Please fill out this field."
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
     When I click on "Submit registration" button in Descope page
     Then Error message should be displayed in "Registration form field" with message "Please fill out this field."
 
-  @smoke @testUser
+  @testUser
   Scenario: Verify that when the user clicks the "Submit" button with specific validation errors (e.g., password strength,phone number format, etc.), it displays a relevant error message for the specific validation issue.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
@@ -83,9 +83,9 @@ Feature: Front Office - Registration Fields and Buttons Validation
     And I click on "Submit registration" button in Descope page
     Then Error message should be displayed in "Registration form modal" with message "Password must contain at least one number"
 
-    #Bug ticket: EN-3070
-    @smoke @bugfix
-    Scenario: Verify that the Unique Display Name, First Name and Last Name fields enforces a maximum character limit, and the system displays a validation error message when the limit is exceeded.
+  #Bug ticket: EN-3070
+  @bugfix
+  Scenario: Verify that the Unique Display Name, First Name and Last Name fields enforces a maximum character limit, and the system displays a validation error message when the limit is exceeded.
     Given I go to Registration Form modal in Descope page
     Then "Registration form" modal should be displayed in Descope
     When I populate the Registration form fields with these values
