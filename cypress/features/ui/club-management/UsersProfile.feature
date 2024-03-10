@@ -8,9 +8,7 @@ Feature: Club Management -  Users Profile
   @smoke
   Scenario: Verify that the admin can view the basic information of the employee on the profile page
     Given I login in club management using Google API
-    
-    # And I navigate to "club management" page
-    # And I click the "Users" in the User Management Dashboard
+    And I click the "Users" in the User Management Dashboard
     # And I click View Profile of "Sevs" on Users table
     # Then The "Basic Information" tab should displayed in the Profile page
 

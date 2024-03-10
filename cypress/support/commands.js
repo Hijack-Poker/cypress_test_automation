@@ -197,7 +197,7 @@ Cypress.Commands.add('c_updateCustomAttribute', (loginId, attributeKey, attribut
   cy.request({
     method: 'POST',
     url: 'https://api.descope.com/v1/mgmt/user/update/customAttribute',
-    headers: authHeader,
+    // headers: authHeader,
     body: {
       loginId: loginId,
       attributeKey: attributeKey,
@@ -233,7 +233,7 @@ Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelecto
 // 
 
 Cypress.Commands.add("c_loginWithGoogleAPI", () => {
-  cy.visit('https://clubs.hijackpoker-develop.online');
+  cy.visit('https://clubs.hijackpoker-staging.online');
   // Call Google API to get authentication data
   cy.request({
     method: 'POST',
@@ -250,7 +250,7 @@ Cypress.Commands.add("c_loginWithGoogleAPI", () => {
     cy.log('header:', authHeader); 
     // Store authentication data in localStorage
     // localStorage.setItem('auth', id_token);
-    window.localStorage.setItem('auth', id_token);
+    window.localStorage.setItem('auth', JSON.stringify(id_token));
     cy.log('1st:', JSON.stringify(id_token));
     // Call your other API endpoints to get data
     cy.request({
@@ -261,24 +261,32 @@ Cypress.Commands.add("c_loginWithGoogleAPI", () => {
 
       // Store clubs data in localStorage
       // localStorage.setItem('clubs', JSON.stringify(clubsData));
-      window.localStorage.setItem('clubs', JSON.stringify(clubsData));
-      cy.log('2nd:', JSON.stringify(clubsData));
+      window.localStorage.setItem('clubs', JSON.stringify(clubsData.data));
+      cy.log('2nd:', JSON.stringify(clubsData.data));
       cy.request({
         method: 'GET',
         url: 'https://backoffice.hijackpoker-staging.online/api/club-members/search?email=alana@oppy.tech',
+        failOnStatusCode: false,
       }).then(({ body }) => {
         const otherData = JSON.parse(body);
         const club = clubsData.data[0];
         // Store otherData in localStorage
-        localStorage.setItem('club', JSON.stringify(club));
+        window.localStorage.setItem('club', JSON.stringify(club));
         cy.log('3rd:', JSON.stringify(club));
         // Visit the homepage
-        cy.then(() => {
-          cy.visit('https://clubs.hijackpoker-staging.online/management');
-        });
+        // cy.intercept('GET', 'https://clubs.hijackpoker-staging.online/management').as('managementRequest');
+  
+        cy.reload();
+        // cy.visit('https://clubs.hijackpoker-staging.online/login'), {
+        //   headers: {
+        //     "Accept": "application/json, text/plain, */*",
+        //     "User-Agent": "axios/0.18.0"
+        //   },
+        //   failOnStatusCode: false
+        // }
       });
     });
-    // cy.intercept('GET', 'https://clubs.hijackpoker-staging.online/management').as('managementRequest');
+    
     // cy.visit('https://clubs.hijackpoker-staging.online/management');
     // cy.wait('@managementRequest');
     
