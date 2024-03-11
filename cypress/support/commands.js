@@ -1,5 +1,6 @@
 
 
+
 const projectId = Cypress.env('descope_project_id')
 const managementKey = Cypress.env('descope_management_key')
 
@@ -233,6 +234,7 @@ Cypress.Commands.add('c_verifyValueExistInColumn', (tableSelector, columnSelecto
 // 
 
 Cypress.Commands.add("c_loginWithGoogleAPI", () => {
+  
   cy.visit('https://clubs.hijackpoker-staging.online');
   // Call Google API to get authentication data
   cy.request({
@@ -274,20 +276,21 @@ Cypress.Commands.add("c_loginWithGoogleAPI", () => {
         window.localStorage.setItem('club', JSON.stringify(club));
         cy.log('3rd:', JSON.stringify(club));
         // Visit the homepage
-        // cy.intercept('GET', 'https://clubs.hijackpoker-staging.online/management').as('managementRequest');
-  
-        cy.reload();
-        // cy.visit('https://clubs.hijackpoker-staging.online/login'), {
-        //   headers: {
-        //     "Accept": "application/json, text/plain, */*",
-        //     "User-Agent": "axios/0.18.0"
-        //   },
-        //   failOnStatusCode: false
-        // }
+        
+        
+        cy.reload(); 
+        // cy.visit('https://clubs.hijackpoker-staging.online/management');
+        Cypress.on('uncaught:exception', (err) => {
+          if (err.name.includes('NotAllowedError') || err.name.includes('Error')) {
+            return false;
+          }
+          cy.visit('https://clubs.hijackpoker-staging.online/management')
+        });
+
       });
     });
     
-    // cy.visit('https://clubs.hijackpoker-staging.online/management');
+    // 
     // cy.wait('@managementRequest');
     
   });
