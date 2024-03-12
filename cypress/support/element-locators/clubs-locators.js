@@ -29,6 +29,7 @@ export default {
     transaction_type_txtbox: "div#transaction-type-select > .notranslate",
     transaction_amount_txtbox: "[inputmode] [type]",
     reference_code_number: 'label[for="reference-code"]',
-    transaction_description: 'label[for="description"]'
+    transaction_description: 'label[for="description"]',
+    alert_popup: '.MuiAlert-message'
   }
 };
