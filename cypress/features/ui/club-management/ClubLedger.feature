@@ -8,7 +8,7 @@ Feature: Club Management - Ledger | Cash Adjustment
   Scenario: Verify that clicking outside the Cash Adjustment modal will close the modal
     Given I logged in Club Management API
     When I click the "Ledger" in the User Management Dashboard
-    And I click Cash Adjustment button in the Ledger
+    And I click "Cash Adjustment" button in the Ledger
     And I click outside the modal
     Then The Cash Adjustment modal should not displayed
 
@@ -17,8 +17,8 @@ Feature: Club Management - Ledger | Cash Adjustment
     When I click the "Ledger" in the User Management Dashboard
     And I click "Cash Adjustment" button in the Ledger
     And I click "Make Adjustment" button in the Ledger
-    Then The error message "Error: Transaction type is required." should be displayed
-    And The error message "Error: Transaction amount is required." should be displayed
+    Then The error message "Error: Transaction type is required." should be displayed in the modal
+    And The error message "Error: Transaction amount is required." should be displayed in the modal
 
   Scenario: Verify that success popup message is displaying after cash adjustment
     Given I logged in Club Management API
@@ -28,8 +28,6 @@ Feature: Club Management - Ledger | Cash Adjustment
     And I input "10" in the Transaction amount
     And I click "Make Adjustment" button in the Ledger
     Then The "Success" popup message should be displayed
-
-  Scenario: Verify that the correct fields are displaying in the Cash Adjustment modal
 
   Scenario: Verify that user is able to click Cancel button which will close the modal
     Given I logged in Club Management API

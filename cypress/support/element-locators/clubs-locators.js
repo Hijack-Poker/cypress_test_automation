@@ -30,6 +30,10 @@ export default {
     transaction_amount_txtbox: "[inputmode] [type]",
     reference_code_number: 'label[for="reference-code"]',
     transaction_description: 'label[for="description"]',
-    alert_popup: '.MuiAlert-message'
+    alert_popup: '.MuiAlert-message',
+    outside_header: '.MuiAppBar-positionSticky',
+    error_messages_modal: ' .MuiFormHelperText-sizeMedium',
+    withdraw_list_option: "[role='listbox'] [tabindex='0']",
+    deposit_list_option: "[role='listbox'] [tabindex='-1']"
   }
 };
