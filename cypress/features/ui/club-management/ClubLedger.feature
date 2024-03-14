@@ -55,7 +55,6 @@ Feature: Club Management - Ledger | Cash Adjustment
   Scenario: Verify that user is able to perform cash adjustment for Withdrawal and data is inserted in the table
     Given I logged in Club Management API
     When I click the "Ledger" in the User Management Dashboard
-    And I get the value of total deposit in the Ledger
     And I click "Cash Adjustment" button in the Ledger
     And I select "Withdraw" in the Transaction type
     And I input "10" in the Transaction amount
@@ -65,6 +64,15 @@ Feature: Club Management - Ledger | Cash Adjustment
   Scenario: Verify that “Cash Adjustment” label is displaying in the modal when clicking the Cash Adjustment button
     Given I logged in Club Management API
     When I click the "Ledger" in the User Management Dashboard
-    And I get the value of total deposit in the Ledger
     And I click "Cash Adjustment" button in the Ledger
     Then The header "Cash Adjustment" should be displayed in the modal
+
+  Scenario: Verify that the correct fields are displaying in the Cash Adjustment modal  
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "Cash Adjustment" button in the Ledger
+    Then The "Transaction Type" field in the modal should be displayed
+    And The "Transaction Amount" field in the modal should be displayed
+    And The "Transaction Type" field in the modal should be displayed
+    And The "Reference Number" field in the modal should be displayed
+    And The "Transaction Description" field in the modal should be displayed

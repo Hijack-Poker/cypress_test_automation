@@ -28,12 +28,14 @@ export default {
     modal_box: "div[role='presentation'] > div[role='dialog']",
     transaction_type_txtbox: "div#transaction-type-select > .notranslate",
     transaction_amount_txtbox: "[inputmode] [type]",
-    reference_code_number: 'label[for="reference-code"]',
-    transaction_description: 'label[for="description"]',
+    reference_code_number: 'textarea#reference-code',
+    transaction_description: 'textarea#description',
     alert_popup: '.MuiAlert-message',
     outside_header: '.MuiAppBar-positionSticky',
     error_messages_modal: ' .MuiFormHelperText-sizeMedium',
     withdraw_list_option: "[role='listbox'] [tabindex='0']",
-    deposit_list_option: "[role='listbox'] [tabindex='-1']"
+    deposit_list_option: "[role='listbox'] [tabindex='-1']",
+    transaction_date_time_data: '[class] tr:nth-of-type(1) .MuiTableCell-body.MuiTableCell-alignCenter',
+    modal_header: '.MuiDialogTitle-root'
   }
 };
