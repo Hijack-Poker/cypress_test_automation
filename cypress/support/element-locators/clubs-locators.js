@@ -38,7 +38,8 @@ export default {
     transaction_date_time_data: '[class] tr:nth-of-type(1) .MuiTableCell-body.MuiTableCell-alignCenter',
     modal_header: '.MuiDialogTitle-root',
     modal_text: '.MuiBox-root.css-0 > h2',
-    cash_on_hand_txtbox: 'input#outlined-adornment-transaction-amount'
+    cash_on_hand_txtbox: 'input#outlined-adornment-transaction-amount',
+    modal_title_txt: "[data-shrink='true']"
   }
 
 };

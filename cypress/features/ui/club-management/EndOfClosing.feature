@@ -25,21 +25,52 @@ Feature: Club Management - Ledger | Cash Adjustment
     And I click "Close Out" button in the Ledger
 
   Scenario: Verify that clicking outside the End of Day Closing modal will close the modal
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    And I click outside the modal
+    Then The End of Closing modal should not displayed
 
   Scenario: Verify that clicking the Cancel button in the “End of Day Closing” modal will close the modal
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    And I click "Cancel" button in the Ledger
+    Then The End of Closing modal should not displayed
 
   Scenario: Verify that clicking the Close Out button in the “End of Day Closing” modal will display another modal with “Cash On Hand” field which will allow the user to input a numeric value
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    And I click "CLOSE OUT" button in the Ledger
+    Then The "Cash On Hand" textbox should be displayed in modal
 
   Scenario: Verify that user is able to click the “End of Day Closing” button and will display the correct modal
-
-  Scenario: Verify that user is able to clockout successfully the employee of that specific club
-
-  Scenario: Verify that user is only able to clockout one employee at a time
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    Then The header "End of Day Closing" should be displayed in the modal
 
   Scenario: Verify that when all employees are successfully clockout, the “End of Day Closing” modal will display a Cancel button
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    Then The "CANCEL" button in the modal should be displayed
 
   Scenario: Verify that when all employees are successfully clockout, the “End of Day Closing” modal will display a Close Out button
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    Then The "CLOSE OUT" button in the modal should be displayed
 
   Scenario: Verify that when all employees are successfully clockout, the “End of Day Closing” modal will display “All employees have already clocked out. Proceed closing out?”
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    Then The text "All employees have already clocked out. Proceed closing out?" should be displayed on modal
 
   Scenario: Verify that “End of Day Closing” label is displaying in the modal when clicking the End of Day Closing button
+    Given I logged in Club Management API
+    When I click the "Ledger" in the User Management Dashboard
+    And I click "End Of Day Closing" button in the Ledger
+    Then The "End Of Day Closing" field in the modal should be displayed
