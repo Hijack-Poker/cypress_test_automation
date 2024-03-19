@@ -1,4 +1,4 @@
-Feature: Club Management - Ledger | Cash Adjustment
+Feature: Club Management - Ledger | End Of Closing
   #Author: Alfe Niño Laña 03/14/2024
 
   #----------------------------------
