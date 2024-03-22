@@ -31,6 +31,14 @@ When("I input {string} in the Cash on Hand", (amountValue) => {
   cy.get(ledgerPageLocator.cash_adjustment.cash_on_hand_txtbox).type(amountValue);
 });
 
+When("I click the Employee selection bar", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_select_bar).click();
+});
+
+When("I select {string} in the employee selection", (nameValue) => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_name_list).contains(nameValue).click();
+});
+
 Then("The new transaction should be displayed in the table", () => {
   cy.get(ledgerPageLocator.cash_adjustment.transaction_date_time_data).invoke('text').then((tableCellValue) => {
     const tableCellDate = new Date(tableCellValue.trim());
@@ -97,4 +105,44 @@ Then("The {string} textbox should be displayed in modal", (textValue) => {
 
 Then("The End of Closing modal should not displayed", () => {
   cy.get(ledgerPageLocator.cash_adjustment.modal_box).should('not.be.visible');
+});
+
+Then("The Employee Clock In modal should not displayed", () => {
+  cy.get(ledgerPageLocator.cash_adjustment.modal_box).should('not.be.visible');
+});
+
+Then("The list of employees should be displayed", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_list).should('be.visible');
+});
+
+Then("The list of employees should not be displayed", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_list).should('not.be.visible');
+});
+
+Then("The Employee textbox should be displayed in the modal", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_name_label).should('be.visible');
+});
+
+Then("The transaction amount should be displayed in the modal", () => {
+  cy.get(ledgerPageLocator.cash_adjustment.cash_on_hand_txtbox).should('be.visible');
+});
+
+Then("The total cash float should be displayed in the modal", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_total_cash_float).should('be.visible');
+});
+
+Then("The Total Cash Float should be green", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_total_cash_float).should('have.css', 'color', 'rgb(69, 190, 38)');
+});
+
+Then("The Total Cash Float should be red", () => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_total_cash_float).should('have.css', 'color', 'red');
+});
+
+Then("The amount {string} should be displayed in the Transaction amount", (amountValue) => {
+  cy.get(ledgerPageLocator.cash_adjustment.cash_on_hand_txtbox).contains(amountValue).should('be.visible');
+});
+
+Then("The employee {string} should be displayed in Employee textbox", (employeeValue) => {
+  cy.get(ledgerPageLocator.employee_clock_in.employee_select_bar).contains(employeeValue).should('be.visible');
 });

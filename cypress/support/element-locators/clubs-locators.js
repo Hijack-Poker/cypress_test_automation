@@ -39,6 +39,13 @@ export default {
     modal_header: '.MuiDialogTitle-root',
     modal_text: '.MuiBox-root.css-0 > h2',
     cash_on_hand_txtbox: 'input#outlined-adornment-transaction-amount',
-    modal_title_txt: "[data-shrink='true']"
+    modal_title_txt: "[data-shrink='true']",
+  },
+  employee_clock_in: {
+    employee_name_label: 'label#select-employee-label',
+    employee_select_bar: "input#select-employee",
+    employee_list: "ul#select-employee-listbox",
+    employee_name_list: '.MuiAutocomplete-option',
+    employee_total_cash_float: "div[role='dialog'] p"
   }
 };
